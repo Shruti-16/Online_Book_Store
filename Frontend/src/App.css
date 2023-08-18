@@ -8,17 +8,18 @@
   height: 100vh;
   background-repeat:no-repeat;
   color: aliceblue;
-
+  background-position: center;
+position: relative;
 }
 
-.btns{
-  margin: 30px;
-  background-color: aquamarine;
-}
-
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* .bg-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.35;
 } */
 
 @media (prefers-reduced-motion: no-preference) {
