@@ -1,7 +1,8 @@
 import './App.css';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import Header from './components/Header';
 import HomePage from './components/HomePage';
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SingupForm';
 
 function App() {
   return (
@@ -9,6 +10,10 @@ function App() {
       <div className='bg'>
         <div className='bg-overlay'>
        <HomePage/>
+
+       <LoginForm/>
+
+       <SignupForm/>
        </div>
       </div>
     </div>
