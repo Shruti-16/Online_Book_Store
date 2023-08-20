@@ -9,4 +9,6 @@ public interface UserService {
 
 	ApiResponse addNewUser(@Valid User user);
 
+	ApiResponse deleteUser(Long userId);
+
 }

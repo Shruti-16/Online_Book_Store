@@ -3,7 +3,7 @@ package com.app.entities;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,6 +23,7 @@ import lombok.ToString;
 public class Order extends BaseEntity{
 	
 	@OneToOne
+	@JoinColumn(name = "cart_id")
 	private Cart cart;
 	private int quantity;
 	@OneToOne

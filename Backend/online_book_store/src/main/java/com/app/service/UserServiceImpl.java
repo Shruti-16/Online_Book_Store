@@ -23,4 +23,10 @@ public class UserServiceImpl implements UserService {
 		return new ApiResponse("User registered with Id : "+user.getId()+" successfully..!");
 	}
 
+	@Override
+	public ApiResponse deleteUser(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

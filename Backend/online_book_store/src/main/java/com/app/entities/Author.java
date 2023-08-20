@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -27,8 +28,9 @@ public class Author extends BaseEntity {
 	/*
 	5. Photo (blob)
 	 */
-	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, mappedBy = "author",fetch = FetchType.EAGER)
 	private List<Book> books = new ArrayList<>();
+	@Column(name = "author_name")
 	private String name;
 	private String description;
 	private LocalDate dateOfBirth;
