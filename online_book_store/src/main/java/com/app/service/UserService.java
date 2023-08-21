@@ -1,7 +1,11 @@
 package com.app.service;
 
-import com.app.entities.User;
+import java.util.List;
+
+import com.app.dto.UserDTO;
 
 public interface UserService {
-	public User addNewUser(User user);
+	public UserDTO addNewUser(UserDTO userDto);
+
+	public List<UserDTO> getAllUsers();
 }

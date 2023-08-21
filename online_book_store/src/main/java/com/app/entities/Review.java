@@ -21,8 +21,7 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 @ToString
 @Table(name = "reviews")
 //@Embeddable
@@ -40,5 +39,58 @@ public class Review {
 	private Book book;
 	private String review;
 	private LocalDate reviewDate;
+
+	public Review() {
+		super();
+	}
+
+	public Review(Long reviewId, User customer, Book book, String review, LocalDate reviewDate) {
+		super();
+		this.reviewId = reviewId;
+		this.customer = customer;
+		this.book = book;
+		this.review = review;
+		this.reviewDate = reviewDate;
+	}
+
+	public Long getReviewId() {
+		return reviewId;
+	}
+
+	public void setReviewId(Long reviewId) {
+		this.reviewId = reviewId;
+	}
+
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public LocalDate getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(LocalDate reviewDate) {
+		this.reviewDate = reviewDate;
+	}
 
 }
