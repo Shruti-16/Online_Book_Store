@@ -4,7 +4,7 @@ import {FormEvent} from 'react';
 import { Container } from 'reactstrap';
 import LoginService from '../LoginService';
 
-const LogIn = () => {
+const AdminLogin = () => {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [status,setStatus]=useState('');
@@ -34,22 +34,25 @@ const LogIn = () => {
 
             </div>
             <div className='col-md-4'>
+                <div className='mb-4' style={{color:"white", textAlign:"center"}}>
+    <h2>Welcome Admin...!</h2>
+                </div>
                 <div className='card' >
                     <div className='card-header bg-info' style={{textAlign:'center'}}>
-                        <h2>LogIn</h2>
+                        <h2>Admin Login</h2>
                     </div>
                     <div className='card-body'>
                         <form onSubmit={handleSubmit}>
-                            <div className='form-group' >
-                                <label>EmailId:</label>
-                                <input type='email' className='form-control' value={email} name='email' placeholder='Enter email Id' onChange={(event)=>setEmail(event.target.value) }/>
+                            <div className='form-group mb-3' >
+                                <label>Email Id :</label>
+                                <input type='email' className='form-control' value={email} name='email' placeholder='Email Id' onChange={(event)=>setEmail(event.target.value) }/>
                             </div>
                             <div className='form-group' >
-                                <label>Password:</label>
-                                <input type='password' className='form-control' value={password} name='password' placeholder='Enter password' onChange={(event)=>setPassword(event.target.value) }/>
+                                <label>Password :</label>
+                                <input type='password' className='form-control' value={password} name='password' placeholder='Password' onChange={(event)=>setPassword(event.target.value) }/>
                             </div>
                             <Container className="text-center mt-3">
-                            <button type='submit' className='btn btn-primary button-cool'>LogIn</button></Container>
+                            <button type='submit' className='btn btn-primary button-cool'>Login</button></Container>
                             {status?<div className='text-success'>{status}</div>:null}
                         </form>
                     </div>
@@ -63,4 +66,4 @@ const LogIn = () => {
   )
 }
 
-export default LogIn;
+export default AdminLogin;

@@ -37,22 +37,22 @@ function LeftSidebar(){
                 Show List of Users
             </Link>
         
-            <Link className="list-group-item list-group-item-action" to="/add-category" tag="a" action>
+            {/* <Link className="list-group-item list-group-item-action" to="/add-category" tag="a" action>
                 Add a Category
-            </Link>
-            <Link className="list-group-item list-group-item-action" to="/view-category" tag="a" action>
+            </Link> */}
+            {/* <Link className="list-group-item list-group-item-action" to="/view-category" tag="a" action>
                 View all Categories
-            </Link>
+            </Link> */}
 
             <Link  className="list-group-item list-group-item-action" to="/add-product" tag="a" action>
-                Add a product
+                Add a Book
             </Link>
             {/* <Link  className="list-group-item list-group-item-action" to="/login" tag="a" action>
                 Login
             </Link> */}
-            <Link  className="list-group-item list-group-item-action" to="/display-products-admin" tag="a" action>
+            {/* <Link  className="list-group-item list-group-item-action" to="/display-products-admin" tag="a" action>
                 Manage Products by categories
-            </Link>
+            </Link> */}
             </ListGroup>
             </div>
             </Row>

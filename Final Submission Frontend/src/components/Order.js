@@ -1,9 +1,11 @@
+import { FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
+
 export default function Order() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid" style={{ marginLeft: "3rem" }}>
-                    <a className="navbar-brand" href="/">SHOPPING CART</a>
+                    <a className="navbar-brand" href="/">My Order</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -12,9 +14,9 @@ export default function Order() {
                             <li className="nav-item">
                                 <a className="nav-link " aria-current="page" href="/">Home</a>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <a className="nav-link active " aria-current="page" href="/category">Categories</a>
-                            </li>
+                            </li> */}
 
                             <li className="nav-item">
                                 <a className="nav-link" href="/about">About Us</a>
@@ -25,14 +27,19 @@ export default function Order() {
 
 
                             <div className='buttons' style={{ marginLeft: "20rem" }}>
-                                <a href='/login-customer' className='btn btn-outline-light'>
+                                {/* <a href='/login-customer' className='btn btn-outline-light'>
                                     <i className='text-white '>Login  &#187;</i>
-                                </a>
-                                <a href='/register-customer' className='btn btn-outline-light ms-3'>
+                                </a> */}
+                                {/* <a href='/register-customer' className='btn btn-outline-light ms-3'>
                                     <i className='text-white '>Register &#187;</i>
+                                </a> */}
+                                <a href='/customer-cart' className='btn btn-light ms-3'>
+                                    {/* <i className='text-white '>Cart </i> */}
+                                    <FaShoppingCart/>
                                 </a>
-                                <a href='/customer-cart' className='btn btn-outline-light ms-3'>
-                                    <i className='text-white '>Cart &#187;</i>
+                                <a href='#' className='btn btn-light ms-3'>
+                                    {/* <i className='text-white '>Cart </i> */}
+                                    Logout <FaSignOutAlt/>
                                 </a>
                             </div>
 

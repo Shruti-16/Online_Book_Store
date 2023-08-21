@@ -23,22 +23,23 @@ import RegisterCustomer from './components/RegisterCustomer';
 import DisplayProductsForAdmin from './components/admin components/DisplayProductsForAdmin';
 import Cart from './components/Cart';
 import Order from './components/Order';
+import AdminLogin from './components/AdminLogIn';
 
 function App() {
   return (
     
     <BrowserRouter>
         <Routes> 
-                <Route exact path="/admin" element={<WelcomeAdmin/>} />
+                <Route exact path="/admin" element={<AdminPage/>} />
                 <Route exact path="/" element={<Homepage/>} />
-                <Route exact path="/adminpage" element={<AdminPage/>} />
+                {/* <Route exact path="/adminpage" element={<AdminPage/>} /> */}
                 <Route exact path="/register" element={<RegisterAdmin/>} />
                 <Route exact path="/users" element={<UsersTable/>} />
-                <Route exact path="/add-category" element={<AddCategory/>} />
-                <Route exact path="/view-category" element={<AllCategories/>} />
+                {/* <Route exact path="/add-category" element={<AddCategory/>} /> */}
+                {/* <Route exact path="/view-category" element={<AllCategories/>} /> */}
                 <Route exact path="/add-product" element={<AddProductForm/>} />
                 <Route exact path="/delete-product" element={<AllProducts/>} />
-                <Route exact path="/login" element={<LogIn/>} />
+                <Route exact path="/login" element={<AdminLogin/>} />
                 <Route exact path="/login-customer" element={<LoginForm/>} />
                 <Route exact path="/display-products" element={<DisplayProducts/>} />
                 <Route exact path="/display-products-admin" element={<DisplayProductsForAdmin/>} />

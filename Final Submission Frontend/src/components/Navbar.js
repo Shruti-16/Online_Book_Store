@@ -8,17 +8,17 @@ function Navbar(){
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-3">
                 <div className="container-fluid" style={{marginLeft:"3rem"}}>
-                    <a className="navbar-brand" href="/login"><FaBook height={65} width={90}></FaBook>OnlineBookStore</a>
+                    <a className="navbar-brand" href="/"><FaBook height={65} width={90}></FaBook>OnlineBookStore</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{marginLeft:"20rem"}}>
                     <ul className="navbar-nav me-auto mb-2 mb-lg-1">
                         <li className="nav-item">
-                        <a className="nav-link" aria-current="page" href="/" style={{fontSize:"1.3rem"}}>About Us</a>
+                        <a className="nav-link" aria-current="page" href="/about" style={{fontSize:"1.3rem"}}>About Us</a>
                         </li>
                         <li className="nav-item">
-                        <a className="nav-link " aria-current="page" href="/category" style={{fontSize:"1.3rem"}}>Authors</a>
+                        <a className="nav-link " aria-current="page" href="/authors" style={{fontSize:"1.3rem"}}>Authors</a>
                         </li>
 
                         <li className="nav-item">
@@ -38,7 +38,7 @@ function Navbar(){
                                 {/* <i className='text-white '>Sign Up</i> */}
                                 Sign Up <FaUserPlus></FaUserPlus>
                             </a>
-                            <a href='/register-customer' className='btn btn-light ms-3'>
+                            <a href='/login' className='btn btn-light ms-3'>
                                 {/* <i className='text-white '>Sign Up</i> */}
                                 Login As Admin <FaUser></FaUser>
                             </a>

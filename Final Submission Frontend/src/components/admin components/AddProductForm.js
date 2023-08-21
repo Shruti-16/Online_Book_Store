@@ -43,40 +43,47 @@ function AddProductForm(){
         <div className=" shadow p-2   admin-page" style={{color:"white",backgroundColor:"#28282B",width:"100vw"}}>
         <h2 className="text-center mb-4 pb-3" >Add Product</h2>
         <Form onSubmit={handleAddProduct} style={{color:"white"}}>
+        <FormGroup>
+                    <label  className="form-label ">Category Id</label>
+                    <input className="form-control" type="text" placeholder="Id" value={categoryId} onChange={(event)=>setCategoryId(event.target.value) } required></input>
+                    </FormGroup>
+
             <center><table className="" >
                 <tr >
-                    <td className=""><FormGroup>
+                    <td colSpan={2}><FormGroup>
                     <label  className="form-label ">Category Id</label>
                     <input className="form-control" type="text" placeholder="Id" value={categoryId} onChange={(event)=>setCategoryId(event.target.value) } required></input>
                     </FormGroup>
                     </td>
-                    <td>
+                    </tr>
+                    <tr>
+                    <td colSpan={2}>
                     <FormGroup>
-                    <label  className="form-label">Product Name</label>
+                    <label  className="form-label">Book Name</label>
 			        <input className="form-control " type="text" placeholder="Name" value={productName} onChange={(event)=>setProductName(event.target.value) } required></input>
                     </FormGroup>
                     </td>
                 </tr>
                 <tr>
-                    <td>  
+                    <td colSpan={2}>  
                         <FormGroup>
-                        <label  className="form-label">Product Image</label>
+                        <label  className="form-label">Book Image</label>
 				        <input className="form-control " type="text" placeholder="image" value={productImagePath} onChange={(event)=>setProductImagePath(event.target.value) } required></input>	
                         </FormGroup>
                     </td>
-                    <td><FormGroup>
+                    <td colSpan={2}><FormGroup>
                         <label  className="form-label">Marked Price</label>
                         <input className="form-control " type="text" placeholder="mp" value={markedPrice} onChange={(event)=>setMarkedPrice(event.target.value) } required></input>
                         </FormGroup>
                     </td>
                 </tr>
                 <tr>
-                     <td><FormGroup>
+                     <td colSpan={2}><FormGroup>
                         <label  className="form-label">Selling Price</label>
 					    <input className="form-control " type="text" placeholder="sp" value={sellingPrice} onChange={(event)=>setSellingPrice(event.target.value) } required></input>	
                         </FormGroup>
                     </td>  
-                     <td><FormGroup>
+                     <td colSpan={2}><FormGroup>
                         <label  className="form-label">Quantity</label>
                         <input type="number" className="form-control "  value={quantity}  onChange={(event)=>setQuantity(event.target.value) } required></input>
                         </FormGroup>
