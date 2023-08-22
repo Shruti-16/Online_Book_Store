@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,14 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Length;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -47,6 +44,7 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
+	@Transient
 	private String confirmPassword;
 	private LocalDate dateOfBirth;
 	private String addressLine1;
@@ -61,11 +59,14 @@ public class User {
 	private Role role;
 
 	// One-to-many relationship with Review
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> reviews = new ArrayList<Review>();
 
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<>();
+	
+	 @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
+	    private Cart cart;
 
 	public User() {
 		super();

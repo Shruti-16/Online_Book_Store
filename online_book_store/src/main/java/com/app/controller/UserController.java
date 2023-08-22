@@ -1,10 +1,14 @@
 package com.app.controller;
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,5 +44,24 @@ public class UserController {
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<UserDTO>> getAllUsers(){
     	return ResponseEntity.ok(userService.getAllUsers());
+    }
+    
+    
+    
+    @PatchMapping("/updateUser")
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDto) {
+        UserDTO updatedUser = userService.updateUser(userDto);
+        if (updatedUser != null) {
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            // Handle the case where user update fails
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @DeleteMapping("/deleteUser/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long userId){
+    	userService.deleteUser(userId);
+    	return new ResponseEntity<String>("User Deleted Successfully", HttpStatus.OK);
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.app.entities.Genre;
 import com.app.entities.Language;
+import com.app.entities.Review;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -14,8 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+
 
 @ToString
 public class BookDTO {
@@ -29,13 +29,14 @@ public class BookDTO {
 	private int edition;
 	private int stock;
 	private Genre genre;
+	private List<Review> reviews = new ArrayList<Review>();
 
 	public BookDTO() {
 		super();
 	}
 
 	public BookDTO(String title, List<String> languageNames, String bookImage, LocalDate publicationDate,
-			String authorName, float price, int edition, int stock, Genre genre) {
+			String authorName, float price, int edition, int stock, Genre genre, List<Review> reviews) {
 		super();
 		this.title = title;
 		this.languageNames = languageNames;
@@ -46,18 +47,7 @@ public class BookDTO {
 		this.edition = edition;
 		this.stock = stock;
 		this.genre = genre;
-	}
-
-	public String getAuthorName() {
-		return authorName;
-	}
-
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}
-
-	public void setLanguageNames(List<String> languageNames) {
-		this.languageNames = languageNames;
+		this.reviews = reviews;
 	}
 
 	public String getTitle() {
@@ -66,6 +56,14 @@ public class BookDTO {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public List<String> getLanguageNames() {
+		return languageNames;
+	}
+
+	public void setLanguageNames(List<String> languageNames) {
+		this.languageNames = languageNames;
 	}
 
 	public String getBookImage() {
@@ -84,6 +82,14 @@ public class BookDTO {
 		this.publicationDate = publicationDate;
 	}
 
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
 	public float getPrice() {
 		return price;
 	}
@@ -99,7 +105,6 @@ public class BookDTO {
 	public void setEdition(int edition) {
 		this.edition = edition;
 	}
-
 
 	public int getStock() {
 		return stock;
@@ -117,8 +122,16 @@ public class BookDTO {
 		this.genre = genre;
 	}
 
-	public List<String> getLanguageNames() {
-		return languageNames;
+	public List<Review> getReviews() {
+		return reviews;
 	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}	
+
+	
+
+	
 
 }

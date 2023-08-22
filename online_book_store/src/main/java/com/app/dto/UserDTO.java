@@ -43,14 +43,19 @@ public class UserDTO {
 	private String phoneNumber;
 	@NotNull(message = "Role must be supplied")
 	private Role role;
+	
 
 	public UserDTO() {
 		super();
 	}
 
-	public UserDTO(Long userId, String userImage, String firstName, String lastName, String email, String password,
-			String confirmPassword, LocalDate dateOfBirth, String addressLine1, String addressLin0e2, City city,
-			String phoneNumber, Role role) {
+	public UserDTO(Long userId, String userImage,
+			@NotBlank(message = "First name can't be blank") @Length(min = 4, max = 20, message = "Invalid first name!!!!!!") String firstName,
+			@NotBlank(message = "Last  name can't be blank") String lastName,
+			@Email(message = "Invalid email format") String email, String password, String confirmPassword,
+			LocalDate dateOfBirth, String addressLine1, String addressLin0e2, City city,
+			@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits") String phoneNumber,
+			@NotNull(message = "Role must be supplied") Role role) {
 		super();
 		this.userId = userId;
 		this.userImage = userImage;
@@ -65,6 +70,7 @@ public class UserDTO {
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.role = role;
+//		this.cart = cart;
 	}
 
 	public Long getUserId() {
@@ -170,13 +176,22 @@ public class UserDTO {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+//
+//	public CartDTO getCart() {
+//		return cart;
+//	}
+//
+//	public void setCart(CartDTO cart) {
+//		this.cart = cart;
+//	}
 
 	@Override
 	public String toString() {
-		return "UserDto [userId=" + userId + ", userImage=" + userImage + ", firstName=" + firstName + ", lastName="
+		return "UserDTO [userId=" + userId + ", userImage=" + userImage + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
 				+ ", dateOfBirth=" + dateOfBirth + ", addressLine1=" + addressLine1 + ", addressLin0e2=" + addressLin0e2
 				+ ", city=" + city + ", phoneNumber=" + phoneNumber + ", role=" + role + "]";
 	}
 
+	
 }

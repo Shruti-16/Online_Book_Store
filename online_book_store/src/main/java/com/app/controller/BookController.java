@@ -11,13 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.BookDTO;
 import com.app.service.BookService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 
 @RestController
 @RequestMapping("/books")
@@ -31,7 +32,7 @@ public class BookController {
 	 
 	@GetMapping("/getAllBooks")
 	public ResponseEntity<List<BookDTO>> getAllBooks() {
-		//List<BookDTO> bookDTOs = bookService.getAllBooks();
+		List<BookDTO> bookDTOs = bookService.getAllBooks();
 		return ResponseEntity.ok( bookService.getAllBooks());
 	}
 	

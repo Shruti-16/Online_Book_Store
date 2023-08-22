@@ -29,11 +29,11 @@ public class BookServiceImpl implements BookService{
     public List<BookDTO> getAllBooks() {
         List<Book> books = bookRepository.findAllWithLanguages();
         return books.stream()
-            .map(this::convertToDTO)
+            .map(this::mapToBookDTO)
             .collect(Collectors.toList());
     }
 
-    private BookDTO convertToDTO(Book book) {
+    private BookDTO mapToBookDTO(Book book) {
         // Initialize the languages collection
         Hibernate.initialize(book.getLanguages());
         
