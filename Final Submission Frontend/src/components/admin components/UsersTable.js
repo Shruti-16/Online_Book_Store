@@ -74,7 +74,7 @@ function UsersTable() {
                                 <td>{item.mobileNumber}</td>
                                 <td>{item.registeredDate}</td>
                                 {/* <td><Button  className="button-cool" color="warning">Update</Button></td> */}
-                                <td><Button type="Submit" className="button-cool" color="danger" onClick={() => handleDelete(item.id)}>Delete</Button></td>
+                                <td><Button type="Submit" className="btn btn-danger"onClick={() => handleDelete(item.id)}>Delete</Button></td>
                             </tr>) : "No Users available"}
                     </tbody>
                 </Table>

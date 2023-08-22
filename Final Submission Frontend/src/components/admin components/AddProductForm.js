@@ -5,7 +5,7 @@ import { useState } from "react";
 import ProductService from "../../ProductService";
 import axios from "axios";
 
-function AddProductForm(){
+function AddBookForm(){
     const [categoryId,setCategoryId]=useState("");
     const [productName,setProductName]=useState("");
     const [productImagePath,setProductImagePath]=useState("");
@@ -41,7 +41,7 @@ function AddProductForm(){
 
     return(
         <div className=" shadow p-2   admin-page" style={{color:"white",backgroundColor:"#28282B",width:"100vw"}}>
-        <h2 className="text-center mb-4 pb-3" >Add Product</h2>
+        <h2 className="text-center mb-4 pb-3" >Add A Book</h2>
         <Form onSubmit={handleAddProduct} style={{color:"white"}}>
         <FormGroup>
                     <label  className="form-label ">Category Id</label>
@@ -116,4 +116,4 @@ function AddProductForm(){
     );
 }
 
-export default AddProductForm;
+export default AddBookForm;

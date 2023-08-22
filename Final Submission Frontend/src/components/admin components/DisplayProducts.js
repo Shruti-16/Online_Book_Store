@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {Table} from 'react-bootstrap';
+import { Navbar } from "reactstrap";
 
 function DisplayProducts(){
     // 
@@ -22,7 +23,8 @@ function DisplayProducts(){
     }
     
     return(
-        <div>       
+        <div>   
+            <Navbar/>    
                 <div className="w3-sidebar w3-bar-block w3-black w3-large " style={{width:"200px"}}>
                     <a href="/display-products" className="w3-bar-item w3-button" ><i className="fa fa-bars "> </i> Categories</a> 
 

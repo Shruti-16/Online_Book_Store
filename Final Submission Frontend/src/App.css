@@ -130,7 +130,7 @@ span.lastspan {
 /* Contact-Us css */
 
 .contact-us-us{
-  background-image: url('../public/wallpapers/contact.jpg');
+  background-image: url('../public/images/contactUs-wallpaper.jpg');
   background-size: cover;
   height:100vh;
 
@@ -150,7 +150,7 @@ span.lastspan {
 }
 
 .admin-page{
-  background-image: url('../public/images/admin_img.jpg');
+  background-image: url('../public/images/admin-wallpaper.jpg');
   background-size: cover;
   height:100vh;
 }
