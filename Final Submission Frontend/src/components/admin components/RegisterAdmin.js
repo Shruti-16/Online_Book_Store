@@ -57,97 +57,89 @@ function RegisterAdmin() {
 
 
     return (
-        <div className=" shadow admin-page pt-5" style={{ color: "white", backgroundColor: "#28282B"}}>
-            <h2 className="text-center pt-5" style={{ color: "" }}>Admin Registration</h2>
-            <Container >
-                <Row className="text-center justify-content-evenly align-items-center p-2 mt-3">
-                    {/* <Col className="col-5"> */}
-                    <Form onSubmit={handleRegister}>
-                        <center>
-                            <table style={{ width: "50%"}}>
-                                <tr>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">First Name</label>
-                                            <input className="form-control " type="text" placeholder="First Name" value={firstName} onChange={(event) => setFirstName(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">Last Name</label>
-                                            <input className="form-control " type="text" placeholder="Last Name" value={lastName} onChange={(event) => setLastName(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">Email</label>
-                                            <input className="form-control " type="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">Password</label>
-                                            <input className="form-control " type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">Confirm Password</label>
-                                            <input className="form-control " type="password" placeholder="Confirm Password" value={password} onChange={(event) => setPassword(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">Mobile No</label>
-                                            <input className="form-control " type="text" placeholder="Mobile No" value={mobileNumber} onChange={(event) => setMobileNumber(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">City</label>
-                                            <input className="form-control " type="text" placeholder="City" value={mobileNumber} onChange={(event) => setMobileNumber(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                    <td>
-                                        <FormGroup>
-                                            <label className="form-label">Country</label>
-                                            <input className="form-control " type="text" placeholder="Country" value={mobileNumber} onChange={(event) => setMobileNumber(event.target.value)} required></input>
-                                        </FormGroup>
-                                    </td>
-                                </tr>
-                                {/* <FormGroup>
-                <label for="validationServer02" className="form-label">Registered Date</label>
-                <input type="date" className="form-control " id="validationServer02" value={Date.now()}  disabled></input>
-            </FormGroup> */}
-                                {/* <FormGroup>
-                <input className="form-check-input " type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required></input>
-                    <label className="form-check-label" for="invalidCheck3">
-                        Agree to terms and conditions
-                    </label>
-            </FormGroup> */}
-                                <tr>
-                                    <td style={{textAlign:"right"}}>
-                                        {/* <Container className=""> */}
-                                        <Button className="btn btn-info rounded " type="submit">Register</Button>
-                                    </td>
-                                
-                                    <td>
-                                        <Button className="btn btn-secondary rounded" type="reset">Clear</Button>
-                                        {/* </Container> */}
-                                    </td>
-                                </tr>
-                            </table>
-                        </center>
-                    </Form>
-                    {/* </Col> */}
-                </Row>
-            </Container>
+        <div className=" shadow admin-page pt-5" style={{ color: "white", backgroundColor: "#28282B" }}>
+            <h1 className="text-center pt-5 mb-5" style={{ color: "" }}>Admin Registration</h1>
+            <div className="row align-items-center justify-content-evenly">
+                <div className="col-6 align-self-center">
+                    <form onSubmit={handleRegister}>
+                        <span className="row g-3 mb-2">
+                            <div className="col-md-6">
+                                <label className="form-label">First Name</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="First Name" value={firstName} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">Last Name</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="Last Name" value={lastName} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+
+                        </span>
+                        <span className="row g-3 mb-2">
+                            <div className="col-md-6">
+                                <label className="form-label">Email</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="Email" value={email} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">Password</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="*******" value={password} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+
+                        </span>
+                        <span className="row g-3 mb-2">
+                            <div className="col-md-6">
+                                <label className="form-label">Confirm Password</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="*****" value={email} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">Mobile No</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="Mobile Number" value={mobileNumber} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+
+                        </span>
+                        <span className="row g-3 mb-2">
+                            <div className="col-md-6">
+                                <label className="form-label">City</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="City" value={email} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">Country</label>
+                                <div className="">
+                                    <input className="form-control" type="text" placeholder="Country" value={mobileNumber} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                </div>
+                            </div>
+
+                        </span>
+                        <span className="row g-3 mb-2">
+                            <div className="col-md-6">
+                                {/* <label className="form-label">City</label> */}
+                                <div style={{ textAlign: "right" }}>
+                                    <button className="btn btn-primary rounded" type="submit">Register</button>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                {/* <label className="form-label">Country</label> */}
+                                <div className="">
+                                    <button className="btn btn-secondary rounded" type="reset">Clear</button>
+                                </div>
+                            </div>
+
+                        </span>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

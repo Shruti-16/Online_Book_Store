@@ -46,7 +46,7 @@ function UsersTable() {
         <div className="user-table admin-page container-fluid">
             <Row className="text-center justify-content-evenly align-items-center">
                 <Col className="col-8">
-                    <h2 style={{color:"white"}}>All User Accounts</h2>
+                    <h2 className="m-4 pb-2" style={{color:"white"}}>All User Accounts</h2>
                 <Table responsive className=" border" 
                     size="sm"
                     dark
