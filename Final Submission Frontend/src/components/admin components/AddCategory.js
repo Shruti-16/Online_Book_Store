@@ -28,15 +28,15 @@ function AddCategory(){
  }
 
     return(
-        <div className="border border-dark rounded shadow p-2 admin-page" style={{color:"white",backgroundColor:"#28282B"}}>
-        <h2 className="text-center pt-5 ">Add category</h2>
+        <div className="border border-dark rounded shadow p-2 admin-page" style={{color:"white",backgroundColor:"#28282B" , }}>
+        <h1 className="text-center pt-5 ">Add Category of Book</h1>
         <Container>
             <Row className="text-center justify-content-center align-items-center mt-5">
                 <Col className="col-3 shadow">
         <Form onSubmit={handleadd}>
             <FormGroup>
-            <label  className="form-label">Category Name:</label>
-            <input className="form-control " type="text" placeholder="First Name" value={categoryName} onChange={(event)=>setCategoryName(event.target.value) } required></input>
+            <label  className="form-label" style={{ fontSize: '25px' }}>Category Name:</label>
+            <input className="form-control " type="text" placeholder="Category Name" value={categoryName} onChange={(event)=>setCategoryName(event.target.value) } required></input>
             </FormGroup>
             <Container className="text-center">
                 <Button className="button-cool" color="info" type="submit">Add</Button>

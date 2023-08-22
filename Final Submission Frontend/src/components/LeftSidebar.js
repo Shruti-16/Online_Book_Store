@@ -30,29 +30,35 @@ function LeftSidebar(){
              {/* <Link className="list-group-item list-group-item-action" to="/admin" tag="a" action>
                 Welcome
             </Link> */}
-            <Link className="list-group-item list-group-item-action" to="/register" tag="a" action>
+            <Link className="list-group-item list-group-item-action mb-3" to="/register-customer" tag="a" action>
                 Add User
             </Link>
-            <Link className="list-group-item list-group-item-action" to="/users" tag="a" action>
+            {/* <Link className="list-group-item list-group-item-action mb-3" to="/register-customer" tag="a" action>
+                Remove User
+            </Link> */}
+            <Link className="list-group-item list-group-item-action mb-3" to="/users" tag="a" action>
                 Show List of Users
             </Link>
         
-            <Link className="list-group-item list-group-item-action" to="/add-category" tag="a" action>
+            {/* <Link className="list-group-item list-group-item-action" to="/add-category" tag="a" action>
                 Add a Category
-            </Link>
-            <Link className="list-group-item list-group-item-action" to="/view-category" tag="a" action>
+            </Link> */}
+            {/* <Link className="list-group-item list-group-item-action" to="/view-category" tag="a" action>
                 View all Categories
-            </Link>
+            </Link> */}
 
-            <Link  className="list-group-item list-group-item-action" to="/add-product" tag="a" action>
-                Add a product
+            <Link  className="list-group-item list-group-item-action mb-3" to="/add-book" tag="a" action>
+                Add a Book
             </Link>
+            {/* <Link  className="list-group-item list-group-item-action" to="/add-product" tag="a" action>
+                Remove a Book
+            </Link> */}
             {/* <Link  className="list-group-item list-group-item-action" to="/login" tag="a" action>
                 Login
             </Link> */}
-            <Link  className="list-group-item list-group-item-action" to="/display-products-admin" tag="a" action>
+            {/* <Link  className="list-group-item list-group-item-action" to="/display-products-admin" tag="a" action>
                 Manage Products by categories
-            </Link>
+            </Link> */}
             </ListGroup>
             </div>
             </Row>

@@ -30,14 +30,20 @@
 
  /* Added */
  .login-form{
-  background-image:url('../public/wallpapers/img1.jpg');
+  background-image:url('../public/images/login-wallpaper.jpg');
   background-size: cover;
 }
 
 .cart{
-  background-image:url('../public/wallpapers/cart2.jpg');
+  background-image:url('../public/images/cart-wallpaper.jpg');
   background-size: cover;
   height:100vh;
+}
+
+.homepage{
+  background-image: url('../public/images/homepage-wallpaper.jpg');
+  background-size: cover;
+  height: 100vh;
 }
 
 
@@ -107,7 +113,7 @@ span.lastspan {
 }
 
 .register-form{
-  background-image: url('../public/wallpapers/img1.jpg');
+  background-image: url('../public/images/signup-wallpaper.jpg');
   background-size: cover;
   
 }
@@ -124,7 +130,7 @@ span.lastspan {
 /* Contact-Us css */
 
 .contact-us-us{
-  background-image: url('../public/wallpapers/contact.jpg');
+  background-image: url('../public/images/contactUs-wallpaper.jpg');
   background-size: cover;
   height:100vh;
 
@@ -144,7 +150,7 @@ span.lastspan {
 }
 
 .admin-page{
-  background-image: url('../public/images/admin_img.jpg');
+  background-image: url('../public/images/admin-wallpaper.jpg');
   background-size: cover;
   height:100vh;
 }

@@ -1,79 +1,75 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import {Table} from 'react-bootstrap';
+import React from 'react';
+import { Navbar } from 'reactstrap';
 
-function DisplayProducts(){
-    // 
+const books = [
+  {
+    id: 1,
+    title: 'LAST HOPE',
+    href: '#',
+    imageSrc: 'https://via.placeholder.com/300x400', // Placeholder image link
+    imageAlt: 'Cover of "The Great Gatsby"',
+    price: '₹ 499 ',
+    author: 'James Lopez',
+  },
+  {
+    id: 2,
+    title: 'A Million To One',
+    href: '#',
+    imageSrc: 'https://via.placeholder.com/300x400', // Placeholder image link
+    imageAlt: 'Cover of "To Kill a Mockingbird"',
+    price: '₹ 699',
+    author: 'Tony Faggioli',
+  },
+  {
+    id: 2,
+    title: 'A Million To One',
+    href: '#',
+    imageSrc: 'https://via.placeholder.com/300x400', // Placeholder image link
+    imageAlt: 'Cover of "To Kill a Mockingbird"',
+    price: '₹ 699',
+    author: 'Tony Faggioli',
+  },
+  // More books...
+];
+
+export default function DisplayBooks() {
+  return (
+
+  
+        
+   
     
-    const [categoryList,setCategoryList]=useState([]);
-    const [singleProduct,setSingleProduct]=useState([]);
-    useEffect(function(){
-        axios.get("http://localhost:8080/categories")
-        .then((response)=>setCategoryList(response.data))
-        .then((error)=>console.log(error));
-    },[]);
+    <div className="bg-white">
+        <Navbar/>
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Books You Might Like</h2>
 
-    const onddlChange=(e)=>{
-        //(e.target.value);
-        //console.log(e);
-        axios.get("http://localhost:8080/categories/"+e.target.value)
-        .then((response)=>setSingleProduct(response.data))
-        .then((error)=>console.log(error));
-    }
-    
-    return(
-        <div>       
-                <div className="w3-sidebar w3-bar-block w3-black w3-large " style={{width:"200px"}}>
-                    <a href="/display-products" className="w3-bar-item w3-button" ><i className="fa fa-bars "> </i> Categories</a> 
-
-                        {
-                            categoryList.map((category)=>(
-                                    
-                                 <button  className="w3-bar-item w3-button"onClick={onddlChange} key={category.id} value={category.id} > {category.categoryName}</button> //<i class="fa fa-arrow-right" >  </i>
-                            ))
-                        }
+        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-4">
+          {books.map((book) => (
+            <div key={book.id} className="group relative">
+              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                <img
+                  src={book.imageSrc}
+                  alt={book.imageAlt}
+                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                />
+              </div>
+              <div className="mt-4 flex justify-between">
+                <div>
+                  <h3 className="text-sm text-gray-700">
+                    <a href={book.href}>
+                      <span aria-hidden="true" className="absolute inset-0" />
+                      {book.title}
+                    </a>
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">{book.author}</p>
                 </div>
-                <div>           
-                <div style={{marginLeft:"200px"}}>
-                        
-                    
-                        <div className="w3-container container-fluid category-table">
-                            <div className="row justify-content-evenly align-items-center m-5 ">
-                        {
-                                singleProduct.map((product)=>(
-                            <div className="card catt" style={{width: "18rem"}}>
-                            
-                                <img src={product.productImagePath} height='250rem'  className="card-img-top" alt="..."></img>
-                                <div className="card-body">
-                                
-                                    <><h5 className="card-title"><b>Name: </b>{product.productName}</h5>
-                                    <p className="card-text"><b>Description: </b>{product.description}</p>
-                                    <p className="" ><b>Price: &#8377;</b><s>{product.markedPrice}</s> <b>{product.sellingPrice}</b></p>
-                                    <p><b>Availability: </b>{product.status} <b>{product.quantity} pcs</b></p>
-                                    <a href="#" className="btn btn-primary ms-5">Add to Cart</a></>
-                                
-                                </div>
-                                
-                            </div>
-                       
-                            ))
-                        }
-                        </div>
-                        </div>
-                     
-
-
-                </div>
-                
-            </div> 
-
-                         
-                           
-                            
- 
-                                    
+                <p className="text-sm font-medium text-gray-900">{book.price}</p>
+              </div>
+            </div>
+          ))}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-
-export default DisplayProducts;

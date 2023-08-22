@@ -55,13 +55,13 @@ function LoginForm(){
 				
 					<div className="row m-4 align-items-center justify-content-evenly">
 						<div className="col-10">
-							<input className="form-control form-control " type="email" placeholder="username" value={email} onChange={(event)=>setEmail(event.target.value) } required></input>
+							<input className="form-control form-control " type="email" placeholder="Email" value={email} onChange={(event)=>setEmail(event.target.value) } required></input>
 						</div>
 					</div>
 					
 					<div className="row m-4 align-items-center justify-content-evenly">
 						<div className="col-10">
-							<input className="form-control form-control " type="password" placeholder="password" value={password} onChange={(event)=>setPassword(event.target.value) } required></input>
+							<input className="form-control form-control " type="password" placeholder="Password" value={password} onChange={(event)=>setPassword(event.target.value) } required></input>
 						</div>
 					</div>
 					
