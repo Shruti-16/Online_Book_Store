@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +28,31 @@ public class Language {
 	@Column(name = "language_name")
 	private String name;
 	@ManyToMany(mappedBy = "languages")
-//	@ManyToOne
 	private List<Book> books = new ArrayList<>();
+	
+	
+	
+	
+	
+	public Long getLanguageId() {
+		return languageId;
+	}
+	public void setLanguageId(Long languageId) {
+		this.languageId = languageId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<Book> getBooks() {
+		return books;
+	}
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+	
+	
 
 }
