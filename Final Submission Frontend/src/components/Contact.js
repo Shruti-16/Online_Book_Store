@@ -11,25 +11,22 @@ function Contact() {
                     <h1 className="log-in-in mb-5">Contact Us</h1>
 
                     <div className="card" style={{ width: "18rem" }}>
-                        {/* <img src="../../contacts/img1.jpg" className="card-img-top" alt="Contact 1"></img> */}
+                        <img src="../../contacts/Adarsh.jpg" className="card-img-top" alt="Contact 1"></img>
                         <div className="card-body">
                             <h5 className="card-title">Mr. Adarsh Kadam</h5>
                             <div class="wrapper mb-5">
 
-                                <a href="mailto:rohan31ghadge@gmail.com" className="icon gmail">
+                                <a href="mailto:adarshkadam07@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
-                                    {/* <span><i className="fab fa-google ms-3"></i></span> */}
                                     <FaGoogle className="ms-3" />
                                 </a>
 
                                 <a href="#" className="icon phone">
                                     <div className="tooltip">Phone</div>
-                                    {/* <span><i className="fa-solid fa-phone ms-3"></i></span> */}
                                     <FaMobile className="ms-3" />
                                 </a>
-                                <a href="https://www.linkedin.com/in/rohan-ghadge-3a5a1817b" className="icon linkedin">
+                                <a href="www.linkedin.com/in/kadam-adarsh" className="icon linkedin">
                                     <div className="tooltip">LinkedIn</div>
-                                    {/* <span><i className="fab fa-linkedin ms-3"></i></span> */}
                                     <FaLinkedinIn className="ms-3" />
                                 </a>
                                 <p style={{ marginLeft: "4rem" }}>8983173235</p>
@@ -46,18 +43,15 @@ function Contact() {
 
                                 <a href="mailto:kanereanup@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
-                                    {/* <span><i className="fab fa-google ms-3"></i></span> */}
                                     <FaGoogle className="ms-3" />
                                 </a>
 
                                 <a href="#" className="icon phone">
                                     <div className="tooltip">Phone</div>
-                                    {/* <span><i className="fa-solid fa-phone ms-3"></i></span> */}
                                     <FaMobile className="ms-3" />
                                 </a>
                                 <a href="www.linkedin.com/in/anup-kanere-02a021205" className="icon linkedin">
                                     <div className="tooltip">LinkedIn</div>
-                                    {/* <span><i className="fab fa-linkedin ms-3"></i></span> */}
                                     <FaLinkedinIn className="ms-3" />
                                 </a>
                                 <p style={{ marginLeft: "4rem" }}>7720888632</p>
@@ -74,18 +68,15 @@ function Contact() {
 
                                 <a href="mailto:schintawar99@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
-                                    {/* <span><i className="fab fa-google ms-3"></i></span> */}
                                     <FaGoogle className="ms-3" />
                                 </a>
 
                                 <a href="#" className="icon phone">
                                     <div className="tooltip">Phone</div>
-                                    {/* <span><i className="fa-solid fa-phone ms-3"></i></span> */}
                                     <FaMobile className="ms-3" />
                                 </a>
                                 <a href="https://www.linkedin.com/in/shruti-chintawar-57599b184/" className="icon linkedin">
                                     <div className="tooltip">LinkedIn</div>
-                                    {/* <span><i className="fab fa-linkedin ms-3"></i></span> */}
                                     <FaLinkedinIn className="ms-3" />
                                 </a>
                                 <p style={{ marginLeft: "4rem" }}>9359666234</p>
@@ -101,18 +92,15 @@ function Contact() {
 
                                 <a href="mailto:pranalghulep99@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
-                                    {/* <span><i className="fab fa-google ms-3"></i></span> */}
                                     <FaGoogle className="ms-3" />
                                 </a>
 
                                 <a href="#" className="icon phone">
                                     <div className="tooltip">Phone</div>
-                                    {/* <span><i className="fa-solid fa-phone ms-3"></i></span> */}
                                     <FaMobile className="ms-3" />
                                 </a>
                                 <a href="https://www.linkedin.com/in/pranalghulep99" className="icon linkedin">
                                     <div className="tooltip">LinkedIn</div>
-                                    {/* <span><i className="fab fa-linkedin ms-3"></i></span> */}
                                     <FaLinkedinIn className="ms-3" />
                                 </a>
                                 <p style={{ marginLeft: "4rem" }}>8805121573</p>
@@ -128,18 +116,15 @@ function Contact() {
 
                                 <a href="mailto:shreyash10dhule@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
-                                    {/* <span><i className="fab fa-google ms-3"></i></span> */}
                                     <FaGoogle className="ms-3" />
                                 </a>
 
                                 <a href="#" className="icon phone">
                                     <div className="tooltip">Phone</div>
-                                    {/* <span><i className="fa-solid fa-phone ms-3"></i></span> */}
                                     <FaMobile className="ms-3" />
                                 </a>
                                 <a href=" https://www.linkedin.com/in/shreyas-dhule/" className="icon linkedin">
                                     <div className="tooltip">LinkedIn</div>
-                                    {/* <span><i className="fab fa-linkedin ms-3"></i></span> */}
                                     <FaLinkedinIn className="ms-3" />
                                 </a>
                                 <p style={{ marginLeft: "4rem" }}>9673253464</p>

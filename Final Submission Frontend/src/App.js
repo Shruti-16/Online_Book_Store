@@ -1,19 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-import { Button } from "reactstrap";
 import { ToastContainer } from "react-toastify";
 import AdminPage from './components/AdminPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DisplayProducts from './components/admin components/DisplayProducts';
 import UsersTable from './components/admin components/UsersTable';
 import RegisterAdmin from './components/admin components/RegisterAdmin';
-import AdminHome from './components/WelcomeAdmin';
+import AdminHome from './components/AdminHome';
 import AddCategory from './components/admin components/AddCategory'
 import AllCategories from './components/AllCategories'
-import AddProductForm from './components/admin components/AddProductForm';
 import AllProducts from './components/AllProducts'
-import LogIn from './components/AdminLogIn';
-import WelcomeAdmin from './components/WelcomeAdmin';
 import Homepage from './components/Homepage';
 import Contact from './components/Contact';
 import About from './components/About';
@@ -23,10 +18,11 @@ import RegisterCustomer from './components/RegisterCustomer';
 import DisplayProductsForAdmin from './components/admin components/DisplayProductsForAdmin';
 import Cart from './components/Cart';
 import Order from './components/Order';
-import AdminLogin from './components/AdminLogIn';
-import AddBookForm from './components/admin components/AddProductForm';
+import AdminLogin from './components/AdminLogin';
+import AddBookForm from './components/admin components/AddBookForm';
 import AllBooks from './components/AllProducts';
 import Logout from './components/Logout';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -52,16 +48,7 @@ function App() {
         <Route exact path="/customer-cart" element={<Cart />} />
         <Route exact path="/myorder" element={<Order />} />
         <Route exact path="/logout" element={<Logout />} />
-
-
-        {/* <Route exact path="/" element={<Homepage/>} />
-            <Route exact path="/login" element={<LoginForm/>} />
-            <Route exact path="/register" element={<Register/>} />
-            
-            <Route exact path="/sidebar" element={<SideBar/>} />
-            <Route exact path="/cart" element={<Cart/>} />
-
-            <Route path="*" element={<NotFound/>} /> */}
+        <Route exact path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer
         position="bottom-center"

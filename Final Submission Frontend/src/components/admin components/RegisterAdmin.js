@@ -1,10 +1,6 @@
 import { useState } from "react";
 import LoginService from "../../LoginService";
-import { Container, Button, Form, FormGroup, Row, Col } from "reactstrap"
 import { toast } from "react-toastify"
-import axios from "axios";
-import LoginServiceCustomer from "../../Service/LoginServiceCustomer";
-import { FaBorderAll } from "react-icons/fa";
 
 var ruserId;
 function RegisterAdmin() {
@@ -63,79 +59,86 @@ function RegisterAdmin() {
                 <div className="col-6 align-self-center">
                     <form onSubmit={handleRegister}>
                         <span className="row g-3 mb-2">
+
                             <div className="col-md-6">
                                 <label className="form-label">First Name</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="First Name" value={firstName} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
+
                             <div className="col-md-6">
                                 <label className="form-label">Last Name</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="Last Name" value={lastName} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
-
                         </span>
+
                         <span className="row g-3 mb-2">
+
                             <div className="col-md-6">
                                 <label className="form-label">Email</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="Email" value={email} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
+
                             <div className="col-md-6">
                                 <label className="form-label">Password</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="*******" value={password} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
-
                         </span>
+
                         <span className="row g-3 mb-2">
+
                             <div className="col-md-6">
                                 <label className="form-label">Confirm Password</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="*****" value={email} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
+
                             <div className="col-md-6">
                                 <label className="form-label">Mobile No</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="Mobile Number" value={mobileNumber} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
-
                         </span>
+
                         <span className="row g-3 mb-2">
+
                             <div className="col-md-6">
                                 <label className="form-label">City</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="City" value={email} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
+
                             <div className="col-md-6">
                                 <label className="form-label">Country</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="Country" value={mobileNumber} onChange={(event) => setFirstName(event.target.value)} required></input>
                                 </div>
                             </div>
-
                         </span>
+
                         <span className="row g-3 mb-2">
+
                             <div className="col-md-6">
-                                {/* <label className="form-label">City</label> */}
                                 <div style={{ textAlign: "right" }}>
                                     <button className="btn btn-primary rounded" type="submit">Register</button>
                                 </div>
                             </div>
+
                             <div className="col-md-6">
-                                {/* <label className="form-label">Country</label> */}
                                 <div className="">
                                     <button className="btn btn-secondary rounded" type="reset">Clear</button>
                                 </div>
                             </div>
-
                         </span>
                     </form>
                 </div>
