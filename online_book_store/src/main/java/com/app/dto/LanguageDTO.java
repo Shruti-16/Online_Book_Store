@@ -2,21 +2,23 @@ package com.app.dto;
 
 public class LanguageDTO {
 
-    private Long id;
+    private Long languageId;
     private String name;
-	public LanguageDTO(Long id, String name) {
+	public LanguageDTO(Long languageId, String name) {
 		super();
-		this.id = id;
+		this.languageId = languageId;
 		this.name = name;
 	}
+	
 	public LanguageDTO() {
 		super();
 	}
-	public Long getId() {
-		return id;
+
+	public Long getLanguageId() {
+		return languageId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setLanguageId(Long languageId) {
+		this.languageId = languageId;
 	}
 	public String getName() {
 		return name;
@@ -24,6 +26,7 @@ public class LanguageDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
     
     
     

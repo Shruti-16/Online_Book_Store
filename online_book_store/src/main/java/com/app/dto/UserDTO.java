@@ -1,12 +1,8 @@
-package com.app.entities;
+package com.app.dto;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -14,75 +10,51 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 
-/**
- * @author prana
- *
- */
-@Entity
+import com.app.entities.City;
+import com.app.entities.Role;
 
-@ToString
-@Table(name = "users")
-public class User {
-	public Cart getCart() {
-		return cart;
-	}
+public class UserDTO {
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 	private String userImage;
-
+//	@NotBlank(message = "First name can't be blank")
+//	@Length(min = 4, max = 20, message = "Invalid first name!!!!!!")
 	private String firstName;
+//	@NotBlank(message = "Last  name can't be blank")
 	private String lastName;
-	@Column(length = 30, unique = true)
+//	@Email(message = "Invalid email format")
 	private String email;
 	private String password;
-	@Transient
 	private String confirmPassword;
 	private LocalDate dateOfBirth;
 	private String addressLine1;
 	private String addressLin0e2;
-	// Many-to-one relationship with City using zip code
-	@ManyToOne()
-	@JoinColumn(name = "city", referencedColumnName = "cityId")
 	private City city;
+//	@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
 	private String phoneNumber;
-	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
+//	@NotNull(message = "Role must be supplied")
 	private Role role;
-
-	// One-to-many relationship with Review
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Review> reviews = new ArrayList<Review>();
-
-	@OneToMany(mappedBy = "user")
-	private List<Order> orders = new ArrayList<>();
 	
-	 @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
-	    private Cart cart;
 
-	public User() {
+	public UserDTO() {
 		super();
 	}
 
-	public User(Long userId, String userImage, String firstName, String lastName, String email, String password,
-			String confirmPassword, LocalDate dateOfBirth, String addressLine1, String addressLin0e2, City city,
-			@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits") String phoneNumber, Role role,
-			List<Review> reviews, List<Order> orders) {
+	public UserDTO(Long userId, String userImage,
+			@NotBlank(message = "First name can't be blank") @Length(min = 4, max = 20, message = "Invalid first name!!!!!!") String firstName,
+			@NotBlank(message = "Last  name can't be blank") String lastName,
+			@Email(message = "Invalid email format") String email, String password, String confirmPassword,
+			LocalDate dateOfBirth, String addressLine1, String addressLin0e2, City city,
+			@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits") String phoneNumber,
+			@NotNull(message = "Role must be supplied") Role role) {
 		super();
 		this.userId = userId;
 		this.userImage = userImage;
@@ -97,8 +69,7 @@ public class User {
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.role = role;
-		this.reviews = reviews;
-		this.orders = orders;
+//		this.cart = cart;
 	}
 
 	public Long getUserId() {
@@ -204,21 +175,22 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+//
+//	public CartDTO getCart() {
+//		return cart;
+//	}
+//
+//	public void setCart(CartDTO cart) {
+//		this.cart = cart;
+//	}
 
-	public List<Review> getReviews() {
-		return reviews;
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", userImage=" + userImage + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
+				+ ", dateOfBirth=" + dateOfBirth + ", addressLine1=" + addressLine1 + ", addressLin0e2=" + addressLin0e2
+				+ ", city=" + city + ", phoneNumber=" + phoneNumber + ", role=" + role + "]";
 	}
 
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
+	
 }
