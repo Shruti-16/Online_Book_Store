@@ -26,6 +26,7 @@ import Order from './components/Order';
 import AdminLogin from './components/AdminLogIn';
 import AddBookForm from './components/admin components/AddProductForm';
 import AllBooks from './components/AllProducts';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -35,13 +36,13 @@ function App() {
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="/register-admin" element={<RegisterAdmin />} />
         <Route exact path="/admin-login" element={<AdminLogin />} />
-        <Route exact path="/admin" element={<AdminPage />} />       
+        <Route exact path="/admin" element={<AdminPage />} />
         <Route exact path="/users" element={<UsersTable />} />
         <Route exact path="/add-book" element={<AddBookForm />} />
         {/* <Route exact path="/delete-book" element={<AllBooks />} />  Pending */}
         <Route exact path="/login-customer" element={<LoginForm />} />
         {/* <Route exact path="/add-category" element={<AddCategory/>} /> */}
-        {/* <Route exact path="/view-category" element={<AllCategories/>} /> */}        
+        {/* <Route exact path="/view-category" element={<AllCategories/>} /> */}
         {/* <Route exact path="/display-products" element={<DisplayProducts />} /> Pending */}
         <Route exact path="/display-products-admin" element={<DisplayProductsForAdmin />} />
         <Route exact path="/contact" element={<Contact />} />
@@ -50,6 +51,7 @@ function App() {
         <Route exact path="/register-customer" element={<RegisterCustomer />} />
         <Route exact path="/customer-cart" element={<Cart />} />
         <Route exact path="/myorder" element={<Order />} />
+        <Route exact path="/logout" element={<Logout />} />
 
 
         {/* <Route exact path="/" element={<Homepage/>} />

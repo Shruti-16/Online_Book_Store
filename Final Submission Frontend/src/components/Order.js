@@ -37,7 +37,7 @@ export default function Order() {
                                     {/* <i className='text-white '>Cart </i> */}
                                     <FaShoppingCart />
                                 </a>
-                                <a href='#' className='btn btn-light ms-3'>
+                                <a href='/logout' className='btn btn-light ms-3'>
                                     {/* <i className='text-white '>Cart </i> */}
                                     Logout <FaSignOutAlt />
                                 </a>

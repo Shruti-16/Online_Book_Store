@@ -67,7 +67,7 @@ function LoginForm(){
 					
 					<div className="row m-4 align-items-center justify-content-evenly">
 						<div className="col-10">
-							<button className="btn btn-success rounded" type="submit">LOGIN</button>
+							<button className="btn btn-success rounded" type="submit">Login</button>
                             {status?<div className='text-success'>{status}</div>:null}
 						</div>
 					</div>
