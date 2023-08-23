@@ -24,8 +24,7 @@ public class Language {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long languageId;
-	@Column(name = "language_name")
-	private String name;
+	private String languageName;
 	@ManyToMany(mappedBy = "languages")
 	private List<Book> books = new ArrayList<>();
 	
@@ -34,10 +33,10 @@ public class Language {
 	public Language() {
 		super();
 	}
-	public Language(Long languageId, String name, List<Book> books) {
+	public Language(Long languageId, String languageName, List<Book> books) {
 		super();
 		this.languageId = languageId;
-		this.name = name;
+		this.languageName = languageName;
 		this.books = books;
 	}
 	public Long getLanguageId() {
@@ -46,11 +45,11 @@ public class Language {
 	public void setLanguageId(Long languageId) {
 		this.languageId = languageId;
 	}
-	public String getName() {
-		return name;
+	public String getLanguageName() {
+		return languageName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
 	}
 	public List<Book> getBooks() {
 		return books;

@@ -46,17 +46,13 @@ public class Book {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "book_languages", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "language_id"))
 	private List<Language> languages = new ArrayList<>();
-	// private Language language;
-	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate publicationDate;
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "author_id")
 	private String authorName;
 	private float price;
 	private int edition;
 
-	@Column(length = 30, name = "status") // Use a unique name for the column
-	private boolean isAvailable;
+	@Column(length = 30) // Use a unique name for the column
+	private boolean isAvailable=true;
 	private int stock;
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30, name = "genre") // Use a unique name for the column

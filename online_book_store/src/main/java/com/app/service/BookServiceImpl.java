@@ -41,7 +41,7 @@ public class BookServiceImpl implements BookService{
         
         BookDTO bookDTO = modelMapper.map(book, BookDTO.class);
         List<String> languageNames = book.getLanguages().stream()
-            .map(Language::getName)
+            .map(Language::getLanguageName)
             .collect(Collectors.toList());
         bookDTO.setLanguageNames(languageNames);
         // Set other fields as needed

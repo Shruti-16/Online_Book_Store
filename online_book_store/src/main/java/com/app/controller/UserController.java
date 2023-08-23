@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ListBookDTO;
 import com.app.dto.UserDTO;
+import com.app.dto.UserSignInDTO;
 import com.app.service.UserService;
 @RestController
 @RequestMapping("/user")
@@ -64,4 +66,16 @@ public class UserController {
     	userService.deleteUser(userId);
     	return new ResponseEntity<String>("User Deleted Successfully", HttpStatus.OK);
     }
+    
+    @PostMapping("/signin")
+    public ResponseEntity<List<ListBookDTO>> signInUser(@RequestBody UserSignInDTO userSignInDTO){
+    	List<ListBookDTO> books=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
+    	if(books!=null) {
+    		return ResponseEntity.ok(books);
+    	}else {
+    		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    	}
+    }
+    
+    
 }

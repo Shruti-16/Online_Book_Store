@@ -30,7 +30,6 @@ public class UserDTO {
 	private String firstName;
 	@NotBlank(message = "Last  name can't be blank")
 	private String lastName;
-	@Column(length = 30, unique = true)
 	@Email(message = "Invalid email format")
 	private String email;
 	private String password;

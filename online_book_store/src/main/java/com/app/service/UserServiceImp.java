@@ -9,11 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.dto.ListBookDTO;
 import com.app.dto.UserDTO;
+import com.app.entities.Book;
 import com.app.entities.Cart;
 import com.app.entities.User;
+import com.app.repository.BookRepository;
 import com.app.repository.UserRepository;
-
 
 @Transactional
 @Service
@@ -22,6 +24,8 @@ public class UserServiceImp implements UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private BookRepository bookRepository;
 
 	/**
 	 * Add a new user to the database.
@@ -33,10 +37,9 @@ public class UserServiceImp implements UserService {
 	@Override
 	public UserDTO addNewUser(UserDTO userDto) {
 		User user = modelMapper.map(userDto, User.class);
-		Cart cart =new Cart();
+		Cart cart = new Cart();
 		cart.setUser(user);
 		user.setCart(cart);
-		
 
 		User savedUser = userRepository.save(user);
 		return modelMapper.map(savedUser, UserDTO.class);
@@ -66,46 +69,41 @@ public class UserServiceImp implements UserService {
 		return userDto;
 	}
 
-	
-	
-	
-	
-	
 	@Override
 	public UserDTO updateUser(UserDTO userDto) {
-		if(userDto.getUserId()==null) {
+		if (userDto.getUserId() == null) {
 			return null;
 		}
-		User existingUser=userRepository.findById(userDto.getUserId()).orElse(null);
-		if(existingUser!=null) {
-			if(userDto.getFirstName()!=null) {
+		User existingUser = userRepository.findById(userDto.getUserId()).orElse(null);
+		if (existingUser != null) {
+			if (userDto.getFirstName() != null) {
 				existingUser.setFirstName(userDto.getFirstName());
 			}
-			if(userDto.getLastName()!=null) {
+			if (userDto.getLastName() != null) {
 				existingUser.setLastName(userDto.getLastName());
 			}
-			if(userDto.getAddressLine1()!=null) {
+			if (userDto.getAddressLine1() != null) {
 				existingUser.setAddressLine1(userDto.getAddressLine1());
 			}
-			if(userDto.getAddressLin0e2()!=null) {
+			if (userDto.getAddressLin0e2() != null) {
 				existingUser.setAddressLin0e2(userDto.getAddressLin0e2());
 			}
-			if(userDto.getCity()!=null) {
+			if (userDto.getCity() != null) {
 				existingUser.setCity(userDto.getCity());
 			}
-			if(userDto.getEmail()!=null) {
+			if (userDto.getEmail() != null) {
 				existingUser.setEmail(userDto.getEmail());
 			}
-			if(userDto.getPhoneNumber()!=null) {
+			if (userDto.getPhoneNumber() != null) {
 				existingUser.setPhoneNumber(userDto.getPhoneNumber());
 			}
-			if(userDto.getPassword()!=null) {
+			if (userDto.getPassword() != null) {
 				existingUser.setPassword(userDto.getPassword());
 			}
-			if(userDto.getDateOfBirth()!=null) {
+			if (userDto.getDateOfBirth() != null) {
 				existingUser.setDateOfBirth(userDto.getDateOfBirth());
 			}
-			User updatedUser=userRepository.save(existingUser);
+			User updatedUser = userRepository.save(existingUser);
 			return modelMapper.map(updatedUser, UserDTO.class);
 		}
 		return null;
@@ -114,6 +112,20 @@ public class UserServiceImp implements UserService {
 	@Override
 	public void deleteUser(Long userId) {
 		userRepository.deleteById(userId);
+	}
+
+	@Override
+	public List<ListBookDTO> authenticateUser(String email, String password) {
+		User user=userRepository.findUserByEmail(email);
+		if(user != null && user.getPassword().equals(password)) {
+			// Authentication successful
+            // fetch and return the list of books
+			List<Book> books=bookRepository.findAll();
+			List<ListBookDTO> listBookDTO=books.stream().map(book -> modelMapper.map(book, ListBookDTO.class))
+					.collect(Collectors.toList());
+			return listBookDTO;
+		}
+		return null;
 	}
 
 }
