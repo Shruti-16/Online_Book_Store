@@ -3,7 +3,7 @@ import { FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
 export default function Order() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{fontWeight:"bold"}}>
                 <div className="container-fluid" style={{ marginLeft: "3rem" }}>
                     <a className="navbar-brand" href="/">My Order</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
