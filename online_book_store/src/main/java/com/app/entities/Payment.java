@@ -43,57 +43,57 @@ public class Payment {
 
 	private PaymentMethod method;
 
-	public Payment() {
-		super();
-	}
-
-	public Payment(Long paymentId, User customer, Order order, PaymentStatus status, PaymentMethod method) {
-		super();
-		this.paymentId = paymentId;
-		this.customer = customer;
-		this.order = order;
-		this.status = status;
-		this.method = method;
-	}
-
-	public Long getPaymentId() {
-		return paymentId;
-	}
-
-	public void setPaymentId(Long paymentId) {
-		this.paymentId = paymentId;
-	}
-
-	public User getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(User customer) {
-		this.customer = customer;
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	public PaymentStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(PaymentStatus status) {
-		this.status = status;
-	}
-
-	public PaymentMethod getMethod() {
-		return method;
-	}
-
-	public void setMethod(PaymentMethod method) {
-		this.method = method;
-	}
+//	public Payment() {
+//		super();
+//	}
+//
+//	public Payment(Long paymentId, User customer, Order order, PaymentStatus status, PaymentMethod method) {
+//		super();
+//		this.paymentId = paymentId;
+//		this.customer = customer;
+//		this.order = order;
+//		this.status = status;
+//		this.method = method;
+//	}
+//
+//	public Long getPaymentId() {
+//		return paymentId;
+//	}
+//
+//	public void setPaymentId(Long paymentId) {
+//		this.paymentId = paymentId;
+//	}
+//
+//	public User getCustomer() {
+//		return customer;
+//	}
+//
+//	public void setCustomer(User customer) {
+//		this.customer = customer;
+//	}
+//
+//	public Order getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
+//
+//	public PaymentStatus getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(PaymentStatus status) {
+//		this.status = status;
+//	}
+//
+//	public PaymentMethod getMethod() {
+//		return method;
+//	}
+//
+//	public void setMethod(PaymentMethod method) {
+//		this.method = method;
+//	}
 
 }

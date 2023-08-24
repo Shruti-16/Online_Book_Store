@@ -9,7 +9,7 @@ export default function Order() {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{ marginLeft: "35rem" }}>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{ marginLeft: "30rem" }}>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-1">
                             <li className="nav-item">
                                 <a className="nav-link" aria-current="page" href="/" style={{ fontSize: "1.3rem", marginRight: "1.3rem" }}>Home</a>
@@ -26,7 +26,7 @@ export default function Order() {
                             </li>
 
 
-                            <div className='buttons' style={{ marginLeft: "30rem" }}>
+                            <div className='buttons' style={{ marginLeft: "20rem" }}>
                                 {/* <a href='/login-customer' className='btn btn-outline-light'>
                                     <i className='text-white '>Login  &#187;</i>
                                 </a> */}

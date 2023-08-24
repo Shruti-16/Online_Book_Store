@@ -90,14 +90,21 @@ function AddBookForm() {
                                 </div>
                             </div>
                         </span>
-                        <div className="row g-2 mb-3 align-self-center">
-                            <label className="form-label">Book Image</label>
-                            <input className="form-control" type="file" placeholder="Book Image" value={productImagePath} onChange={(event) => setProductImagePath(event.target.value)}></input>
-                        </div>
-                        <div className="row g-3 mt-2">
-                            <button className="btn btn-primary rounded">Add Book</button>
-                        </div>
-
+                        <span className="row  g-3 mb-3">
+                            <div className="col-md-6">
+                                <label className="form-label">Author</label>
+                                <div>
+                                    <input className="form-control" type="text" placeholder="Author" value={sellingPrice} onChange={(event) => setProductName(event.target.value)} required></input>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">Book Image</label>
+                                <input className="form-control" type="file" placeholder="Book Image" value={productImagePath} onChange={(event) => setProductImagePath(event.target.value)}></input>
+                            </div>
+                            <div className="row g-3 mt-2">
+                                <button className="btn btn-primary rounded">Add Book</button>
+                            </div>
+                        </span>
                     </form>
                 </div>
             </div>

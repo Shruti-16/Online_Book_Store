@@ -8,9 +8,9 @@ class LoginServiceCustomer{
 
     }
 
-    static registerUser(firstName, lastName, email, password, mobileNumber, registeredDate, roles){
-        var registerCredentials={firstName, lastName, email, password, mobileNumber, registeredDate, roles};
-        return axios.post("http://localhost:8080/auth/signup",registerCredentials)
+    static registerUser(firstName, lastName, email, password,confirmPassword,dateOfBirth,addressLine1,addressLine2,city,phoneNumber,registeredDate,userImage){
+        var registerCredentials={firstName, lastName, email, password, confirmPassword,dateOfBirth,addressLine1,addressLine2,city,phoneNumber, registeredDate,userImage};
+        return axios.post("http://localhost:8080/users/register-customer",registerCredentials);
     }
 
     static addUserCart(userId,config){

@@ -30,7 +30,7 @@ function LeftSidebar(){
              {/* <Link className="list-group-item list-group-item-action" to="/admin" tag="a" action>
                 Welcome
             </Link> */}
-            <Link className="list-group-item list-group-item-action mb-3" to="/register-customer" tag="a" action>
+            <Link className="list-group-item list-group-item-action mb-3" to="/users/register-customer" tag="a" action>
                 Add User
             </Link>
             {/* <Link className="list-group-item list-group-item-action mb-3" to="/register-customer" tag="a" action>

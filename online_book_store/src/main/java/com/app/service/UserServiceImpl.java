@@ -16,11 +16,12 @@ import com.app.entities.Cart;
 import com.app.entities.User;
 import com.app.repository.BookRepository;
 import com.app.repository.CartRepository;
+import com.app.repository.CityRepository;
 import com.app.repository.UserRepository;
 
 @Transactional
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -31,6 +32,8 @@ public class UserServiceImp implements UserService {
 	private BookService bookService;
 	@Autowired
 	private CartRepository cartRepository;
+	@Autowired
+	private CityRepository cityRepo;
 
 
 	/**
@@ -75,45 +78,45 @@ public class UserServiceImp implements UserService {
 		return userDto;
 	}
 
-	@Override
-	public UserDTO updateUser(UserDTO userDto) {
-		if (userDto.getUserId() == null) {
-			return null;
-		}
-		User existingUser = userRepository.findById(userDto.getUserId()).orElse(null);
-		if (existingUser != null) {
-			if (userDto.getFirstName() != null) {
-				existingUser.setFirstName(userDto.getFirstName());
-			}
-			if (userDto.getLastName() != null) {
-				existingUser.setLastName(userDto.getLastName());
-			}
-			if (userDto.getAddressLine1() != null) {
-				existingUser.setAddressLine1(userDto.getAddressLine1());
-			}
-			if (userDto.getAddressLin0e2() != null) {
-				existingUser.setAddressLin0e2(userDto.getAddressLin0e2());
-			}
-			if (userDto.getCity() != null) {
-				existingUser.setCity(userDto.getCity());
-			}
-			if (userDto.getEmail() != null) {
-				existingUser.setEmail(userDto.getEmail());
-			}
-			if (userDto.getPhoneNumber() != null) {
-				existingUser.setPhoneNumber(userDto.getPhoneNumber());
-			}
-			if (userDto.getPassword() != null) {
-				existingUser.setPassword(userDto.getPassword());
-			}
-			if (userDto.getDateOfBirth() != null) {
-				existingUser.setDateOfBirth(userDto.getDateOfBirth());
-			}
-			User updatedUser = userRepository.save(existingUser);
-			return modelMapper.map(updatedUser, UserDTO.class);
-		}
-		return null;
-	}
+//	@Override
+//	public UserDTO updateUser(UserDTO userDto) {
+//		if (userDto.getUserId() == null) {
+//			return null;
+//		}
+//		User existingUser = userRepository.findById(userDto.getUserId()).orElse(null);
+//		if (existingUser != null) {
+//			if (userDto.getFirstName() != null) {
+//				existingUser.setFirstName(userDto.getFirstName());
+//			}
+//			if (userDto.getLastName() != null) {
+//				existingUser.setLastName(userDto.getLastName());
+//			}
+//			if (userDto.getAddressLine1() != null) {
+//				existingUser.setAddressLine1(userDto.getAddressLine1());
+//			}
+//			if (userDto.getAddressLine2() != null) {
+//				existingUser.setAddressLin0e2(userDto.getAddressLine2());
+//			}
+//			if (userDto.getCity() != null) {
+//				existingUser.setCity(userDto.getCity());
+//			}
+//			if (userDto.getEmail() != null) {
+//				existingUser.setEmail(userDto.getEmail());
+//			}
+//			if (userDto.getPhoneNumber() != null) {
+//				existingUser.setPhoneNumber(userDto.getPhoneNumber());
+//			}
+//			if (userDto.getPassword() != null) {
+//				existingUser.setPassword(userDto.getPassword());
+//			}
+//			if (userDto.getDateOfBirth() != null) {
+//				existingUser.setDateOfBirth(userDto.getDateOfBirth());
+//			}
+//			User updatedUser = userRepository.save(existingUser);
+//			return modelMapper.map(updatedUser, UserDTO.class);
+//		}
+//		return null;
+//	}
 
 	@Override
 	public void deleteUser(Long userId) {

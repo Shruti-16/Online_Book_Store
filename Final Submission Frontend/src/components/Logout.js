@@ -5,7 +5,7 @@ function Logout(){
 
     return (
         <div>
-            <div className="container-fluid" style={{marginLeft:"35rem", marginTop:"4rem"}}>
+            <div className="container-fluid" style={{marginLeft:"30rem", marginTop:"4rem"}}>
             <Card className="m-5 rounded text-center bg-light" style={{width:"35%"}}>
                 <CardHeader style={{fontSize:"1.5rem"}}>Logout</CardHeader>
                 <CardBody>

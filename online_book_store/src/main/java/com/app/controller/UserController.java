@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -20,7 +21,8 @@ import com.app.dto.UserSignInDTO;
 import com.app.service.BookService;
 import com.app.service.UserService;
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 	@Autowired
     private UserService userService;
@@ -34,7 +36,7 @@ public class UserController {
      * @return ResponseEntity containing the added UserDTO and HTTP status code.
      */
 
-    @PostMapping("/addNewUser")
+    @PostMapping("/register-customer")
     public ResponseEntity<UserDTO> addNewUser(@RequestBody UserDTO userDto) {
         return new ResponseEntity<UserDTO>(userService.addNewUser(userDto), HttpStatus.CREATED);
     }
@@ -57,16 +59,16 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
     
-    @PatchMapping("/updateUser")
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDto) {
-        UserDTO updatedUser = userService.updateUser(userDto);
-        if (updatedUser != null) {
-            return ResponseEntity.ok(updatedUser);
-        } else {
-            // Handle the case where user update fails
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+//    @PatchMapping("/updateUser")
+//    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDto) {
+//        UserDTO updatedUser = userService.updateUser(userDto);
+//        if (updatedUser != null) {
+//            return ResponseEntity.ok(updatedUser);
+//        } else {
+//            // Handle the case where user update fails
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
     
     @DeleteMapping("/deleteUser/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId){

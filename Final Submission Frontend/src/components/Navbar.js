@@ -32,7 +32,7 @@ function Navbar() {
                                     Login <FaSignInAlt></FaSignInAlt>
                                 </a>
 
-                                <a href='/register-customer' className='btn btn-light ms-3'>
+                                <a href='/users/register-customer' className='btn btn-light ms-3'>
                                     Sign Up <FaUserPlus></FaUserPlus>
                                 </a>
 

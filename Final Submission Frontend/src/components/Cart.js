@@ -110,7 +110,7 @@ function Cart() {
                                 </li>
 
 
-                                <div className='buttons p-2' style={{ marginLeft: "38rem" }}>
+                                <div className='buttons p-2' style={{ marginLeft: "30rem" }}>
                                     {/* <a href='/login-customer' className='btn btn-outline-light'>
                                 <i className='text-white '>Login  &#187;</i>
                             </a>

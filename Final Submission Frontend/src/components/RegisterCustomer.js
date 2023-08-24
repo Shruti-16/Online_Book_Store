@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
-
 import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 import { Dropdown } from "react-bootstrap";
 
@@ -21,16 +20,21 @@ function RegisterCustomer() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [mobileNumber, setMobileNumber] = useState('');
-    const [registeredDate, setRegisteredDate] = useState(Date.now);
-    const [roles, setRoles] = useState([]);
-    roles.push('ROLE_CUSTOMER')
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [addressLine1, setAddressLine1] = useState('');
+    const [addressLine2, setAddressLine2] = useState('');
+    const [city, SetCity] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [registeredDate, setRegisteredDate] = useState('');
+    const [userImage, setUserImage] = useState([]);
+    // roles.push('RO')
     const [status, setStatus] = useState('');
     const [userId, setUserId] = useState('');
 
     const handleRegister = (event) => {
         event.preventDefault();
-        LoginServiceCustomer.registerUser(firstName, lastName, email, password, mobileNumber, registeredDate, roles).then((result) => {
+        LoginServiceCustomer.registerUser(firstName, lastName, email, password, confirmPassword, dateOfBirth, addressLine1, addressLine2, city, phoneNumber, registeredDate).then((result) => {
             var msg = JSON.stringify(result.message);
             var idMessage = JSON.stringify(result.data.message);
             var ketos = (idMessage.slice(37, 40))
@@ -48,7 +52,7 @@ function RegisterCustomer() {
         LoginServiceCustomer.addUserCart(ruserId, config)
             .then((result) => {
                 var msg = JSON.stringify(result.message);
-                setStatus('Registration successful!');
+                setStatus('Registration successful!!! Created the cart sucessfully!!!');
             }).catch((err) => {
                 setStatus('Does not create cart');
             });
@@ -112,18 +116,53 @@ function RegisterCustomer() {
                                 </div>
 
                             </span>
+                            <span className="row g-3 mb-2">
+                                <div className="col-md-6">
+                                    <label className="form-label">Confirm Password</label>
+                                    <div className="">
+                                        <input className="form-control " type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} required></input>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-6 ">
+                                    <label className="form-label">Date Of Birth</label>
+
+                                    <div className="">
+                                        <input className="form-control " type="date" value={dateOfBirth} onChange={(event) => setDateOfBirth(event.target.value)} required></input>
+                                    </div>
+                                </div>
+
+                            </span>
+                            <span className="row g-3 mb-2">
+                                <div className="col-md-6">
+                                    <label className="form-label">Address Line 1</label>
+                                    <div className="">
+                                        <input className="form-control " type="text" placeholder="Address Line 1" value={addressLine1} onChange={(event) => setAddressLine1(event.target.value)} required></input>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-6 ">
+                                    <label className="form-label">Address Line 2
+                                    </label>
+
+                                    <div className="">
+                                        <input className="form-control " type="text" placeholder="Address Line 2" value={addressLine2} onChange={(event) => setAddressLine2(event.target.value)} required></input>
+                                    </div>
+                                </div>
+
+                            </span>
 
                             <span className="row g-3 mb-2">
                                 <div className="col-md-6">
                                     <label className="form-label">Mobile No</label>
                                     <div className="">
-                                        <input className="form-control " type="text" placeholder="Mobile No" value={mobileNumber} onChange={(event) => setMobileNumber(event.target.value)} required></input>
+                                        <input className="form-control " type="text" placeholder="Phone Number" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} required></input>
                                     </div>
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label for="validationServer02" className="form-label">City</label>
-                                    <input type="text" className="form-control " placeholder="City" id="validationServer02" value={setRegisteredDate}></input>
+                                    <label for="city" className="form-label">City</label>
+                                    <input type="text" className="form-control " placeholder="City" id="city" value={city} onChange={(event) => SetCity(event.target.value)} required></input>
                                     <div className="valid-feedback">
 
 
@@ -134,15 +173,15 @@ function RegisterCustomer() {
 
                             <span className="row g-3 mb-2">
                                 <div className="col-md-6">
-                                    <label className="form-label">Country</label>
+                                    <label className="form-label">User Image</label>
                                     <div className="">
-                                        <input className="form-control " type="text" placeholder="Country" value={mobileNumber} onChange={(event) => setMobileNumber(event.target.value)} required></input>
+                                        <input className="form-control " type="file" placeholder="Customer Image" value={userImage} onChange={(event) => setUserImage(event.target.value)} required></input>
                                     </div>
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label for="validationServer02" className="form-label">Registered Date</label>
-                                    <input type="date" className="form-control " id="validationServer02" value={setRegisteredDate} disabled></input>
+                                    <label className="form-label">Registered Date</label>
+                                    <input type="date" className="form-control " value={registeredDate} onChange={(event) => setRegisteredDate(event.target.value)}></input>
                                     <div className="valid-feedback">
 
                                     </div>
