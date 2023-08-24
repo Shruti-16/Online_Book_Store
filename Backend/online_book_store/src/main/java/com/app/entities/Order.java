@@ -40,7 +40,7 @@ public class Order {
 	private Cart cart;
 	private float totalPrice;
 	private int quantity;
-	private LocalDateTime orderDate;
+	private LocalDate orderDate;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id" , nullable = false)
 	private User user;
@@ -72,12 +72,8 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public LocalDateTime getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(LocalDateTime orderDate) {
-		this.orderDate = orderDate;
-	}
+
+	
 	public User getUser() {
 		return user;
 	}
@@ -96,8 +92,19 @@ public class Order {
 	public void setStatus(DeliveryStatus status) {
 		this.deliveryStatus = status;
 	}
-	public Order(Long orderId, Cart cart, float totalPrice, int quantity, LocalDateTime orderDate, User user,
-			List<Book> books, DeliveryStatus status) {
+
+	public Order() {
+		super();
+	}
+
+	public DeliveryStatus getDeliveryStatus() {
+		return deliveryStatus;
+	}
+	public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
+	}
+	public Order(Long orderId, Cart cart, float totalPrice, int quantity, LocalDate orderDate, User user,
+			List<Book> books, DeliveryStatus deliveryStatus) {
 		super();
 		this.orderId = orderId;
 		this.cart = cart;
@@ -106,10 +113,13 @@ public class Order {
 		this.orderDate = orderDate;
 		this.user = user;
 		this.books = books;
-		this.deliveryStatus = status;
+		this.deliveryStatus = deliveryStatus;
 	}
-	public Order() {
-		super();
+	public LocalDate getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
 	}
 
 

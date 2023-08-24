@@ -3,7 +3,7 @@ package com.app.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
+
 
 import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
@@ -17,7 +17,7 @@ import com.app.repository.BookRepository;
 
 
 @Service
-@Transactional
+@org.springframework.transaction.annotation.Transactional
 public class BookServiceImpl implements BookService{
 	
 	@Autowired

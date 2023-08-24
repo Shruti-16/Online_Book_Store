@@ -10,6 +10,7 @@ public interface OrderService {
 
 	OrderRespDto placeOrder(OrderDTO order);
 
-	List<OrderBook> findPurchaseBooksOfUser(String username);
+//	List<OrderBook> findPurchaseBooksOfUser(String username);
+	List<OrderRespDto> displayAllPurchasedBooksForUser(Long userId);
 
 }
