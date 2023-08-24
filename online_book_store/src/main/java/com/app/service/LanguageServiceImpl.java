@@ -11,6 +11,10 @@ import com.app.dto.LanguageDTO;
 import com.app.entities.Language;
 import com.app.repository.LanguageRepository;
 
+import jakarta.transaction.Transactional;
+
+@Transactional
+
 @Service
 public class LanguageServiceImpl implements LanguageService{
 

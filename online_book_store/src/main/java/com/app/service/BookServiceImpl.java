@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ import com.app.repository.BookRepository;
 import com.app.repository.LanguageRepository;
 
 @Service
-@Transactional
+@jakarta.transaction.Transactional
 public class BookServiceImpl implements BookService {
 
 	@Autowired
