@@ -41,7 +41,6 @@ public class BookController {
 	// To add new Book object in the book table  
 	@PostMapping("/addNewBook")
 	public ResponseEntity<BookDTO> addNewBook(@RequestBody @Valid BookDTO newBook) {
-		System.out.println("Name of book =" + newBook.getTitle());
 		return new ResponseEntity<BookDTO>(bookService.addNewBook(newBook), HttpStatus.CREATED);
 	}
 
