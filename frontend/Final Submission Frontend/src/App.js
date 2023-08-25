@@ -50,6 +50,8 @@ function App() {
         <Route exact path="/register-customer" element={<RegisterCustomer />} />
         <Route exact path="/customer-cart" element={<Cart />} />
         <Route exact path="/myorder" element={<Order />} />
+        <Route exact path="/AllBooks" element={<AllBooks />} />
+
 
 
         {/* <Route exact path="/" element={<Homepage/>} />

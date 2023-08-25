@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Product from "./Product";
-import {Row,Col} from "reactstrap"
+import {Row,Col, Navbar} from "reactstrap"
 
 function AllBooks () {
     const [products,setProducts] = useState([
@@ -12,6 +12,7 @@ function AllBooks () {
 
     return(
         <div>
+            
             <h2 className="ms-2">All Books </h2>
             <Row>{products.length>0?products.map((item)=> <Col sm="4"><Product product={item}/></Col>):"No Products under this category"}</Row>
         </div>
