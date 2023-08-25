@@ -36,7 +36,11 @@ public class UserDTO {
 	private String confirmPassword;
 	private LocalDate dateOfBirth;
 	private String addressLine1;
+<<<<<<< HEAD
 	private String addressLine2;
+=======
+	private String addressLin0e2;
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 	private City city;
 //	@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
 	private String phoneNumber;
@@ -65,7 +69,11 @@ public class UserDTO {
 		this.confirmPassword = confirmPassword;
 		this.dateOfBirth = dateOfBirth;
 		this.addressLine1 = addressLine1;
+<<<<<<< HEAD
 		this.addressLine2 = addressLin0e2;
+=======
+		this.addressLin0e2 = addressLin0e2;
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.role = role;
@@ -145,11 +153,19 @@ public class UserDTO {
 	}
 
 	public String getAddressLin0e2() {
+<<<<<<< HEAD
 		return addressLine2;
 	}
 
 	public void setAddressLin0e2(String addressLin0e2) {
 		this.addressLine2 = addressLin0e2;
+=======
+		return addressLin0e2;
+	}
+
+	public void setAddressLin0e2(String addressLin0e2) {
+		this.addressLin0e2 = addressLin0e2;
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 	}
 
 	public City getCity() {
@@ -188,7 +204,11 @@ public class UserDTO {
 	public String toString() {
 		return "UserDTO [userId=" + userId + ", userImage=" + userImage + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
+<<<<<<< HEAD
 				+ ", dateOfBirth=" + dateOfBirth + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
+=======
+				+ ", dateOfBirth=" + dateOfBirth + ", addressLine1=" + addressLine1 + ", addressLin0e2=" + addressLin0e2
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 				+ ", city=" + city + ", phoneNumber=" + phoneNumber + ", role=" + role + "]";
 	}
 

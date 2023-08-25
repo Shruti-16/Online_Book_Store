@@ -44,7 +44,10 @@ public class UserServiceImp implements UserService {
 	public UserDTO addNewUser(UserDTO userDto) {
 		User user = modelMapper.map(userDto, User.class);
 		Cart cart = new Cart();
+<<<<<<< HEAD
 		cart.setCartId(user.getUserId());
+=======
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 		cart.setUser(user);
 		user.setCart(cart);
 

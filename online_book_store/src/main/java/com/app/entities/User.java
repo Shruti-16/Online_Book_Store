@@ -33,6 +33,16 @@ import lombok.ToString;
 @ToString
 @Table(name = "users")
 public class User {
+<<<<<<< HEAD
+=======
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +58,11 @@ public class User {
 	private String confirmPassword;
 	private LocalDate dateOfBirth;
 	private String addressLine1;
+<<<<<<< HEAD
 	private String addressLine2;
+=======
+	private String addressLin0e2;
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 	// Many-to-one relationship with City using zip code
 	@ManyToOne()
 	@JoinColumn(name = "city", referencedColumnName = "cityId")
@@ -65,9 +79,14 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<>();
 	
+<<<<<<< HEAD
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id") // This column should be present in the users table
     private Cart cart;
+=======
+	 @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
+	    private Cart cart;
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 
 	public User() {
 		super();
@@ -87,13 +106,18 @@ public class User {
 		this.confirmPassword = confirmPassword;
 		this.dateOfBirth = dateOfBirth;
 		this.addressLine1 = addressLine1;
+<<<<<<< HEAD
 		this.addressLine2 = addressLin0e2;
+=======
+		this.addressLin0e2 = addressLin0e2;
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.role = role;
 		this.reviews = reviews;
 		this.orders = orders;
 	}
+<<<<<<< HEAD
 	public Cart getCart() {
 		return cart;
 	}
@@ -101,6 +125,8 @@ public class User {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+=======
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 
 	public Long getUserId() {
 		return userId;
@@ -174,12 +200,21 @@ public class User {
 		this.addressLine1 = addressLine1;
 	}
 
+<<<<<<< HEAD
 	public String getAddressLine2() {
 		return addressLine2;
 	}
 
 	public void setAddressLin0e2(String addressLin0e2) {
 		this.addressLine2 = addressLin0e2;
+=======
+	public String getAddressLin0e2() {
+		return addressLin0e2;
+	}
+
+	public void setAddressLin0e2(String addressLin0e2) {
+		this.addressLin0e2 = addressLin0e2;
+>>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 	}
 
 	public City getCity() {
