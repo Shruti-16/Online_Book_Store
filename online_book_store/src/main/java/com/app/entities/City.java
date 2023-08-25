@@ -1,6 +1,5 @@
 package com.app.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "cities")
 public class City {
@@ -28,7 +28,7 @@ public class City {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cityId;
 	private String cityName;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;
 	@Column(unique = false)

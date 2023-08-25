@@ -1,7 +1,6 @@
 package com.app.controller;
 import java.util.List;
 
-import org.hibernate.annotations.OnDelete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.ListBookDTO;
+import com.app.dto.ListBookWithUserDTO;
+import com.app.dto.ResponseBookDTO;
 import com.app.dto.UserDTO;
 import com.app.dto.UserSignInDTO;
+import com.app.service.BookService;
 import com.app.service.UserService;
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
     private UserService userService;
+	@Autowired
+	private BookService bookService;
 
 	/**
      * Add a new user to the system.
@@ -48,7 +51,11 @@ public class UserController {
     	return ResponseEntity.ok(userService.getAllUsers());
     }
     
-    
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) {
+        UserDTO userDTO = userService.getUserById(userId);
+        return ResponseEntity.ok(userDTO);
+    }
     
     @PatchMapping("/updateUser")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDto) {
@@ -67,15 +74,30 @@ public class UserController {
     	return new ResponseEntity<String>("User Deleted Successfully", HttpStatus.OK);
     }
     
-    @PostMapping("/signin")
-    public ResponseEntity<List<ListBookDTO>> signInUser(@RequestBody UserSignInDTO userSignInDTO){
-    	List<ListBookDTO> books=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
-    	if(books!=null) {
-    		return ResponseEntity.ok(books);
+//    @PostMapping("/signin1")
+//    public ResponseEntity<List<ResponseBookDTO>> signInUser(@RequestBody UserSignInDTO userSignInDTO){
+//    	List<ResponseBookDTO> books=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
+//    	if(books!=null) {
+//    		return ResponseEntity.ok(books);
+//    	}else {
+//    		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//    	}
+//    }
+//    
+    
+    @PostMapping("/signin1")
+    public ResponseEntity<ListBookWithUserDTO> signInUser(@RequestBody UserSignInDTO userSignInDTO){
+    	UserDTO userDTO=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
+    	ListBookWithUserDTO listBookWithUserDTO;
+    	if(userDTO!=null) {
+    		listBookWithUserDTO=new ListBookWithUserDTO();
+    		List<ResponseBookDTO> listBookDTO=bookService.getAllBooks();
+    		listBookWithUserDTO.setUserDTO(userDTO);
+    		listBookWithUserDTO.setListOfBookDTO(listBookDTO);
     	}else {
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     	}
+    	return new ResponseEntity<ListBookWithUserDTO>(listBookWithUserDTO, HttpStatus.CREATED);
     }
-    
     
 }

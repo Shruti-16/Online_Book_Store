@@ -16,14 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.BatchSize;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +28,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "books")
 public class Book {
@@ -48,34 +44,33 @@ public class Book {
 	private List<Language> languages = new ArrayList<>();
 	private LocalDate publicationDate;
 	private String authorName;
-	private float price;
+
 	private int edition;
 
 	@Column(length = 30) // Use a unique name for the column
-	private boolean isAvailable=true;
+	private boolean isAvailable = true;
 	private int stock;
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30, name = "genre") // Use a unique name for the column
 	private Genre genre;
-	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-//	@BatchSize(size = 10)
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Review> reviews = new ArrayList<Review>();
+	@ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
+	private List<Cart> carts = new ArrayList<>();
+//	@ManyToOne
+//	@JoinColumn(name = "order_id")
+//	private Order order; // Represents the order this book belongs to
 
-//	private Map<User, Review> reviews = new HashMap<>(); 
-	@ManyToOne
-	@JoinColumn(name = "cart_id")
-	private Cart cart;
-	@ManyToOne
-	@JoinColumn(name = "order_id")
-	private Order order; // Represents the order this book belongs to
+	private float markedPrice;
+	private float sellingPrice;
 
 	public Book() {
 		super();
 	}
 
 	public Book(Long bookId, String bookImage, String title, List<Language> languages, LocalDate publicationDate,
-			String authorName, float price, int edition, boolean isAvailable, int stock, Genre genre,
-			List<Review> reviews, Cart cart, Order order) {
+			String authorName, int edition, boolean isAvailable, int stock, Genre genre, List<Review> reviews,
+			List<Cart> carts, float markedPrice, float sellingPrice) {
 		super();
 		this.bookId = bookId;
 		this.bookImage = bookImage;
@@ -83,14 +78,26 @@ public class Book {
 		this.languages = languages;
 		this.publicationDate = publicationDate;
 		this.authorName = authorName;
-		this.price = price;
 		this.edition = edition;
 		this.isAvailable = isAvailable;
 		this.stock = stock;
 		this.genre = genre;
 		this.reviews = reviews;
-		this.cart = cart;
-		this.order = order;
+		this.carts = carts;
+//		this.order = order;
+		this.markedPrice = markedPrice;
+		this.sellingPrice = sellingPrice;
+	}
+
+
+	public Book(Long bookId, String title, String bookImage, float sellingPrice, Genre genre, int edition, String authorName) {
+		// TODO Auto-generated constructor stub
+		this.bookId = bookId;
+		this.bookImage = bookImage;
+		this.title = title;
+		this.edition = edition;
+		this.genre = genre;
+		this.authorName = authorName;
 	}
 
 	public Long getBookId() {
@@ -125,14 +132,6 @@ public class Book {
 		this.languages = languages;
 	}
 
-	public String getAuthorName() {
-		return authorName;
-	}
-
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}
-
 	public LocalDate getPublicationDate() {
 		return publicationDate;
 	}
@@ -141,12 +140,12 @@ public class Book {
 		this.publicationDate = publicationDate;
 	}
 
-	public float getPrice() {
-		return price;
+	public String getAuthorName() {
+		return authorName;
 	}
 
-	public void setPrice(float price) {
-		this.price = price;
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
 	}
 
 	public int getEdition() {
@@ -188,21 +187,47 @@ public class Book {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
+	
+	
 
-	public Cart getCart() {
-		return cart;
+//	public Cart getCart() {
+//		return cart;
+//	}
+//
+//	public void setCart(Cart cart) {
+//		this.cart = cart;
+//	}
+
+//	public Order getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
+
+	public List<Cart> getCarts() {
+		return carts;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 
-	public Order getOrder() {
-		return order;
+	public float getMarkedPrice() {
+		return markedPrice;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setMarkedPrice(float markedPrice) {
+		this.markedPrice = markedPrice;
+	}
+
+	public float getSellingPrice() {
+		return sellingPrice;
+	}
+
+	public void setSellingPrice(float sellingPrice) {
+		this.sellingPrice = sellingPrice;
 	}
 
 }

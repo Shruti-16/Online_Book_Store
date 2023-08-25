@@ -1,20 +1,21 @@
 package com.app.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dto.ListBookDTO;
 import com.app.dto.UserDTO;
-import com.app.entities.Book;
 import com.app.entities.Cart;
 import com.app.entities.User;
 import com.app.repository.BookRepository;
+import com.app.repository.CartRepository;
 import com.app.repository.UserRepository;
 
 @Transactional
@@ -26,6 +27,11 @@ public class UserServiceImp implements UserService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private BookRepository bookRepository;
+	@Autowired
+	private BookService bookService;
+	@Autowired
+	private CartRepository cartRepository;
+
 
 	/**
 	 * Add a new user to the database.
@@ -38,6 +44,7 @@ public class UserServiceImp implements UserService {
 	public UserDTO addNewUser(UserDTO userDto) {
 		User user = modelMapper.map(userDto, User.class);
 		Cart cart = new Cart();
+		cart.setCartId(user.getUserId());
 		cart.setUser(user);
 		user.setCart(cart);
 
@@ -111,21 +118,38 @@ public class UserServiceImp implements UserService {
 
 	@Override
 	public void deleteUser(Long userId) {
-		userRepository.deleteById(userId);
+		Optional<User> existingUser=userRepository.findById(userId);
+		if(existingUser!=null) {
+			User user=existingUser.get();
+			cartRepository.deleteById(user.getCart().getCartId());
+			userRepository.deleteById(userId);
+		}
 	}
 
 	@Override
-	public List<ListBookDTO> authenticateUser(String email, String password) {
+	public UserDTO authenticateUser(String email, String password) {
 		User user=userRepository.findUserByEmail(email);
-		if(user != null && user.getPassword().equals(password)) {
-			// Authentication successful
-            // fetch and return the list of books
-			List<Book> books=bookRepository.findAll();
-			List<ListBookDTO> listBookDTO=books.stream().map(book -> modelMapper.map(book, ListBookDTO.class))
-					.collect(Collectors.toList());
-			return listBookDTO;
+//		if(user != null && user.getPassword().equals(password)) {
+//			// Authentication successful
+//            // fetch and return the list of books
+//			List<ResponseBookDTO> books=bookService.getAllBooks();
+//			List<ResponseBookDTO> listBookDTO=books.stream().map(book -> modelMapper.map(book, ResponseBookDTO.class))
+//					.collect(Collectors.toList());
+//			return listBookDTO;
+//		}
+		if(user!=null) {
+			
+			return modelMapper.map(user, UserDTO.class);
 		}
 		return null;
 	}
+
+	@Override
+    public UserDTO getUserById(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+
+        return modelMapper.map(user, UserDTO.class);
+    }
 
 }

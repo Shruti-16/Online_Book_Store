@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,25 +20,23 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "languages")
-
+@AllArgsConstructor
 public class Language {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long languageId;
-	private String languageName;
+	@Column(name = "language_name")
+	private String name;
 	@ManyToMany(mappedBy = "languages")
 	private List<Book> books = new ArrayList<>();
 	
-	
-	
+
+	public Language(String name) {
+		super();
+		this.name = name;
+	}
 	public Language() {
 		super();
-	}
-	public Language(Long languageId, String languageName, List<Book> books) {
-		super();
-		this.languageId = languageId;
-		this.languageName = languageName;
-		this.books = books;
 	}
 	public Long getLanguageId() {
 		return languageId;
@@ -45,11 +44,11 @@ public class Language {
 	public void setLanguageId(Long languageId) {
 		this.languageId = languageId;
 	}
-	public String getLanguageName() {
-		return languageName;
+	public String getName() {
+		return name;
 	}
-	public void setLanguageName(String languageName) {
-		this.languageName = languageName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public List<Book> getBooks() {
 		return books;

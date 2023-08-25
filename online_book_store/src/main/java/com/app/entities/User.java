@@ -29,12 +29,11 @@ import lombok.ToString;
  *
  */
 @Entity
-@Getter
-@Setter
 
 @ToString
 @Table(name = "users")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
@@ -49,7 +48,7 @@ public class User {
 	private String confirmPassword;
 	private LocalDate dateOfBirth;
 	private String addressLine1;
-	private String addressLin0e2;
+	private String addressLine2;
 	// Many-to-one relationship with City using zip code
 	@ManyToOne()
 	@JoinColumn(name = "city", referencedColumnName = "cityId")
@@ -66,8 +65,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<>();
 	
-	 @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
-	    private Cart cart;
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cart_id") // This column should be present in the users table
+    private Cart cart;
 
 	public User() {
 		super();
@@ -87,12 +87,19 @@ public class User {
 		this.confirmPassword = confirmPassword;
 		this.dateOfBirth = dateOfBirth;
 		this.addressLine1 = addressLine1;
-		this.addressLin0e2 = addressLin0e2;
+		this.addressLine2 = addressLin0e2;
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.role = role;
 		this.reviews = reviews;
 		this.orders = orders;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public Long getUserId() {
@@ -167,12 +174,12 @@ public class User {
 		this.addressLine1 = addressLine1;
 	}
 
-	public String getAddressLin0e2() {
-		return addressLin0e2;
+	public String getAddressLine2() {
+		return addressLine2;
 	}
 
 	public void setAddressLin0e2(String addressLin0e2) {
-		this.addressLin0e2 = addressLin0e2;
+		this.addressLine2 = addressLin0e2;
 	}
 
 	public City getCity() {
@@ -214,14 +221,5 @@ public class User {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-	
 
 }

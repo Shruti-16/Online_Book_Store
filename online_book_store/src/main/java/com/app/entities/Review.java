@@ -21,7 +21,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "reviews")
 //@Embeddable
@@ -51,6 +52,12 @@ public class Review {
 		this.book = book;
 		this.review = review;
 		this.reviewDate = reviewDate;
+	}
+
+
+	public Review(String review) {
+		super();
+		this.review = review;
 	}
 
 	public Long getReviewId() {

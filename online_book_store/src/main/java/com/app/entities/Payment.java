@@ -1,6 +1,5 @@
 package com.app.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,7 +20,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "payments")
 public class Payment {
@@ -36,11 +36,11 @@ public class Payment {
 	@JoinColumn(name = "order_id")
 	@MapsId
 	private Order order;
-	@Enumerated(EnumType.STRING)
-    @Column(length = 20)
+	@Enumerated(EnumType.STRING)	  
+
 	private PaymentStatus status = PaymentStatus.SUCCESSFUL;
-	@Enumerated(EnumType.STRING)
-    @Column(length = 20)
+	@Enumerated(EnumType.STRING)	  
+
 	private PaymentMethod method;
 
 	public Payment() {
