@@ -23,7 +23,8 @@ import AddBookForm from './components/admin components/AddBookForm';
 import AllBooks from './components/AllProducts';
 import Logout from './components/Logout';
 import NotFound from './components/NotFound';
-import UpdateUser from './components/admin components/UpdateUser';
+import UpdateUser from './components/UpdateUser';
+
 
 function App() {
   return (
