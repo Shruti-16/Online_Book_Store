@@ -119,4 +119,12 @@ public class ApplicationUser implements UserDetails {
 		return true;
 	}
 
+
+	@Override
+	public String toString() {
+		return "ApplicationUser [userId=" + userId + ", username=" + username + ", password=" + password + "]";
+	}
+	
+	
+
 }

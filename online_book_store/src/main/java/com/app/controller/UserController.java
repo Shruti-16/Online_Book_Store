@@ -87,7 +87,7 @@ public class UserController {
     
     @PostMapping("/signin1")
     public ResponseEntity<ListBookWithUserDTO> signInUser(@RequestBody UserSignInDTO userSignInDTO){
-    	UserDTO userDTO=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
+    	UserDTO userDTO=userService.authenticateUser(userSignInDTO.getUsername(), userSignInDTO.getPassword());
     	ListBookWithUserDTO listBookWithUserDTO;
     	if(userDTO!=null) {
     		listBookWithUserDTO=new ListBookWithUserDTO();

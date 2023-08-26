@@ -36,7 +36,6 @@ public class S_UserService implements UserDetailsService {
 		
 		UserDetails us = userRepo.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("user not valid") );
-		System.out.println(	"Data fetched from db"+us.getUsername() + us.getPassword());
 
 		log.info("Data fetched from db"+us.getUsername() + us.getPassword());
 		return us;

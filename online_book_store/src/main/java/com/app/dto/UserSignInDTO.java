@@ -9,7 +9,7 @@ public class UserSignInDTO {
 	
 	@NotBlank(message = "Email can't be blank")
 	@Email(message = "Invalid email format")
-	private String email;
+	private String username;
 	@NotBlank
 	@Length(min = 5,max=20,message = "Invalid password length")
 	private String password;
@@ -18,32 +18,35 @@ public class UserSignInDTO {
 	public UserSignInDTO() {
 		super();
 	}
-	
-	public UserSignInDTO(
-			@NotBlank(message = "Email can't be blank") @Email(message = "Invalid email format") String email,
-			@NotBlank @Length(min = 5, max = 20, message = "Invalid password length") String password) {
-		super();
-		this.email = email;
-		this.password = password;
+
+
+	public String getUsername() {
+		return username;
 	}
 
-	public String getEmail() {
-		return email;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "UserSignInDTO [email=" + email + ", password=" + password + "]";
+
+	public UserSignInDTO(
+			@NotBlank(message = "Email can't be blank") @Email(message = "Invalid email format") String username,
+			@NotBlank @Length(min = 5, max = 20, message = "Invalid password length") String password) {
+		super();
+		this.username = username;
+		this.password = password;
 	}
-	
+
 	
 }
