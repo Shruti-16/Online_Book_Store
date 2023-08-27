@@ -66,7 +66,19 @@ public class ResponseBookDTO {
 	        this.reviews = reviews;
 	    }
 
-	    public ResponseBookDTO() {
+	    
+	    
+	    @Override
+		public String toString() {
+			return "ResponseBookDTO [title=" + title + ", bookImage=" + bookImage + ", publicationDate="
+					+ publicationDate + ", authorName=" + authorName + ", markedPrice=" + markedPrice
+					+ ", sellingPrice=" + sellingPrice + ", edition=" + edition + ", stock=" + stock + ", genre="
+					+ genre + "]";
+		}
+
+
+
+		public ResponseBookDTO() {
 	        super();
 	    }
 

@@ -2,7 +2,6 @@ package com.app.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,6 @@ import com.app.service.BookService;
 
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/books")
 @CrossOrigin
@@ -33,42 +31,43 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
-	// to fetch all the books from the book table 
+	// to fetch all the books from the book table
 	@GetMapping("/getAllBooks")
 	public ResponseEntity<List<ResponseBookDTO>> getAllBooks() {
 		return ResponseEntity.ok(bookService.getAllBooks());
 	}
-	
-	// To add new Book object in the book table  
+
+	@GetMapping("/{bookId}")
+	public ResponseEntity<ResponseBookDTO> getBookById(@PathVariable Long bookId) {
+		ResponseBookDTO book = bookService.findBookById(bookId);
+		return ResponseEntity.ok(book);
+	}
+
+	// to fetch all the books having given title
+	@GetMapping("/getBooksByTitle")
+	public ResponseEntity<List<ResponseBookDTO>> getBooksByTitle(@RequestParam String title) {
+
+		return new ResponseEntity<List<ResponseBookDTO>>(bookService.getBooksByTitle(title), HttpStatus.OK);
+	}
+
+	// to delete the book by id
+	@DeleteMapping("/{bookId}")
+	public ResponseEntity<ApiResponse> removeBookById(@PathVariable Long bookId) {
+		String resultMessage = bookService.removeBookById(bookId);
+		ApiResponse response = new ApiResponse(resultMessage);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+
+	}
+
+	// To add new Book object in the book table
 	@PostMapping("/addNewBook")
 	public ResponseEntity<BookDTO> addNewBook(@RequestBody @Valid BookDTO newBook) {
 		return new ResponseEntity<BookDTO>(bookService.addNewBook(newBook), HttpStatus.CREATED);
 	}
 
-	// to fetch all the books having given title   
-	@GetMapping("/getBooksByTitle")
-	public ResponseEntity<List<ResponseBookDTO>> getBooksByTitle(@RequestParam String title) {
-		
-		return new ResponseEntity<List<ResponseBookDTO>>(bookService.getBooksByTitle(title), HttpStatus.OK);
+	@PatchMapping("/{bookId}")
+	public ResponseEntity<BookDTO> updateBook(@PathVariable Long bookId, @RequestBody BookDTO updatedBook) {
+		BookDTO updatedBookDto = bookService.updateBook(bookId, updatedBook);
+		return ResponseEntity.ok(updatedBookDto);
 	}
-	
-	// to delete the book by id
-	@DeleteMapping("/{bookId}")
-	public ResponseEntity<ApiResponse> removeBookById(@PathVariable Long bookId) {
-	    String resultMessage = bookService.removeBookById(bookId);
-	    ApiResponse response = new ApiResponse(resultMessage);
-	    return new ResponseEntity<>(response, HttpStatus.OK);
-	
-    }
-	
-	  @GetMapping("/{bookId}")
-	    public ResponseEntity<ResponseBookDTO> getBookById(@PathVariable Long bookId) {
-	        ResponseBookDTO book = bookService.findBookById(bookId);
-	        return ResponseEntity.ok(book);
-	  }
-	    @PatchMapping("/{bookId}")
-	    public ResponseEntity<BookDTO> updateBook(@PathVariable Long bookId, @RequestBody BookDTO updatedBook) {
-	    	BookDTO updatedBookDto = bookService.updateBook(bookId, updatedBook);
-	        return ResponseEntity.ok(updatedBookDto);
-	    }
 }

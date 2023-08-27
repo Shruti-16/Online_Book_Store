@@ -73,31 +73,6 @@ public class UserController {
     	userService.deleteUser(userId);
     	return new ResponseEntity<String>("User Deleted Successfully", HttpStatus.OK);
     }
-    
-//    @PostMapping("/signin1")
-//    public ResponseEntity<List<ResponseBookDTO>> signInUser(@RequestBody UserSignInDTO userSignInDTO){
-//    	List<ResponseBookDTO> books=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
-//    	if(books!=null) {
-//    		return ResponseEntity.ok(books);
-//    	}else {
-//    		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//    	}
-//    }
-//    
-    
-    @PostMapping("/signin1")
-    public ResponseEntity<ListBookWithUserDTO> signInUser(@RequestBody UserSignInDTO userSignInDTO){
-    	UserDTO userDTO=userService.authenticateUser(userSignInDTO.getUsername(), userSignInDTO.getPassword());
-    	ListBookWithUserDTO listBookWithUserDTO;
-    	if(userDTO!=null) {
-    		listBookWithUserDTO=new ListBookWithUserDTO();
-    		List<ResponseBookDTO> listBookDTO=bookService.getAllBooks();
-    		listBookWithUserDTO.setUserDTO(userDTO);
-    		listBookWithUserDTO.setListOfBookDTO(listBookDTO);
-    	}else {
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    	}
-    	return new ResponseEntity<ListBookWithUserDTO>(listBookWithUserDTO, HttpStatus.CREATED);
-    }
-    
+  
+  
 }

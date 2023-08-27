@@ -16,6 +16,8 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.app.jwtutils.RSAKeyProperties;
@@ -36,9 +38,6 @@ public class SecurityConfiguration {
 		this.keys = keys;
 	}
 
-//	@Autowired
-//	private JWTRequestFilter filter;
-
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -48,35 +47,62 @@ public class SecurityConfiguration {
 	public AuthenticationManager authManager(UserDetailsService detailsService) {
 		DaoAuthenticationProvider daoProvider = new DaoAuthenticationProvider();
 		daoProvider.setUserDetailsService(detailsService);
+		daoProvider.setPasswordEncoder(passwordEncoder()); // Add this line to set the password encoder
+
 		return new ProviderManager(daoProvider);
 	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> {
+		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> {
 			auth.requestMatchers("/auth/**").permitAll();
-			auth.requestMatchers("/user/addNewUser", "/user/updateUser").hasRole("USER");
-			auth.anyRequest().authenticated();
+			auth.requestMatchers("/admin/**").hasRole("ADMIN");
+			//auth.requestMatchers(").hasRole("USER");
+			  auth.requestMatchers(
+				        "/user/books/getAllBooks",
+				        "/user/books/getBooksByTitle",
+				        "/user/books/{bookId}" ,
+				        "/user/addNewUser",
+				        "/user/deleteUser/{userId}",
+				        "/user/updateUser" , 
+				 "/user/carts/buyNow",
+                                                                              "/user/carts/getBooksInCart",
+                                                                              "/user/carts/addToCart",
+                                                                              "/user/orders/getOrdersForUser"
+				        
+				    ).hasAnyRole("ADMIN", "USER");
+			  auth.anyRequest().authenticated();
+		});
+		http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter()).and();
+		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-		})
-				  .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-				  .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.build();
-
+		return http.build();
 	}
 
 	@Bean
 	public JwtDecoder jwtDecoder() {
 		return NimbusJwtDecoder.withPublicKey(keys.getPublicKey()).build();
 	}
-	
+
 	@Bean
 	public JwtEncoder jwtEncoder() {
-		
+
 		JWK jwk = new RSAKey.Builder(keys.getPublicKey()).privateKey(keys.getPrivateKey()).build();
-		JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk) );
+		JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
 		return new NimbusJwtEncoder(jwks);
-		
+
+	}
+
+	@Bean
+	public JwtAuthenticationConverter jwtAuthenticationConverter() {
+		JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+		jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
+		jwtGrantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
+		JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
+		jwtConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
+
+		return jwtConverter;
+
 	}
 
 }
