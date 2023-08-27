@@ -2,8 +2,6 @@ package com.app.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +20,8 @@ import com.app.dto.ApiResponse;
 import com.app.dto.BookDTO;
 import com.app.dto.ResponseBookDTO;
 import com.app.service.BookService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -52,7 +52,7 @@ public class BookController {
 	}
 	
 	// to delete the book by id
-	@DeleteMapping("/{bookId}")
+	@DeleteMapping("/delete/{bookId}")
 	public ResponseEntity<ApiResponse> removeBookById(@PathVariable Long bookId) {
 	    String resultMessage = bookService.removeBookById(bookId);
 	    ApiResponse response = new ApiResponse(resultMessage);
@@ -65,7 +65,7 @@ public class BookController {
 	        ResponseBookDTO book = bookService.findBookById(bookId);
 	        return ResponseEntity.ok(book);
 	  }
-	    @PatchMapping("/{bookId}")
+	    @PatchMapping("/update/{bookId}")
 	    public ResponseEntity<BookDTO> updateBook(@PathVariable Long bookId, @RequestBody BookDTO updatedBook) {
 	    	BookDTO updatedBookDto = bookService.updateBook(bookId, updatedBook);
 	        return ResponseEntity.ok(updatedBookDto);

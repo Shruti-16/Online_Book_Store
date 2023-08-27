@@ -2,24 +2,15 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
 import org.hibernate.validator.constraints.Length;
 
 import com.app.entities.City;
 import com.app.entities.Role;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 public class UserDTO {
 
@@ -36,7 +27,7 @@ public class UserDTO {
 	private String confirmPassword;
 	private LocalDate dateOfBirth;
 	private String addressLine1;
-	private String addressLin0e2;
+	private String addressLine2;
 	private City city;
 //	@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
 	private String phoneNumber;
@@ -65,7 +56,7 @@ public class UserDTO {
 		this.confirmPassword = confirmPassword;
 		this.dateOfBirth = dateOfBirth;
 		this.addressLine1 = addressLine1;
-		this.addressLin0e2 = addressLin0e2;
+		this.addressLine2 = addressLin0e2;
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.role = role;
@@ -145,11 +136,11 @@ public class UserDTO {
 	}
 
 	public String getAddressLin0e2() {
-		return addressLin0e2;
+		return addressLine2;
 	}
 
 	public void setAddressLin0e2(String addressLin0e2) {
-		this.addressLin0e2 = addressLin0e2;
+		this.addressLine2 = addressLin0e2;
 	}
 
 	public City getCity() {
@@ -188,7 +179,7 @@ public class UserDTO {
 	public String toString() {
 		return "UserDTO [userId=" + userId + ", userImage=" + userImage + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
-				+ ", dateOfBirth=" + dateOfBirth + ", addressLine1=" + addressLine1 + ", addressLin0e2=" + addressLin0e2
+				+ ", dateOfBirth=" + dateOfBirth + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
 				+ ", city=" + city + ", phoneNumber=" + phoneNumber + ", role=" + role + "]";
 	}
 

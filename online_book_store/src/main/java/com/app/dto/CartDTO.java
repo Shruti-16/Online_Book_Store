@@ -11,7 +11,7 @@ public class CartDTO {
     private int totalBooks;
     private float totalPrice;
     private float discount;
-   // private UserDTO user;
+    private UserDTO user;
 	public CartDTO(Long cartId, List<BookDTO> books, int totalBooks, float totalPrice, float discount) {
 		super();
 		this.cartId = cartId;
