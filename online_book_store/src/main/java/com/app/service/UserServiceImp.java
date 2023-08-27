@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+<<<<<<< HEAD
+=======
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +21,12 @@ import com.app.repository.BookRepository;
 import com.app.repository.CartRepository;
 import com.app.repository.UserRepository;
 
+<<<<<<< HEAD
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
+=======
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 @Transactional
 @Service
 public class UserServiceImp implements UserService {

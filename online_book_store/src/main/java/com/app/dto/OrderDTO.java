@@ -1,12 +1,26 @@
 package com.app.dto;
 
 import java.time.LocalDate;
+<<<<<<< HEAD
+=======
+import java.time.LocalDateTime;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 
 import com.app.entities.DeliveryStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+<<<<<<< HEAD
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+=======
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import lombok.ToString;
 
 

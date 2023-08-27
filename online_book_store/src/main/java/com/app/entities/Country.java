@@ -1,18 +1,35 @@
 package com.app.entities;
 
+<<<<<<< HEAD
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+=======
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 @Entity
 @Getter
 @Setter

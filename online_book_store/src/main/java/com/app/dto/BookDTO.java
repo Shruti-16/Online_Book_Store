@@ -3,13 +3,23 @@ package com.app.dto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.hibernate.validator.constraints.Length;
 
 import com.app.entities.Genre;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+<<<<<<< HEAD
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+=======
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

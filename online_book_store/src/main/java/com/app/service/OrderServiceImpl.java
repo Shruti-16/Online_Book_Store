@@ -84,7 +84,11 @@ public class OrderServiceImpl implements OrderService {
 			order.setOrderDate(LocalDate.now());
 			order.setCart(cart);
 			order.setStatus(DeliveryStatus.ORDERED);
+<<<<<<< HEAD
 			order.setQuantity(1);
+=======
+			order.setQuantity();
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 
 			orderRepository.save(order);
 

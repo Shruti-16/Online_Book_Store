@@ -4,14 +4,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+<<<<<<< HEAD
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+=======
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 public class ResponseBookDTO {
 	  @NotBlank
 	    @Length(max = 10, min = 3, message = "Book Title length should be between 5 to 10 characters.")

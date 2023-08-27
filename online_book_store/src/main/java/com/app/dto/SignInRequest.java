@@ -1,10 +1,19 @@
 package com.app.dto;
 
+<<<<<<< HEAD
 
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+=======
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

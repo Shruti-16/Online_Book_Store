@@ -27,8 +27,11 @@ public class UserController {
 	@Autowired
 	private BookService bookService;
 
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 	/**
      * Add a new user to the system.
      *
@@ -87,7 +90,11 @@ public class UserController {
 //    }
 //    
     
+<<<<<<< HEAD
     @PostMapping("/signin")
+=======
+    @PostMapping("/signin1")
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
     public ResponseEntity<ListBookWithUserDTO> signInUser(@RequestBody UserSignInDTO userSignInDTO){
     	UserDTO userDTO=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
     	ListBookWithUserDTO listBookWithUserDTO;

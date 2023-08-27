@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+<<<<<<< HEAD
+=======
+
+import javax.transaction.Transactional;
+
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +24,11 @@ import com.app.entities.Review;
 import com.app.repository.BookRepository;
 import com.app.repository.LanguageRepository;
 
+<<<<<<< HEAD
 import jakarta.transaction.Transactional;
 
+=======
+>>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 @Service
 @Transactional
 public class BookServiceImpl implements BookService {
