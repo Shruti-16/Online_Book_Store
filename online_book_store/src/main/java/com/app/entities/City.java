@@ -19,7 +19,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "cities")
 public class City {

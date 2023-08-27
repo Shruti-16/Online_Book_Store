@@ -8,10 +8,14 @@ class LoginServiceCustomer{
 
     }
 
-    static registerUser(firstName, lastName, email, password,confirmPassword,dateOfBirth,addressLine1,addressLine2,city,phoneNumber,registeredDate,userImage){
-        var registerCredentials={firstName, lastName, email, password, confirmPassword,dateOfBirth,addressLine1,addressLine2,city,phoneNumber, registeredDate,userImage};
+    static registerUser(firstName, lastName, email, password,confirmPassword,dateOfBirth,addressLine1,addressLine2,city,pincode,country,phoneNumber,registeredDate,userImage){
+        var registerCredentials={firstName, lastName, email, password, confirmPassword,dateOfBirth,addressLine1,addressLine2,city,pincode,country,phoneNumber, registeredDate,userImage};
         return axios.post("http://localhost:8080/users/register-customer",registerCredentials);
     }
+
+    // register(user){
+    //     return axios.post("http://localhost:8080/users/register-customer",user);
+    // }
 
     static addUserCart(userId,config){
         

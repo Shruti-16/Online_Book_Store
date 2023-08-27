@@ -1,11 +1,52 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
-import LoginServiceCustomer from "../Service/LoginServiceCustomer";
+import LoginServiceCustomer from "../Service/authentication.service";
 import { Dropdown } from "react-bootstrap";
+import User from "../models/user";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import authenticationService from "../Service/authentication.service";
 
 var ruserId;
 var user;
 function RegisterCustomer() {
+    // const [user,setUser] = useState(new User('','','','','','','','','','','','','',''));
+    // const [loading,setLoading] = useState(false);
+    // const [submitted,setSubmitted] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState('');
+
+    // const navigate = useNavigate();
+
+    // const handleRegister = (e) =>{
+    //     e.preventDefault();
+    //     setSubmitted(true);
+    //     console.log(user);
+
+    //     setLoading(true);
+
+    //     LoginServiceCustomer.register(user).then(_ =>{
+    //         toast.success("User registered successfully..")
+    //         navigate('/login-customer');
+    //     }).catch(error =>{
+    //         toast.success(`${error.response.data}`);
+    //         console.log(error.response.data);
+    //         if(error?.response?.status === 409){
+    //             setErrorMessage('Email already exists!!!');
+    //         }else{
+    //             setErrorMessage(error.errorMessage);
+    //         }
+    //         setLoading(false);
+    //     })
+    // }
+
+    // const handleChange = (event) =>{
+    //     const {name,value} = event.target;
+    //     setUser((prevState =>{
+    //         return{
+    //             ...prevState,[name]: value
+    //         };
+    //     }));
+    // }
     let token = sessionStorage.getItem('user');
     const config = {
         //  headers: { Authorization: `Bearer ${token}` }
@@ -15,6 +56,8 @@ function RegisterCustomer() {
             'Content-Type': 'application/json'
         }
     };
+
+    const navigate = useNavigate();
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -30,18 +73,21 @@ function RegisterCustomer() {
     const [userImage, setUserImage] = useState([]);
     // roles.push('RO')
     const [status, setStatus] = useState('');
+    const [pincode, setPincode] = useState('');
+    const [country, setCountry] = useState('');
     const [userId, setUserId] = useState('');
 
     const handleRegister = (event) => {
         event.preventDefault();
-        LoginServiceCustomer.registerUser(firstName, lastName, email, password, confirmPassword, dateOfBirth, addressLine1, addressLine2, city, phoneNumber, registeredDate).then((result) => {
+        LoginServiceCustomer.registerUser(firstName, lastName, email, password, confirmPassword, dateOfBirth, addressLine1, addressLine2, city,pincode,country, phoneNumber, registeredDate).then((result) => {
             var msg = JSON.stringify(result.message);
-            var idMessage = JSON.stringify(result.data.message);
+            var idMessage = JSON.stringify(result.message);
             var ketos = (idMessage.slice(37, 40))
             ruserId = parseInt(ketos);
-            console.log(user);
+            // console.log(user);
             setStatus('Registration successful!');
             createCart(ruserId);
+            navigate('/login-customer')
         }).catch((err) => {
             setStatus('Internal SERVER error...please try again after some time');
         });
@@ -58,6 +104,8 @@ function RegisterCustomer() {
             });
 
     }
+
+    
 
 
     // const handleSignUp=(event)=>{
@@ -161,8 +209,26 @@ function RegisterCustomer() {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label for="city" className="form-label">City</label>
-                                    <input type="text" className="form-control " placeholder="City" id="city" value={city} onChange={(event) => SetCity(event.target.value)} required></input>
+                                    <label className="form-label">City</label>
+                                    <input type="text" className="form-control " placeholder="City" value={city} onChange={(event) => SetCity(event.target.value)} required></input>
+                                    <div className="valid-feedback">
+
+
+                                    </div>
+                                </div>
+
+                            </span>
+                            <span className="row g-3 mb-2">
+                                <div className="col-md-6">
+                                    <label className="form-label">Pincode</label>
+                                    <div className="">
+                                        <input className="form-control " type="text" placeholder="Pincode" value={pincode} onChange={(event) => setPincode(event.target.value)} required></input>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-6">
+                                    <label className="form-label">Country</label>
+                                    <input type="text" className="form-control " placeholder="Country" value={country} onChange={(event) => setCountry(event.target.value)} required></input>
                                     <div className="valid-feedback">
 
 

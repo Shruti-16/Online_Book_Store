@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dto.UserDTO;
 import com.app.entities.Cart;
+import com.app.entities.City;
 import com.app.entities.User;
 import com.app.repository.BookRepository;
 import com.app.repository.CartRepository;
@@ -49,6 +50,13 @@ public class UserServiceImpl implements UserService {
 		Cart cart = new Cart();
 		cart.setUser(user);
 		user.setCart(cart);
+		
+		//===================================================
+		
+		City city = cityRepo.findById(Long.parseLong(userDto.getCity())).orElse(null);
+		user.setCity(city);
+		
+		//===================================================
 
 		User savedUser = userRepository.save(user);
 		return modelMapper.map(savedUser, UserDTO.class);

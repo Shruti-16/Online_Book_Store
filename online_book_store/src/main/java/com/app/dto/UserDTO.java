@@ -17,11 +17,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.app.entities.City;
 import com.app.entities.Role;
-import com.app.repository.CityRepository;
 
 public class UserDTO {
 
@@ -46,8 +44,6 @@ public class UserDTO {
 //	@NotNull(message = "Role must be supplied")
 	private Role role;
 	
-	@Autowired
-	private CityRepository cityRepo;
 
 	public UserDTO() {
 		super();
@@ -58,7 +54,7 @@ public class UserDTO {
 			@NotBlank(message = "Last  name can't be blank") String lastName,
 			@Email(message = "Invalid email format") String email, String password, String confirmPassword,
 			LocalDate dateOfBirth, String addressLine1, String addressLine2, City city,
-			@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits") String phoneNumber) {
+			@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits") String phoneNumber, LocalDate registeredDate) {
 		super();
 //		this.userId = userId;
 		this.userImage = userImage;
@@ -70,7 +66,7 @@ public class UserDTO {
 		this.dateOfBirth = dateOfBirth;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
-		this.city = cityRepo.findByCityName(city.getCityName());
+		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.registeredDate = registeredDate;
 		this.role = Role.CUSTOMER;
