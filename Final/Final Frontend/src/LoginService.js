@@ -14,8 +14,8 @@ class LoginService{
         return axios.post("http://localhost:8080/auth/signup",registerCredentials)
     }
 
-    static registerAdmin(firstName, lastName, email, password, mobileNumber, registeredDate, roles,config){
-        var registerDetails={firstName, lastName, email, password, mobileNumber, registeredDate, roles};
+    static registerAdmin(firstName, lastName, email, password,confirmPassword,dateOfBirth, mobileNumber, address,city,role,config){
+        var registerDetails={firstName, lastName, email, password,confirmPassword,dateOfBirth, mobileNumber, address,city,role};
         return axios.post("http://localhost:8080/auth/admin/signup",registerDetails,config)
     }
 

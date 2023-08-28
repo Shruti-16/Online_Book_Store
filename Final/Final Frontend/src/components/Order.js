@@ -1,4 +1,28 @@
+import React, { useState, useEffect } from 'react';
 import { FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
+import axios from 'axios';
+
+
+
+// const [orderId, setOrderId] = useState({});
+// const [orderDate, setOrderDate] = useState({});
+// const [orderStatus, setOrderStatus] = useState({});
+// const [userId, setUserId] = useState({});
+// const [userName, setUserName] = useState({});
+// const [userAddress, setUserAddress] = useState({});
+
+// useEffect(() => {
+//     // Make an API request to fetch order details
+//     axios.get('/api/order') // Replace with your actual API endpoint
+//       .then(response => {
+//         setOrderDetails(response.data); // Assuming the response contains order details
+//       })
+//       .catch(error => {
+//         console.error('Error fetching order details:', error);
+//       });
+//   }, []);
+  
+
 
 export default function Order() {
     return (

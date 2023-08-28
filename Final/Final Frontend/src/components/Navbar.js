@@ -12,7 +12,7 @@ function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{ marginLeft: "20rem" }}>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{ marginLeft: "15rem" }}>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-1">
 
                             <li className="nav-item">
@@ -27,7 +27,7 @@ function Navbar() {
                                 <a className="nav-link" href="/contact" style={{ fontSize: "1.3rem" }}>Contact Us</a>
                             </li>
 
-                            <div className='buttons' style={{ marginLeft: "22rem" }}>
+                            <div className='buttons' style={{ marginLeft: "20rem" }}>
                                 <a href='/users/singin' className='btn btn-light'>
                                     Login <FaSignInAlt></FaSignInAlt>
                                 </a>

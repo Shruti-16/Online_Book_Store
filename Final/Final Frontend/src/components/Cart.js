@@ -32,9 +32,30 @@ function Cart() {
         }
     };
 
+    const getCartItems = () => {
+        axios.get("http://localhost:8080/carts/" + userId + "/cart", config)
+            .then((response) => {
+
+                setCartData(response.data)
+                console.log(response.data)
+
+            },
+                (error) => {
+                    console.log(error)
+                    console.log(token);
+                })
+    }
+
     useEffect(() => {
         getCartItems();
     }, []);
+
+    const addToCart = (product) => {
+        const newItem = {
+          productId: product.id,
+          quantity: 1
+          
+        };
 
     const handleDeleteItem = (productId) => {
         axios.delete(`http://localhost:8080/carts/${productId}`, config).then(
@@ -50,19 +71,7 @@ function Cart() {
 
     }
 
-    const getCartItems = () => {
-        axios.get("http://localhost:8080/carts/" + userId + "/cart", config)
-            .then((response) => {
-
-                setCartData(response.data)
-                console.log(response.data)
-
-            },
-                (error) => {
-                    console.log(error)
-                    console.log(token);
-                })
-    }
+    
 
 
 
@@ -176,7 +185,7 @@ function Cart() {
             </div>
         </React.Fragment>
     )
-
+                    }
 
 }
 

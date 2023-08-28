@@ -4,67 +4,30 @@ import Product from "./Product";
 import { FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
 import Navbar from "./Navbar";
 import SearchBar from "./SearchBar"
+import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 
-
-// function AllBooks() {
-//   const [products] = useState([
-//     {
-//       title: "Book 1",
-//       description: "Description for Book 1",
-//       price: "19.99",
-//     },
-//     {
-//       title: "Book 2",
-//       description: "Description for Book 2",
-//       price: "24.99",
-//     },
-//     {
-//       title: "Book 3",
-//       description: "Description for Book 3",
-//       price: "29.99",
-//     },
-//     {
-//       title: "Book 4",
-//       description: "Description for Book 4",
-//       price: "14.99",
-//     },
-//     {
-//       title: "Book 5",
-//       description: "Description for Book 5",
-//       price: "9.99",
-//     },
-//     {
-//         title: "Book 6",
-//         description: "Description for Book 3",
-//         price: "29.99",
-//       },
-//       {
-//         title: "Book 7",
-//         description: "Description for Book 4",
-//         price: "14.99",
-//       },
-//       {
-//         title: "Book 8",
-//         description: "Description for Book 5",
-//         price: "9.99",
-//       },
-
-      
-      
-//   ]);
 function AllBooks() {
   const [products, setProducts] = useState([]);
-
+  
   useEffect(() => {
-    // Fetch the book details from the backend
-    fetch("/books/getAllBooks")
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error("Error fetching books:", error));
+    // Fetch books when the component mounts
+    fetchBooks();
   }, []);
 
-  let token = sessionStorage.getItem('user');
-  console.log(token)
+  const fetchBooks = async () => {
+    try {
+      const response = await LoginServiceCustomer.getAllBooks(); // Replace with your API endpoint
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
+  };
+
+  // let token = sessionStorage.getItem('user');
+  // let name = sessionStorage.getItem('user.name');
+  // console.log(token)
+  let user = sessionStorage.getItem("user");
+  console.log(user);
 
   return (
     <div>
@@ -101,7 +64,7 @@ function AllBooks() {
                                 {/* <a href='/register-customer' className='btn btn-outline-light ms-3'>
                                     <i className='text-white '>Register &#187;</i>
                                 </a> */}
-                                <a href='/customer-cart' className='btn btn-light ms-3'>
+                                <a href='/carts/getBooksInCart' className='btn btn-light ms-3'>
                                     {/* <i className='text-white '>Cart </i> */}
                                     <FaShoppingCart />
                                 </a>
@@ -117,6 +80,8 @@ function AllBooks() {
                     </div>
                 </div>
             </nav>
+
+            <h1>Hello </h1>
 
       <h2 className="ms-2 my-3">Trending Books</h2>
      
