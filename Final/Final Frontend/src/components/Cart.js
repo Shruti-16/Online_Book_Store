@@ -21,6 +21,7 @@ function Cart() {
 
     let token = sessionStorage.getItem('user');
     const userId = sessionStorage.getItem('userId');
+    console.log(token)
 
     const config = {
         withCredentials: false,

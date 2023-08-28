@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import LoginService from '../LoginService';
 
-const AdminLogin = () => {
+const AdminLogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
@@ -68,4 +68,4 @@ const AdminLogin = () => {
     )
 }
 
-export default AdminLogin;
+export default AdminLogIn;

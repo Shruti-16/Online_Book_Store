@@ -7,7 +7,8 @@ function Product({product}){
         <div >
     <Card outline  color="dark" className="ms-3 shadow rounded "
   style={{
-    width: '15rem'
+    width: '15rem',
+    marginBottom:"4rem"
   }}
 >
     <img classname=""
@@ -30,6 +31,18 @@ function Product({product}){
             Marked Price :{product.Markedprice}
             <br></br>
             Selling Price: {product.Sellingprice}
+            <br></br>
+            Author: {product.authorName}
+            <br></br>
+            Date: {product.publicationDate}
+            <br></br>
+            Edition: {product.edition}
+            <br></br>
+            Genre: {product.genre}
+            <br></br>
+            Stock: {product.stock}
+            <br></br>
+            Languages: {product.languages}
         </CardSubtitle>
             <Button color="warning" outline>Add to Cart</Button>
             

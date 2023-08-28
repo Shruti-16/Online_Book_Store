@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import LoginServiceCustomer from "../Service/LoginServiceCustomer";
-import { Dropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 var ruserId;
 var user;
@@ -22,27 +22,29 @@ function RegisterCustomer() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
-    const [addressLine1, setAddressLine1] = useState('');
-    const [addressLine2, setAddressLine2] = useState('');
-    const [city, SetCity] = useState('');
+    const [city, setCity] = useState('');
+    // const [city, SetCity] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [registeredDate, setRegisteredDate] = useState('');
     const [userImage, setUserImage] = useState([]);
     // roles.push('RO')
     const [status, setStatus] = useState('');
     const [address, setAddress] = useState('');
+    const [role, setRole] = useState('CUSTOMER');
     const [userId, setUserId] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = (event) => {
         event.preventDefault();
         LoginServiceCustomer.registerUser(firstName, lastName, email, password, confirmPassword, dateOfBirth, address, city, phoneNumber, registeredDate).then((result) => {
             var msg = JSON.stringify(result.message);
-            var idMessage = JSON.stringify(result.data.message);
-            var ketos = (idMessage.slice(37, 40))
-            ruserId = parseInt(ketos);
-            console.log(user);
+            // var idMessage = JSON.stringify(result.data.message);
+            // var ketos = (idMessage.slice(37, 40))
+            // ruserId = parseInt(ketos);
+            console.log(msg);
             setStatus('Registration successful!');
-            createCart(ruserId);
+            createCart(userId);
+            navigate("/users/singin");
         }).catch((err) => {
             setStatus('Internal SERVER error...please try again after some time');
         });
@@ -50,9 +52,10 @@ function RegisterCustomer() {
     }
 
     const createCart = () => {
-        LoginServiceCustomer.addUserCart(ruserId, config)
+        LoginServiceCustomer.addUserCart(userId, config)
             .then((result) => {
                 var msg = JSON.stringify(result.message);
+                console.log(msg)
                 setStatus('Registration successful!!! Created the cart sucessfully!!!');
             }).catch((err) => {
                 setStatus('Does not create cart');
@@ -135,17 +138,17 @@ function RegisterCustomer() {
 
                             </span>
                             <span className="row g-3 mb-2">
-                                {/* <div className="col-md-6">
-                                    <label className="form-label">Address Line 1</label>
+                                <div className="col-md-6">
+                                    <label className="form-label">Role</label>
                                     <div className="">
-                                        <input className="form-control " type="text" placeholder="Address Line 1" value={addressLine1} onChange={(event) => setAddressLine1(event.target.value)} required></input>
+                                        <input className="form-control " type="text" placeholder="Address Line 1" value={role} onChange={(event) => setRole(event.target.value)} disabled></input>
                                     </div>
-                                </div> */}
+                                </div>
                                 <div className="col-md-6">
                                     <label className="form-label">Address</label>
                                     <div className="">
-                                        <input className="form-control " type="text" placeholder="Address Line 1" value={addressLine1} onChange={(event) => setAddressLine1(event.target.value)} required></input>
-                                        <textarea className="form-control" placeholder="Address" value={}></textarea>
+                                        {/* <input className="form-control " type="text" placeholder="Address Line 1" value={addressLine1} onChange={(event) => setAddressLine1(event.target.value)} required></input> */}
+                                        <textarea className="form-control" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} required></textarea>
                                     </div>
                                 </div>
 
@@ -169,8 +172,16 @@ function RegisterCustomer() {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label for="city" className="form-label">City</label>
-                                    <input type="text" className="form-control " placeholder="City" id="city" value={city} onChange={(event) => SetCity(event.target.value)} required></input>
+                                    <label className="form-label">City</label>
+                                    <select className="form-control" id="city" placeholder="City" value={city} onChange={(event) => setCity(event.target.value)} required>
+                                        <option>---Select a city---</option>
+                                        <option>Pune</option>
+                                        <option>Mumbai</option>
+                                        <option>Kolhapur</option>
+                                        <option>Sangli</option>
+                                        <option>Alibag</option>
+                                        <option>Solapur</option>              
+                                    </select>
                                     <div className="valid-feedback">
 
 
