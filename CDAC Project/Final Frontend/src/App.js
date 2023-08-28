@@ -18,12 +18,14 @@ import RegisterCustomer from './components/RegisterCustomer';
 import DisplayProductsForAdmin from './components/admin components/DisplayProductsForAdmin';
 import Cart from './components/Cart';
 import Order from './components/Order';
+import AdminLogIn from './components/AdminLogIn';
 // import AdminLogin from './components/AdminLogin';
 import AddBookForm from './components/admin components/AddBookForm';
 import AllBooks from './components/AllProducts';
 import Logout from './components/Logout';
 import NotFound from './components/NotFound';
 import UpdateUser from './components/UpdateUser';
+
 
 
 function App() {
@@ -33,12 +35,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="/register-admin" element={<RegisterAdmin />} />
-        {/* <Route exact path="/admin-login" element={<AdminLogin />} /> */}
+        <Route exact path="/admin-login" element={<AdminLogIn />} />
         <Route exact path="/admin" element={<AdminPage />} />
         <Route exact path="/users" element={<UsersTable />} />
         <Route exact path="/add-book" element={<AddBookForm />} />
         {/* <Route exact path="/delete-book" element={<AllBooks />} />  Pending */}
-        <Route exact path="/login-customer" element={<LoginForm />} />
+        <Route exact path="/users/signin" element={<LoginForm />} />
         {/* <Route exact path="/add-category" element={<AddCategory/>} /> */}
         {/* <Route exact path="/view-category" element={<AllCategories/>} /> */}
         {/* <Route exact path="/display-products" element={<DisplayProducts />} /> Pending */}
@@ -47,11 +49,11 @@ function App() {
         <Route exact path="/about" element={<About />} />
         {/* <Route exact path="/category" element={<Category />} /> */}
         <Route exact path="/users/register-customer" element={<RegisterCustomer />} />
-        <Route exact path="/customer-cart" element={<Cart />} />
+        <Route exact path="/carts/getBooksInCart" element={<Cart />} />
         <Route exact path="/myorder" element={<Order />} />
         <Route exact path="/logout" element={<Logout />} />
         <Route exact path="*" element={<NotFound />} />
-        <Route exact path="/AllBooks" element={<AllBooks />} />
+        <Route exact path="/books/getAllBooks" element={<AllBooks />} />
         <Route exact path="/UpdateUser" element={<UpdateUser />} />
 
       </Routes>
