@@ -1,20 +1,13 @@
 package com.app.dto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import com.app.entities.DeliveryStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.ToString;
-
 
 @ToString
 public class OrderDTO {

@@ -4,25 +4,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.Pattern;
-
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.Pattern;
 import lombok.ToString;
+
+
+
 
 /**
  * @author prana
@@ -33,16 +33,6 @@ import lombok.ToString;
 @ToString
 @Table(name = "users")
 public class User {
-<<<<<<< HEAD
-=======
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
->>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,11 +48,7 @@ public class User {
 	private String confirmPassword;
 	private LocalDate dateOfBirth;
 	private String addressLine1;
-<<<<<<< HEAD
 	private String addressLine2;
-=======
-	private String addressLin0e2;
->>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 	// Many-to-one relationship with City using zip code
 	@ManyToOne()
 	@JoinColumn(name = "city", referencedColumnName = "cityId")
@@ -79,14 +65,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<>();
 	
-<<<<<<< HEAD
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id") // This column should be present in the users table
     private Cart cart;
-=======
-	 @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
-	    private Cart cart;
->>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 
 	public User() {
 		super();
@@ -106,18 +87,13 @@ public class User {
 		this.confirmPassword = confirmPassword;
 		this.dateOfBirth = dateOfBirth;
 		this.addressLine1 = addressLine1;
-<<<<<<< HEAD
 		this.addressLine2 = addressLin0e2;
-=======
-		this.addressLin0e2 = addressLin0e2;
->>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.role = role;
 		this.reviews = reviews;
 		this.orders = orders;
 	}
-<<<<<<< HEAD
 	public Cart getCart() {
 		return cart;
 	}
@@ -125,8 +101,6 @@ public class User {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-=======
->>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 
 	public Long getUserId() {
 		return userId;
@@ -200,21 +174,12 @@ public class User {
 		this.addressLine1 = addressLine1;
 	}
 
-<<<<<<< HEAD
 	public String getAddressLine2() {
 		return addressLine2;
 	}
 
 	public void setAddressLin0e2(String addressLin0e2) {
 		this.addressLine2 = addressLin0e2;
-=======
-	public String getAddressLin0e2() {
-		return addressLin0e2;
-	}
-
-	public void setAddressLin0e2(String addressLin0e2) {
-		this.addressLin0e2 = addressLin0e2;
->>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 	}
 
 	public City getCity() {

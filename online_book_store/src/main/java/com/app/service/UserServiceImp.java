@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +14,10 @@ import com.app.entities.User;
 import com.app.repository.BookRepository;
 import com.app.repository.CartRepository;
 import com.app.repository.UserRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+
 
 @Transactional
 @Service
@@ -44,10 +45,7 @@ public class UserServiceImp implements UserService {
 	public UserDTO addNewUser(UserDTO userDto) {
 		User user = modelMapper.map(userDto, User.class);
 		Cart cart = new Cart();
-<<<<<<< HEAD
 		cart.setCartId(user.getUserId());
-=======
->>>>>>> 7abdb8a5e2adacbda91a4179810c782ecd18b224
 		cart.setUser(user);
 		user.setCart(cart);
 

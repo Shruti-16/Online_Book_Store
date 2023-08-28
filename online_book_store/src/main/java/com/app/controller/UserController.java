@@ -27,6 +27,7 @@ public class UserController {
 	@Autowired
 	private BookService bookService;
 
+
 	/**
      * Add a new user to the system.
      *
@@ -85,7 +86,7 @@ public class UserController {
 //    }
 //    
     
-    @PostMapping("/signin1")
+    @PostMapping("/signin")
     public ResponseEntity<ListBookWithUserDTO> signInUser(@RequestBody UserSignInDTO userSignInDTO){
     	UserDTO userDTO=userService.authenticateUser(userSignInDTO.getEmail(), userSignInDTO.getPassword());
     	ListBookWithUserDTO listBookWithUserDTO;
