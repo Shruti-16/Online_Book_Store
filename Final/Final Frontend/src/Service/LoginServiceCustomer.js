@@ -35,9 +35,13 @@ class LoginServiceCustomer{
         return axios.post("http://localhost:8080/carts/buyNow", userId);
     }
 
-    static addToCart(userId,id){
-        return axios.post(
-            `http://localhost:8080/carts/addToCart?userId=${userId}&productId=${product.id}`);
+    // static addToCart(userId,id){
+    //     return axios.post(
+    //         `http://localhost:8080/carts/addToCart?userId=${userId}&productId=${product.id}`);
+    // }
+
+    static searchBook(title){
+        return axios.get("http://localhost:8080/books/getBooksByTitle",title);
     }
 }
 

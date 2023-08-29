@@ -2,9 +2,9 @@ import axios from 'axios';
 
 class ProductService{
 
-    static addProduct(categoryId,productName,productImagePath,markedPrice,sellingPrice,quantity,status,description,config){
-        var productDetails = {categoryId,productName,productImagePath,markedPrice,sellingPrice,quantity,status,description};
-        return axios.post(`http://localhost:8080/products/${categoryId}`,productDetails,config);
+    static addProduct(title, markedPrice, sellingPrice, stock, edition, genre, publicationDate, description,author,languageNames,config){
+        var productDetails = {title, markedPrice, sellingPrice, stock, edition, genre, publicationDate, description,author,languageNames};
+        return axios.post("http://localhost:8080/admin/books/add-book",productDetails,config);
 
     }
 

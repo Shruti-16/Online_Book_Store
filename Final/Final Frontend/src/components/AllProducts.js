@@ -81,9 +81,9 @@ function AllBooks() {
                 </div>
             </nav>
 
-            <h1>Hello </h1>
+            
 
-      <h2 className="ms-2 my-3">Trending Books</h2>
+      <h2 className="ms-2 my-4">Trending Books</h2>
      
       <Row>
         {products.length > 0 ? (

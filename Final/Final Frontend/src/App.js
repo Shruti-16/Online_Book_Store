@@ -34,11 +34,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        <Route exact path="/register-admin" element={<RegisterAdmin />} />
-        <Route exact path="/admin-login" element={<AdminLogIn />} />
+        <Route exact path="/users/register-admin" element={<RegisterAdmin />} />
+        <Route exact path="/users/admin-login" element={<AdminLogIn />} />
         <Route exact path="/admin" element={<AdminPage />} />
         <Route exact path="/users" element={<UsersTable />} />
-        <Route exact path="/add-book" element={<AddBookForm />} />
+        <Route exact path="/admin/books/add-book" element={<AddBookForm />} />
         {/* <Route exact path="/delete-book" element={<AllBooks />} />  Pending */}
         <Route exact path="/users/signin" element={<LoginForm />} />
         {/* <Route exact path="/add-category" element={<AddCategory/>} /> */}

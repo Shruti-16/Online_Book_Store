@@ -27,8 +27,8 @@ function Navbar() {
                                 <a className="nav-link" href="/contact" style={{ fontSize: "1.3rem" }}>Contact Us</a>
                             </li>
 
-                            <div className='buttons' style={{ marginLeft: "20rem" }}>
-                                <a href='/users/singin' className='btn btn-light'>
+                            <div className='buttons' style={{ marginLeft: "15rem" }}>
+                                <a href='/users/signin' className='btn btn-light'>
                                     Login <FaSignInAlt></FaSignInAlt>
                                 </a>
 
@@ -36,7 +36,11 @@ function Navbar() {
                                     Sign Up <FaUserPlus></FaUserPlus>
                                 </a>
 
-                                <a href='/admin-login' className='btn btn-light ms-3'>
+                                <a href='/users/register-admin' className='btn btn-light ms-3'>
+                                    Register Admin <FaUserPlus></FaUserPlus>
+                                </a>
+
+                                <a href='/users/admin-login' className='btn btn-light ms-3'>
                                     Login As Admin <FaUser></FaUser>
                                 </a>
                             </div>

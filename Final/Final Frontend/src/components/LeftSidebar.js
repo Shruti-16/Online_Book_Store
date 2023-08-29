@@ -47,7 +47,7 @@ function LeftSidebar(){
                 View all Categories
             </Link> */}
 
-            <Link  className="list-group-item list-group-item-action mb-3" to="/add-book" tag="a" action>
+            <Link  className="list-group-item list-group-item-action mb-3" to="/admin/books/add-book" tag="a" action>
                 Add a Book
             </Link>
             {/* <Link  className="list-group-item list-group-item-action" to="/add-product" tag="a" action>

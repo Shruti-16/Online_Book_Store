@@ -29,34 +29,34 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 // };
 
 // function Product({ product, addToCart }) {
-  function Product({ userId,product }) {
+  function Product({product}) {
     const [addingToCart, setAddingToCart] = useState(false);
   
-    const addToCart = async () => {
-      setAddingToCart(true);
-      try {
-        const token = sessionStorage.getItem('user');
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        };
+    // const addToCart = async () => {
+    //   setAddingToCart(true);
+    //   try {
+    //     const token = sessionStorage.getItem('user');
+    //     const config = {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //       }
+    //     };
   
-        const response = LoginServiceCustomer.addToCart(userID,product.id),
-          {},
-          config
-        );
+    //     const response = LoginServiceCustomer.addToCart(userID,product.id),
+    //       {},
+    //       config
+    //     );
   
-        if (response.status === 200) {
-          toast.success("Product added to cart!");
-        }
-      } catch (error) {
-        toast.error("Error adding product to cart.");
-      }
-      setAddingToCart(false);
-    };
+    //     if (response.status === 200) {
+    //       toast.success("Product added to cart!");
+    //     }
+    //   } catch (error) {
+    //     toast.error("Error adding product to cart.");
+    //   }
+    //   setAddingToCart(false);
+    // };
   
 
   // Generate a random seed value (you can use a library for more randomness)
@@ -106,7 +106,7 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
             Stock: {product.stock}
             <br />
           </CardSubtitle>
-          <Button color="warning" outline onClick={() => addToCart(product.id)}>
+          <Button color="warning" outline >
             Add to Cart
           </Button>
         </CardBody>
