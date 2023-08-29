@@ -1,19 +1,19 @@
 package com.app.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-<<<<<<< HEAD
-=======
 
-import javax.transaction.Transactional;
-
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.BookDTO;
@@ -24,22 +24,22 @@ import com.app.entities.Review;
 import com.app.repository.BookRepository;
 import com.app.repository.LanguageRepository;
 
-<<<<<<< HEAD
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
-=======
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 @Service
 @Transactional
 public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
-	  @Autowired
-	    private LanguageRepository languageRepository;
+	@Autowired
+	private LanguageRepository languageRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private ImageService imageService;
 
 	// to fetch all the books from the book table
 	public List<ResponseBookDTO> getAllBooks() {
@@ -48,59 +48,63 @@ public class BookServiceImpl implements BookService {
 	}
 
 	private ResponseBookDTO convertToDTO(Book book) {
-	    Hibernate.initialize(book.getLanguages());
+		Hibernate.initialize(book.getLanguages());
 
-	    ResponseBookDTO bookDTO = modelMapper.map(book, ResponseBookDTO.class);
-	    
-	    // Map genre information
-	    if (book.getGenre() != null) {
-	        bookDTO.setGenre(book.getGenre().toString()); // Map the genre enum value as a string
-	    }
-	   
-	    List<String> languageNames = book.getLanguages().stream().map(Language::getName).collect(Collectors.toList());
-	    bookDTO.setLanguageNames(languageNames);
-	    return bookDTO;
+		ResponseBookDTO responseBookDTO = modelMapper.map(book, ResponseBookDTO.class);
+
+		// Map genre information
+		if (book.getGenre() != null) {
+			responseBookDTO.setGenre(book.getGenre().toString()); // Map the genre enum value as a string
+		}
+
+		List<String> languageNames = book.getLanguages().stream().map(Language::getName).collect(Collectors.toList());
+		responseBookDTO.setLanguageNames(languageNames);
+		responseBookDTO.setBookImage("/images/serve/" + book.getBookImage()); // Set image URL
+
+		return responseBookDTO;
 	}
 
 	// To add new Book object in the book table
 	@Override
-	public BookDTO addNewBook(BookDTO newBook) {
-	    // Check if the languages provided are already present in the language table
-	    List<String> languageNames = newBook.getLanguageNames();
-	    List<Language> existingLanguages = languageRepository.findByNameIn(languageNames);
+	public BookDTO addNewBook(@RequestBody @Valid BookDTO newBook, @RequestBody MultipartFile imageFile)
+			throws IOException {
+		System.out.println("In Add new Book");
+		// Check if the languages provided are already present in the language table
+		List<String> languageNames = newBook.getLanguageNames();
+		List<Language> existingLanguages = languageRepository.findByNameIn(languageNames);
 
-	    // Create a list to store new languages
-	    List<Language> newLanguages = new ArrayList<>();
+		// Create a list to store new languages
+		List<Language> newLanguages = new ArrayList<>();
+		String imageName = imageService.saveImage(imageFile);
+		newBook.setBookImage(imageName);
+		// Iterate through the language names provided in the book
+		for (String langName : languageNames) {
+			Optional<Language> existingLangOptional = existingLanguages.stream()
+					.filter(lang -> lang.getName().equalsIgnoreCase(langName)).findFirst();
 
-	    // Iterate through the language names provided in the book
-	    for (String langName : languageNames) {
-	        Optional<Language> existingLangOptional = existingLanguages.stream()
-	                .filter(lang -> lang.getName().equalsIgnoreCase(langName))
-	                .findFirst();
+			if (existingLangOptional.isPresent()) {
+				newLanguages.add(existingLangOptional.get());
+			} else {
+				// Language not found, create a new one and add it to the list of new languages
+				Language newLanguage = new Language(langName);
+				newLanguages.add(newLanguage);
+			}
+		}
 
-	        if (existingLangOptional.isPresent()) {
-	            newLanguages.add(existingLangOptional.get());
-	        } else {
-	            // Language not found, create a new one and add it to the list of new languages
-	            Language newLanguage = new Language(langName);
-	            newLanguages.add(newLanguage);
-	        }
-	    }
+		// Set the new list of languages in the book DTO
+		newBook.setLanguageNames(newLanguages.stream().map(Language::getName).collect(Collectors.toList()));
 
-	    // Set the new list of languages in the book DTO
-	    newBook.setLanguageNames(newLanguages.stream().map(Language::getName).collect(Collectors.toList()));
+		// Create a Book entity and set its properties
+		Book book = modelMapper.map(newBook, Book.class);
+		book.setLanguages(newLanguages); // Set the languages to the book
 
-	    // Create a Book entity and set its properties
-	    Book book = modelMapper.map(newBook, Book.class);
-	    book.setLanguages(newLanguages); // Set the languages to the book
+		// Save the book and new languages
+		Book savedBook = bookRepository.save(book);
 
-	    // Save the book and new languages
-	    Book savedBook = bookRepository.save(book);
-
-	    // Map the saved book to a DTO and return
-	    BookDTO existingBook = modelMapper.map(savedBook, BookDTO.class);
-	    existingBook.setLanguageNames(newLanguages.stream().map(Language::getName).collect(Collectors.toList()));
-	    return existingBook;
+		// Map the saved book to a DTO and return
+		BookDTO existingBook = modelMapper.map(savedBook, BookDTO.class);
+		existingBook.setLanguageNames(newLanguages.stream().map(Language::getName).collect(Collectors.toList()));
+		return existingBook;
 	}
 
 	// to fetch all the books having provided title
@@ -124,54 +128,47 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookDTO updateBook(Long bookId, BookDTO updatedBookDTO) {
-	    Optional<Book> existingBookOp = bookRepository.findById(bookId);
-	    
-	    if (existingBookOp.isPresent()) {
-	        Book existingBook = existingBookOp.get();
-	        
-	        // Use ModelMapper to map properties from updatedBookDTO to existingBook
-	        modelMapper.map(updatedBookDTO, existingBook);
-	        
-	        // Save the updated book
-	        Book updatedBook = bookRepository.save(existingBook);
-	        
-	        // Map the updated book to a BookDTO and return
-	        BookDTO updatedBookDto = modelMapper.map(updatedBook, BookDTO.class);
-	        return updatedBookDto;
-	    } else {
-	        throw new ResourceNotFoundException("Book with ID " + bookId + " not found.");
-	    }
-	}
+		Optional<Book> existingBookOp = bookRepository.findById(bookId);
 
+		if (existingBookOp.isPresent()) {
+			Book existingBook = existingBookOp.get();
+
+			// Use ModelMapper to map properties from updatedBookDTO to existingBook
+			modelMapper.map(updatedBookDTO, existingBook);
+
+			// Save the updated book
+			Book updatedBook = bookRepository.save(existingBook);
+
+			// Map the updated book to a BookDTO and return
+			BookDTO updatedBookDto = modelMapper.map(updatedBook, BookDTO.class);
+			return updatedBookDto;
+		} else {
+			throw new ResourceNotFoundException("Book with ID " + bookId + " not found.");
+		}
+	}
 
 	@Override
 	public ResponseBookDTO findBookById(Long bookId) {
-	    Optional<Book> bookOptional = bookRepository.findById(bookId);
-	    if (bookOptional.isPresent()) {
-	        Book book = bookOptional.get();
+		Optional<Book> bookOptional = bookRepository.findById(bookId);
+		if (bookOptional.isPresent()) {
+			Book book = bookOptional.get();
 
-	        // Extract review texts from Review entities
-	        List<String> reviewTexts = book.getReviews().stream()
-	            .map(Review::getReview)
-	            .collect(Collectors.toList());
+			// Extract review texts from Review entities
+			List<String> reviewTexts = book.getReviews().stream().map(Review::getReview).collect(Collectors.toList());
 
-	        // Extract language names from Language entities
-	        List<String> languageNames = book.getLanguages().stream()
-	            .map(Language::getName)
-	            .collect(Collectors.toList());
+			// Extract language names from Language entities
+			List<String> languageNames = book.getLanguages().stream().map(Language::getName)
+					.collect(Collectors.toList());
 
-	        // Map the book entity to DTO and set the review texts and language names
-	        ResponseBookDTO existingBookDTO = modelMapper.map(book, ResponseBookDTO.class);
-	        existingBookDTO.setReviews(reviewTexts);
-	        existingBookDTO.setLanguageNames(languageNames);
+			// Map the book entity to DTO and set the review texts and language names
+			ResponseBookDTO existingBookDTO = modelMapper.map(book, ResponseBookDTO.class);
+			existingBookDTO.setReviews(reviewTexts);
+			existingBookDTO.setLanguageNames(languageNames);
 
-	        return existingBookDTO;
-	    } else {
-	        throw new ResourceNotFoundException("Book with ID " + bookId + " not found.");
-	    }
+			return existingBookDTO;
+		} else {
+			throw new ResourceNotFoundException("Book with ID " + bookId + " not found.");
+		}
 	}
 
-
-	
-	
-	}
+}

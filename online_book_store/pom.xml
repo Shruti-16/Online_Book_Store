@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-=======
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-<<<<<<< HEAD
 		<version>3.1.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
-=======
-		<version>2.7.14</version>
-		<relativePath/> <!-- lookup parent from repository -->
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>online_book_store</artifactId>
@@ -24,28 +15,26 @@
 	<name>online_book_store</name>
 	<description>Backend for the online book store project</description>
 	<properties>
-<<<<<<< HEAD
+
 		<java.version>17</java.version>
 	</properties>
 
-=======
-		<java.version>11</java.version>
-	</properties>
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-<<<<<<< HEAD
 		<!--<dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
 			</dependency> -->
-=======
-		<!--<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>  -->
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
+		<!--<dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -76,16 +65,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 		<!-- Swagger UI -->
 		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.4</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version> <!-- Use the appropriate version compatible with Spring 3.1.2 -->
 		</dependency>
 		<dependency>
 			<groupId>org.modelmapper</groupId>

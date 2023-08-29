@@ -4,24 +4,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-<<<<<<< HEAD
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-=======
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 public class ResponseBookDTO {
 	  @NotBlank
 	    @Length(max = 10, min = 3, message = "Book Title length should be between 5 to 10 characters.")
@@ -29,6 +20,7 @@ public class ResponseBookDTO {
 
 	    private List<String> languageNames = new ArrayList<>();
 
+//	    @NotBlank
 	    private String bookImage;
 
 	    @NotNull
@@ -54,31 +46,31 @@ public class ResponseBookDTO {
 
 	    private List<String> reviews = new ArrayList<>();
 
-	    public ResponseBookDTO(
-	            @NotBlank @Length(max = 10, min = 3, message = "Book Title length should be 5 to 10 characters.") String title,
-	             List<String> languageNames, String bookImage, @NotNull LocalDate publicationDate,
-	            @NotBlank @Length(max = 15, min = 3, message = "Author Name should be between 3 to 15 characters.") String authorName,
-	            @Min(value = 0, message = "Marked price should not be less than 0") float markedPrice,
-	            @Min(value = 0, message = "Selling price should not be less than 0") float sellingPrice, int edition,
-	            @Min(value = 1, message = "Stock should be greater than 1") int stock, String genre,
-	            List<String> reviews) {
-	        super();
-	        this.title = title;
-	        this.languageNames = languageNames;
-	        this.bookImage = bookImage;
-	        this.publicationDate = publicationDate;
-	        this.authorName = authorName;
-	        this.markedPrice = markedPrice;
-	        this.sellingPrice = sellingPrice;
-	        this.edition = edition;
-	        this.stock = stock;
-	        this.genre = genre;
-	        this.reviews = reviews;
-	    }
+		public ResponseBookDTO() {
+			super();
+		}
 
-	    public ResponseBookDTO() {
-	        super();
-	    }
+		public ResponseBookDTO(
+				@NotBlank @Length(max = 10, min = 3, message = "Book Title length should be between 5 to 10 characters.") String title,
+				List<String> languageNames, String bookImage, @NotNull LocalDate publicationDate,
+				@NotBlank @Length(max = 15, min = 3, message = "Author Name should be between 3 to 15 characters.") String authorName,
+				@Min(value = 0, message = "Marked price should not be less than 0") float markedPrice,
+				@Min(value = 0, message = "Selling price should not be less than 0") float sellingPrice, int edition,
+				@Min(value = 1, message = "Stock should be greater than 1") int stock, String genre,
+				List<String> reviews) {
+			super();
+			this.title = title;
+			this.languageNames = languageNames;
+			this.bookImage = bookImage;
+			this.publicationDate = publicationDate;
+			this.authorName = authorName;
+			this.markedPrice = markedPrice;
+			this.sellingPrice = sellingPrice;
+			this.edition = edition;
+			this.stock = stock;
+			this.genre = genre;
+			this.reviews = reviews;
+		}
 
 		public String getTitle() {
 			return title;
@@ -168,9 +160,8 @@ public class ResponseBookDTO {
 			this.reviews = reviews;
 		}
 
-	
-
-
 		
 
+		
+		
 }

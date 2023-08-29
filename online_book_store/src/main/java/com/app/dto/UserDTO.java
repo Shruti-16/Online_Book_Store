@@ -2,36 +2,16 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
-<<<<<<< HEAD
-=======
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.hibernate.validator.constraints.Length;
 
 import com.app.entities.City;
 import com.app.entities.Role;
 
-<<<<<<< HEAD
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-=======
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 public class UserDTO {
 
 	private Long userId;
@@ -53,7 +33,6 @@ public class UserDTO {
 	private String phoneNumber;
 //	@NotNull(message = "Role must be supplied")
 	private Role role;
-	
 
 	public UserDTO() {
 		super();
@@ -203,5 +182,4 @@ public class UserDTO {
 				+ ", city=" + city + ", phoneNumber=" + phoneNumber + ", role=" + role + "]";
 	}
 
-	
 }

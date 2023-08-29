@@ -10,7 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dto.BookDTO;
 import com.app.dto.OrderDTO;
 import com.app.dto.OrderRespDto;
 import com.app.entities.Book;
@@ -23,8 +22,10 @@ import com.app.repository.CartRepository;
 import com.app.repository.OrderRepository;
 import com.app.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
-@org.springframework.transaction.annotation.Transactional
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
@@ -84,11 +85,8 @@ public class OrderServiceImpl implements OrderService {
 			order.setOrderDate(LocalDate.now());
 			order.setCart(cart);
 			order.setStatus(DeliveryStatus.ORDERED);
-<<<<<<< HEAD
 			order.setQuantity(1);
-=======
-			order.setQuantity();
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
+
 
 			orderRepository.save(order);
 

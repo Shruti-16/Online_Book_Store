@@ -4,12 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-<<<<<<< HEAD
-=======
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
-
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,15 +15,13 @@ import com.app.repository.BookRepository;
 import com.app.repository.CartRepository;
 import com.app.repository.UserRepository;
 
-<<<<<<< HEAD
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
-=======
->>>>>>> de4e2976a29e0f7d2b4f5b92cdf752a0db982ab6
+
 @Transactional
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -40,6 +32,8 @@ public class UserServiceImp implements UserService {
 	private BookService bookService;
 	@Autowired
 	private CartRepository cartRepository;
+	@Autowired
+	private CartService cartService;
 
 
 	/**
@@ -52,11 +46,8 @@ public class UserServiceImp implements UserService {
 	@Override
 	public UserDTO addNewUser(UserDTO userDto) {
 		User user = modelMapper.map(userDto, User.class);
-		Cart cart = new Cart();
-		cart.setCartId(user.getUserId());
-		cart.setUser(user);
+		Cart cart = cartService.createCartForUser(user);
 		user.setCart(cart);
-
 		User savedUser = userRepository.save(user);
 		return modelMapper.map(savedUser, UserDTO.class);
 	}

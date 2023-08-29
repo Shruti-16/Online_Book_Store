@@ -1,6 +1,5 @@
 package com.app.service;
 
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,22 +21,61 @@ import com.app.repository.UserRepository;
 @Service
 public class CartServiceImpl implements CartService {
 
-    @Autowired
-    private CartRepository cartRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private BookRepository bookRepository;
+	@Autowired
+	private CartRepository cartRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private BookRepository bookRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+	@Autowired
+	private ModelMapper modelMapper;
 
-//    @Override
-//    public CartDTO createCart(CartDTO cartDTO) {
-//        Cart cart = modelMapper.map(cartDTO, Cart.class);
-//        Cart savedCart = cartRepository.save(cart);
-//        return modelMapper.map(savedCart, CartDTO.class);
-//    }
+//    
+	@Override
+	public Cart createCartForUser(User user) {
+		Cart cart = new Cart();
+		cart.setUser(user);
+		return cartRepository.save(cart);
+	}
+
+	public void addToCart(Long userId, Long bookId) {
+		Optional<User> optionalUser = userRepository.findById(userId);
+		Optional<Book> optionalBook = bookRepository.findById(bookId);
+
+		if (optionalUser.isPresent() && optionalBook.isPresent()) {
+			User user = optionalUser.get();
+			Book book = optionalBook.get();
+
+			Cart cart = user.getCart();
+
+			if (cart == null) {
+				cart = new Cart(); // Create a new cart if user's cart is null
+				user.setCart(cart);
+			}
+
+			cart.getBooks().add(book);
+			cartRepository.save(cart);
+		}
+	}
+
+	public List<BooksFromCartOrderDTO> getBooksInCart(Long userId) {
+		Optional<User> optionalUser = userRepository.findById(userId);
+		if (optionalUser.isPresent()) {
+//        Optional<Cart> optionalCart = cartRepository.findByUserId(userId);
+			if (optionalUser.get().getCart() != null) {
+//        	 return cart.getBooks();
+				Cart cart = optionalUser.get().getCart();
+				return cart.getBooks().stream().map(this::mapToCartBooksDTO).collect(Collectors.toList());
+			}
+		}
+		return null;
+	}
+
+	private BooksFromCartOrderDTO mapToCartBooksDTO(Book book) {
+		BooksFromCartOrderDTO booksFromCartOrOrderDTO = modelMapper.map(book, BooksFromCartOrderDTO.class);
+		return booksFromCartOrOrderDTO;
+	}
 
 //    @Override
 //    public CartDTO updateCart(Long cartId, CartDTO cartDTO) {
@@ -71,44 +109,6 @@ public class CartServiceImpl implements CartService {
 //        cartRepository.deleteById(cartId);
 //    }
 //    
-    public void addToCart(Long userId, Long bookId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        Optional<Book> optionalBook = bookRepository.findById(bookId);
-
-        if (optionalUser.isPresent() && optionalBook.isPresent()) {
-            User user = optionalUser.get();
-            Book book = optionalBook.get();
-            
-            Cart cart = user.getCart();
-            
-            if (cart == null) {
-                cart = new Cart(); // Create a new cart if user's cart is null
-                user.setCart(cart);
-            }
-            
-            cart.getBooks().add(book);
-            cartRepository.save(cart);
-        } 
-    }
-    
-    
-    public List<BooksFromCartOrderDTO> getBooksInCart(Long userId) {
-    	Optional<User> optionalUser=userRepository.findById(userId);
-    	if(optionalUser.isPresent()) {
-//        Optional<Cart> optionalCart = cartRepository.findByUserId(userId);
-         if(optionalUser.get().getCart()!=null) {
-//        	 return cart.getBooks();
-        	 Cart cart=optionalUser.get().getCart();
-        	 return cart.getBooks().stream().map(this::mapToCartBooksDTO).collect(Collectors.toList());
-         }
-    	}
-    	return null;
-    }
-    
-    private BooksFromCartOrderDTO mapToCartBooksDTO(Book book) {
-    	BooksFromCartOrderDTO booksFromCartOrOrderDTO = modelMapper.map(book, BooksFromCartOrderDTO.class);
-		return booksFromCartOrOrderDTO;
-	}
 
 //	@Override
 //	public CartDTO updateCart(Long cartId, CartDTO cartDTO) {
