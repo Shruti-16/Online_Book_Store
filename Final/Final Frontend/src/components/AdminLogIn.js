@@ -4,7 +4,7 @@ import { Container } from 'reactstrap';
 import LoginService from '../LoginService';
 
 const AdminLogIn = () => {
-    
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
@@ -22,15 +22,15 @@ const AdminLogIn = () => {
                 navigate("/admin");
                 setStatus(msg);
                 sessionStorage.setItem('email', email);
-                console.log(result.data.jwt);
-                sessionStorage.setItem("user", result.data.jwt);
+                console.log(result.data.adminDTO);
+                sessionStorage.setItem("user", result.data.adminDTO);
             }).catch((err) => { setStatus('Invalid User Details') });
         }
     }
 
     return (
         <React.Fragment>
-            <div className='row admin-page align-items-center justify-content-center '>
+            <div className='row admin-page align-items-center justify-content-center px-5'>
                 <div className='col-md-3'>
                 </div>
                 <div className='col-md-4'>
