@@ -11,7 +11,7 @@ function Homepage() {
                 <br />
                 <p style={{ fontSize: "1.8rem" }}>“Maybe this is why we read, and why in moments of darkness we return to books: to find words for what we already know.”</p>
                 <br />
-                <a href="/login-customer">
+                <a href="/users/signin">
                     <button className="btn p-3 rounded-pill" style={{ width: "50%", backgroundColor: "black", color: "white", fontSize: "1.44rem" }} >Shop Now</button>
                 </a>
             </div>

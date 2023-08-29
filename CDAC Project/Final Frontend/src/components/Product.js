@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 
-// const addToCart = (productId) => {
-//   let user = sessionStorage.getItem("user");
-//   let id = user.userId;
+const addToCart = (productId) => {
+  let user = sessionStorage.getItem("user");
+  let id = user.userId;
 
   // const newItem = {
   //   productId: productId,
@@ -26,10 +26,10 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 //       toast.error("Error adding product to cart.");
 //       console.error(error);
 //     });
-// };
+ };
 
 // function Product({ product, addToCart }) {
-  function Product({ userId,product }) {
+  function Product({product}) {
     const [addingToCart, setAddingToCart] = useState(false);
   
     const addToCart = async () => {
@@ -44,10 +44,7 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
           }
         };
   
-        const response = LoginServiceCustomer.addToCart(userID,product.id),
-          {},
-          config
-        );
+        const response = LoginServiceCustomer.addToCart(sessionStorage.getItem("userId"),product.bookId);
   
         if (response.status === 200) {
           toast.success("Product added to cart!");
@@ -87,7 +84,7 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
         />
         <CardBody>
           <CardTitle tag="h5">
-            <Link to={`/books/${product.id}`}>{product.title}</Link>
+            <Link to={`/books/${product.bookId}`}>{product.title}</Link>
           </CardTitle>
 
           <CardSubtitle className="mb-2 text-primary" tag="h6">
@@ -106,7 +103,7 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
             Stock: {product.stock}
             <br />
           </CardSubtitle>
-          <Button color="warning" outline onClick={() => addToCart(product.id)}>
+          <Button onClick={addToCart} color="warning" outline>
             Add to Cart
           </Button>
         </CardBody>

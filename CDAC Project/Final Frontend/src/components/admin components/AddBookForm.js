@@ -1,41 +1,45 @@
-import { Container, Button, Form, FormGroup } from "reactstrap";
-import { toast } from "react-toastify";
-import React from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import ProductService from "../../ProductService";
-import axios from "axios";
 
 function AddBookForm() {
-    const [categoryId, setCategoryId] = useState("");
-    const [productName, setProductName] = useState("");
-    const [productImagePath, setProductImagePath] = useState("");
+    const [title, setTitle] = useState("");
     const [markedPrice, setMarkedPrice] = useState("");
     const [sellingPrice, setSellingPrice] = useState("");
-    const [quantity, setQuantity] = useState(0);
-    const [status, setStatus] = useState("AVAILABLE");
+    const [stock, setStock] = useState('');
     const [description, setDescription] = useState("");
-    let token = sessionStorage.getItem('user');
-    const config = {
-        //  headers: { Authorization: `Bearer ${token}` }
-        headers: {
-            'authorization': `Bearer ${token}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
-
+    const [publicationDate, setPublicationDate] = useState("");
+    const [author, setAuthor] = useState("");
+    const [edition, setEdition] = useState("");
+    const [genre, setGenre] = useState("");
+    const [languageNames, setLanguageNames] = useState("");
+    const [imageFile, setImageFile] = useState(null);
 
     const handleAddProduct = (event) => {
         event.preventDefault();
-        ProductService.addProduct(categoryId, productName, productImagePath, markedPrice, sellingPrice, quantity, status, description, config)
-            .then((result) => {
 
-                toast.success('Product added Sucessfully!');
+        const formData = new FormData();
+        formData.append("newBook", JSON.stringify({
+            title,
+            markedPrice,
+            sellingPrice,
+            stock,
+            description,
+            publicationDate,
+            author,
+            edition,
+            genre,
+            languageNames: languageNames.split(","),
+        }));
+        formData.append("imageFile", imageFile);
+
+        ProductService.addProduct(formData)
+            .then((result) => {
+                toast.success('Product added Successfully!');
                 console.log(result);
             }).catch((err) => {
                 toast.error('Internal Server error');
             });
-
     }
 
 
@@ -49,15 +53,15 @@ function AddBookForm() {
 
                         <span className="row g-3 mb-3">
                             <div className="col-md-6">
-                                <label className="form-label">Book Name</label>
+                                <label className="form-label">Book Title</label>
                                 <div>
-                                    <input className="form-control" type="text" placeholder="Book Name" value={productName} onChange={(event) => setProductName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" placeholder="Book Title" value={title} onChange={(event) => setTitle(event.target.value)} required></input>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <label className="form-label">Marked Price</label>
                                 <div>
-                                    <input className="form-control" type="text" placeholder="Marked Price" value={markedPrice} onChange={(event) => setProductName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" placeholder="Marked Price" value={markedPrice} onChange={(event) => setMarkedPrice(event.target.value)} required></input>
                                 </div>
                             </div>
                         </span>
@@ -65,21 +69,49 @@ function AddBookForm() {
                             <div className="col-md-6">
                                 <label className="form-label">Selling Price</label>
                                 <div>
-                                    <input className="form-control" type="text" placeholder="Selling Price" value={sellingPrice} onChange={(event) => setProductName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" placeholder="Selling Price" value={sellingPrice} onChange={(event) => setSellingPrice(event.target.value)} required></input>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <label className="form-label">Quantity</label>
                                 <div>
-                                    <input className="form-control" type="number" placeholder="Quantity" value={quantity} onChange={(event) => setProductName(event.target.value)} required></input>
+                                    <input className="form-control" type="number" placeholder="Quantity" value={stock} onChange={(event) => setStock(event.target.value)} required></input>
                                 </div>
                             </div>
                         </span>
                         <span className="row g-3 mb-3">
                             <div className="col-md-6">
-                                <label className="form-label">Status</label>
+                                <label className="form-label">Edition</label>
                                 <div>
-                                    <input className="form-control" type="text" placeholder="Selling Price" value={sellingPrice} onChange={(event) => setProductName(event.target.value)} required></input>
+                                    <input className="form-control" type="number" placeholder="Edition" value={edition} onChange={(event) => setEdition(event.target.value)} required></input>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">Genre</label>
+                                <div>
+                                    <select className="form-control" id="genre" placeholder="Genre" value={genre} onChange={(event) => setGenre(event.target.value)} required>
+                                        <option>---Select a Genre---</option>
+                                        <option>FICTION</option>
+                                        <option>BIOGRAPHY</option>
+                                        <option>HISTORY</option>
+                                        <option>HORROR</option>
+                                        <option>POETRY</option>
+                                        <option>COMIC</option>
+                                        <option>ROMANCE</option>
+                                        <option>THRILLER</option>
+                                        <option>DRAMA</option>
+                                        <option>MYTHOLOGICAL</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </span>
+                        <span className="row g-3 mb-3">
+
+                            <div className="col-md-6">
+                                <label className="form-label">Publication Date</label>
+                                <div>
+                                    <input className="form-control" type="date" value={publicationDate} onChange={(event) => setPublicationDate(event.target.value)} required></input>
+
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -94,12 +126,27 @@ function AddBookForm() {
                             <div className="col-md-6">
                                 <label className="form-label">Author</label>
                                 <div>
-                                    <input className="form-control" type="text" placeholder="Author" value={sellingPrice} onChange={(event) => setProductName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" placeholder="Author" value={author} onChange={(event) => setAuthor(event.target.value)} required></input>
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <label className="form-label">Book Image</label>
-                                <input className="form-control" type="file" placeholder="Book Image" value={productImagePath} onChange={(event) => setProductImagePath(event.target.value)}></input>
+                                <label className="form-label">Languages</label>
+                                <input className="form-control" type="text" placeholder="Languages" value={languageNames} onChange={(event) => setLanguageNames(event.target.value)} required></input>
+                            </div>
+
+                            <div>
+
+                                <div>
+                                    <label className="form-label">Book Image</label>
+
+                                    <input
+                                        className="form-control"
+                                        type="file"
+                                        placeholder="Book Image"
+                                        onChange={(event) => setImageFile(event.target.files[0])}
+                                    />
+
+                                </div>
                             </div>
                             <div className="row g-3 mt-2">
                                 <button className="btn btn-primary rounded">Add Book</button>

@@ -1,6 +1,5 @@
 import { FaGoogle, FaMobile, FaLinkedinIn } from "react-icons/fa";
 
-
 import Navbar from "./Navbar"
 function Contact() {
     return (

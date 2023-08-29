@@ -1,14 +1,12 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import LoginServiceCustomer from "../Service/LoginServiceCustomer";
-import { Dropdown } from "react-bootstrap";
 
 var ruserId;
 var user;
 function UpdateUser() {
     let token = sessionStorage.getItem('user');
     const config = {
-        //  headers: { Authorization: `Bearer ${token}` }
         headers: {
             'authorization': `Bearer ${token}`,
             'Accept': 'application/json',
@@ -28,9 +26,7 @@ function UpdateUser() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [registeredDate, setRegisteredDate] = useState('');
     const [userImage, setUserImage] = useState([]);
-    // roles.push('RO')
     const [status, setStatus] = useState('');
-    const [userId, setUserId] = useState('');
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -41,35 +37,11 @@ function UpdateUser() {
             ruserId = parseInt(ketos);
             console.log(user);
             setStatus('User Updated successful!');
-            // createCart(ruserId);
         }).catch((err) => {
             setStatus('Internal SERVER error...please try again after some time');
         });
 
     }
-
-    // const createCart = () => {
-    //     LoginServiceCustomer.addUserCart(ruserId, config)
-    //         .then((result) => {
-    //             var msg = JSON.stringify(result.message);
-    //             setStatus('Registration successful!!! Created the cart sucessfully!!!');
-    //         }).catch((err) => {
-    //             setStatus('Does not create cart');
-    //         });
-
-    // }
-
-
-    // const handleSignUp=(event)=>{
-    //     event.preventDefault();
-    //     GoldenGoodsService.registeruser(firstname,lastname,email,password,mobileNumber,registeredDate,roles).then((result) => {
-    //       var msg=JSON.stringify(result.message);  
-    //       setStatus(msg);   
-    //     }).catch((err) => {
-    //         setStatus('Internal SERVER error...please try again after some time');
-    //     });
-
-    //   } 
 
     return (
         <div>
@@ -189,17 +161,6 @@ function UpdateUser() {
                             </span>
                             <span className="row g-3 mb-2">
 
-                                {/* <div className="col-12 mt-4 ">
-                                    <div className="form-check">
-                                        <input className="form-check-input " type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required></input>
-                                        <label className="form-check-label" for="invalidCheck3">
-                                            Agree to terms and conditions
-                                        </label>
-                                        <div id="invalidCheck3Feedback" className="invalid-feedback">
-
-                                        </div>
-                                    </div>
-                                </div> */}
                             </span>
                             <br></br>
                             <div className=" d-grid gap-2 col-6 mx-auto mb-2 ">

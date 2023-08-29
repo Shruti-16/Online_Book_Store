@@ -1,25 +1,23 @@
 import { useState } from "react";
 import LoginService from "../../LoginService";
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom";
 
-var ruserId;
+var userId;
 function RegisterAdmin() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [mobileNumber, setMobileNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
     const [role, setRole] = useState('ADMIN');
-    const [status, setStatus] = useState('');
     const [address, setAddress] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
-    // roles.push('ROLE_ADMIN')
+    const [status, setStatus] = useState('');
     let token = sessionStorage.getItem('user');
     const config = {
-        //  headers: { Authorization: `Bearer ${token}` }
         headers: {
             'authorization': `Bearer ${token}`,
             'Accept': 'application/json',
@@ -27,34 +25,31 @@ function RegisterAdmin() {
         }
     };
 
+    const navigate = useNavigate();
+
     const handleRegister = (event) => {
         event.preventDefault();
-        LoginService.registerAdmin(firstName, lastName, email, password,confirmPassword,dateOfBirth, mobileNumber, address,city,role, config).then((result) => {
+        LoginService.registerAdmin(firstName, lastName, email, password, confirmPassword, dateOfBirth, phoneNumber, address, city, role, config).then((result) => {
             var msg = JSON.stringify(result.message);
-            var idMessage = JSON.stringify(result.data.message);
-            var ketos = (idMessage.slice(37, 40));
-            ruserId = parseInt(ketos);
             toast.success('Registration successful!');
-            createCart(ruserId);
+            createCart(userId);
+            navigate("/users/admin-login")
         }).catch((err) => {
             console.log(config);
             toast.error('Internal SERVER error');
         });
-
     }
 
 
     const createCart = () => {
-        LoginService.addAdminCart(ruserId, config)
+        LoginService.addAdminCart(userId, config)
             .then((result) => {
                 var msg = JSON.stringify(result.message);
                 setStatus('Cart created successful!');
             }).catch((err) => {
                 setStatus('Does not create cart');
             });
-
     }
-
 
     return (
         <div className=" shadow admin-page pt-5" style={{ color: "white", backgroundColor: "#28282B" }}>
@@ -74,7 +69,7 @@ function RegisterAdmin() {
                             <div className="col-md-6">
                                 <label className="form-label">Last Name</label>
                                 <div className="">
-                                    <input className="form-control" type="text" placeholder="Last Name" value={lastName} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" placeholder="Last Name" value={lastName} onChange={(event) => setLastName(event.target.value)} required></input>
                                 </div>
                             </div>
                         </span>
@@ -84,14 +79,14 @@ function RegisterAdmin() {
                             <div className="col-md-6">
                                 <label className="form-label">Email</label>
                                 <div className="">
-                                    <input className="form-control" type="text" placeholder="Email" value={email} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} required></input>
                                 </div>
                             </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Password</label>
                                 <div className="">
-                                    <input className="form-control" type="text" placeholder="*******" value={password} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                    <input className="form-control" type="password" placeholder="*******" value={password} onChange={(event) => setPassword(event.target.value)} required></input>
                                 </div>
                             </div>
                         </span>
@@ -101,7 +96,7 @@ function RegisterAdmin() {
                             <div className="col-md-6">
                                 <label className="form-label">Confirm Password</label>
                                 <div className="">
-                                    <input className="form-control" type="text" placeholder="*****" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} required></input>
+                                    <input className="form-control" type="password" placeholder="*****" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} required></input>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -111,44 +106,34 @@ function RegisterAdmin() {
                                 </div>
                             </div>
 
-                            
-                            </span>
+
+                        </span>
                         <span className="row g-3 mb-2">
-                        <div className="col-md-6">
+                            <div className="col-md-6">
                                 <label className="form-label">Mobile No</label>
                                 <div className="">
-                                    <input className="form-control" type="text" placeholder="Mobile Number" value={mobileNumber} onChange={(event) => setFirstName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" placeholder="Mobile Number" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} required></input>
                                 </div>
                             </div>
-                        
+
 
                             <div className="col-md-6">
                                 <label className="form-label">Address</label>
                                 <div className="">
-                                    {/* <input className="form-control" type="text" placeholder="City" value={city} onChange={(event) => setCity(event.target.value)} required></input> */}
                                     <textarea className="form-control" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} required></textarea>
                                 </div>
                             </div>
 
-                           
+
                         </span>
                         <span className="row g-3 mb-2">
-                        <div className="col-md-6">
+                            <div className="col-md-6">
                                 <label className="form-label">City</label>
                                 <div className="">
                                     <input className="form-control" type="text" placeholder="City" value={city} onChange={(event) => setCity(event.target.value)} required></input>
                                 </div>
                             </div>
 
-                            <div className="col-md-6">
-                                <label className="form-label">Country</label>
-                                <div className="">
-                                    <input className="form-control" type="text" placeholder="Country" value={country} onChange={(event) => setCountry(event.target.value)} required></input>
-                                </div>
-                            </div>
-                            </span>
-
-                            <span className="row g-3 mb-2">
                             <div className="col-md-6">
                                 <label className="form-label">Role</label>
                                 <div className="">
