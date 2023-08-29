@@ -28,18 +28,38 @@ function AddBookForm() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
+       
+        
     };
 
     // const image = {bookImage};
+    // const handleAddProduct = (e) => {
+    //     e.preventDefault();
+    //     // console.log(product.categoryId)
+    //     productService.saveProduct(product).then((resp) => {
+    //         console.log("Product added Success");
+    //         productService.uploadProductImage(image, resp.data.id).then(() => {
+    //             toast.success("Product Added" ,{autoClose: 1500});
+    //             navigate('/updateproduct')
+    //         });
+    //     })
+    // }
 
+    const handleImageChange = (event) => {
+        setImage(event.target.files[0])
+        console.log(image);
+    }
 
     const handleAddProduct = (event) => {
         event.preventDefault();
         ProductService.addProduct(title, markedPrice, sellingPrice, stock, edition, genre, publicationDate, description,author,languageNames,config)
             .then((result) => {
-
-                toast.success('Product added Sucessfully!');
-                console.log(result);
+                console.log("Product added Success");
+                ProductService.uploadProductImage(bookImage,result.data.id).then(() => {
+                    toast.success('Product added Sucessfully!');
+                    console.log(result);
+                })
+                
             }).catch((err) => {
                 toast.error('Internal Server error');
             });
@@ -149,17 +169,17 @@ function AddBookForm() {
 
 
                             {/* <div className="col-md-6"> */}
-                            {/* <div>
+                            <div>
                                 
                                 <div>
                                 <label className="form-label">Book Image</label>
                                 <form action="/books/{bookId}/bookImage" method="post" encType="multipart/form-data">
                                     <input className="form-control" type="file" name="bookImage" placeholder="Book Image" value={bookImage} onChange={(event) => setBookImage(event.target.value)}></input>
-                                    <button type="submit">Upload Image</button>
+                                    {/* <button type="submit">Upload Image</button> */}
                                 </form>
                                     
                                 </div>
-                            </div> */}
+                            </div>
                             <div className="row g-3 mt-2">
                                 <button className="btn btn-primary rounded">Add Book</button>
                             </div>
