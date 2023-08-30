@@ -84,10 +84,10 @@ const addToCart = (productId) => {
         />
         <CardBody>
           <CardTitle tag="h5">
-            <Link to={`/books/${product.bookId}`}>{product.title}</Link>
+            <h4 className="text-info">{product.title}</h4>
           </CardTitle>
 
-          <CardSubtitle className="mb-2 text-primary" tag="h6">
+          <CardSubtitle className="mb-2 text" tag="h6">
             Marked Price: {product.markedPrice}
             <br />
             Selling Price: {product.sellingPrice}

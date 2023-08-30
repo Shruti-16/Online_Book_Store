@@ -1,5 +1,6 @@
 import { FaGoogle, FaMobile, FaLinkedinIn } from "react-icons/fa";
 
+
 import Navbar from "./Navbar"
 function Contact() {
     return (
@@ -49,7 +50,7 @@ function Contact() {
                                     <div className="tooltip">Phone</div>
                                     <FaMobile className="ms-3" />
                                 </a>
-                                <a href="www.linkedin.com/in/anup-kanere-02a021205" className="icon linkedin">
+                                <a href="https://www.linkedin.com/in/anup-kanere-02a021205/" className="icon linkedin">
                                     <div className="tooltip">LinkedIn</div>
                                     <FaLinkedinIn className="ms-3" />
                                 </a>

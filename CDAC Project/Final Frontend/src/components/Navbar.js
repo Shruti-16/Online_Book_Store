@@ -19,6 +19,10 @@ function Navbar() {
                                 <a className="nav-link" aria-current="page" href="/about" style={{ fontSize: "1.3rem", marginRight: "1.6rem" }}>About Us</a>
                             </li>
 
+                            {/* <li className="nav-item">
+                                <a className="nav-link " aria-current="page" href="/authors" style={{ fontSize: "1.3rem", marginRight: "1.3rem" }}>Authors</a>
+                            </li> */}
+
                             <li className="nav-item">
                                 <a className="nav-link" href="/contact" style={{ fontSize: "1.3rem" }}>Contact Us</a>
                             </li>
@@ -44,6 +48,7 @@ function Navbar() {
                     </div>
                 </div>
             </nav>
+
         </div>
     )
 }

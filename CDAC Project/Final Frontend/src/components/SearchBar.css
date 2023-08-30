@@ -5,14 +5,13 @@
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(197, 11, 11, 0.1);
+    padding: 0 2px;
     width: 400px;
-    padding: 0 5px;
 }
 
 .form-control {
     flex: 1;
     border: none;
-    padding: 0 5px;
     font-size: 16px;
     outline: none;
 }
