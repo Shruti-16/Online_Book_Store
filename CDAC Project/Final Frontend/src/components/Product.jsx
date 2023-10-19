@@ -1,14 +1,12 @@
 import React from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import { Card, CardBody, CardSubtitle, CardTitle, Button } from "reactstrap";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 
-const addToCart = (productId) => {
-  let user = sessionStorage.getItem("user");
-  let id = user.userId;
+// const addToCart = (productId) => {
+//   let user = sessionStorage.getItem("user");
+//   let id = user.userId;
 
   // const newItem = {
   //   productId: productId,
@@ -26,7 +24,7 @@ const addToCart = (productId) => {
 //       toast.error("Error adding product to cart.");
 //       console.error(error);
 //     });
- };
+//  };
 
 // function Product({ product, addToCart }) {
   function Product({product}) {
@@ -35,14 +33,14 @@ const addToCart = (productId) => {
     const addToCart = async () => {
       setAddingToCart(true);
       try {
-        const token = sessionStorage.getItem('user');
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        };
+        // const token = sessionStorage.getItem('user');
+        // const config = {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //   }
+        // };
   
         const response = LoginServiceCustomer.addToCart(sessionStorage.getItem("userId"),product.bookId);
   
@@ -56,14 +54,11 @@ const addToCart = (productId) => {
     };
   
 
-  // Generate a random seed value (you can use a library for more randomness)
   const randomSeed = Math.floor(Math.random() * 1000);
 
-  // Set the dimensions for the image (e.g., 300x200)
   const width = 300;
   const height = 200;
-
-  // Construct the complete image URL
+  
   const imageUrl = `https://picsum.photos/seed/${randomSeed}/${width}/${height}`;
 
 
@@ -83,7 +78,7 @@ const addToCart = (productId) => {
           src={imageUrl} // Use the dynamically generated image URL
         />
         <CardBody>
-          <CardTitle tag="h5">
+          <CardTitle>
             <h4 className="text-info">{product.title}</h4>
           </CardTitle>
 

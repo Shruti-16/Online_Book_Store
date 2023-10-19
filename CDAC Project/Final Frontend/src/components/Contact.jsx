@@ -14,7 +14,7 @@ function Contact() {
                         <img src="../../contacts/Adarsh.jpg" className="card-img-top" alt="Contact 1"></img>
                         <div className="card-body">
                             <h5 className="card-title">Mr. Adarsh Kadam</h5>
-                            <div class="wrapper mb-5">
+                            <div className="wrapper mb-5">
 
                                 <a href="mailto:adarshkadam07@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
@@ -39,7 +39,7 @@ function Contact() {
                         <img src="../../contacts/Anup.jpg" className="card-img-top" alt="Contact 2"></img>
                         <div className="card-body">
                             <h5 className="card-title">Mr. Anup Kanere</h5>
-                            <div class="wrapper mb-5">
+                            <div className="wrapper mb-5">
 
                                 <a href="mailto:kanereanup@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
@@ -64,7 +64,7 @@ function Contact() {
                         <img src="../../contacts/Shruti.jpg" className="card-img-top" alt="Contact 3"></img>
                         <div className="card-body">
                             <h5 className="card-title">Ms. Shruti Chintawar</h5>
-                            <div class="wrapper mb-5">
+                            <div className="wrapper mb-5">
 
                                 <a href="mailto:schintawar99@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
@@ -88,7 +88,7 @@ function Contact() {
                         <img src="../../contacts/Pranal.jpg" className="card-img-top" alt="Contact 4"></img>
                         <div className="card-body">
                             <h5 className="card-title">Mr. Pranal Ghule</h5>
-                            <div class="wrapper mb-5">
+                            <div className="wrapper mb-5">
 
                                 <a href="mailto:pranalghulep99@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>
@@ -112,7 +112,7 @@ function Contact() {
                         <img src="../../contacts/Shreyas.png" className="card-img-top" alt="Contact 4"></img>
                         <div className="card-body">
                             <h5 className="card-title">Mr. Shreyas Dhule</h5>
-                            <div class="wrapper mb-5">
+                            <div className="wrapper mb-5">
 
                                 <a href="mailto:shreyash10dhule@gmail.com" className="icon gmail">
                                     <div className="tooltip">Gmail</div>

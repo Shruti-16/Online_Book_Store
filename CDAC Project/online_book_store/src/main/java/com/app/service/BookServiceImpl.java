@@ -165,7 +165,7 @@ public class BookServiceImpl implements BookService {
 
 	        return existingBookDTO;
 	    } else {
-	        throw new ResourceNotFoundException("Book with ID " + bookId + " not found.");
+	        throw new ResourceNotFoundException(" Book with ID " + bookId + " not found.");
 	    }
 	}
 

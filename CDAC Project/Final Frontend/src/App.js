@@ -44,7 +44,7 @@ function App() {
         {/* <Route exact path="/add-category" element={<AddCategory/>} /> */}
         {/* <Route exact path="/view-category" element={<AllCategories/>} /> */}
         {/* <Route exact path="/display-products" element={<DisplayProducts />} /> Pending */}
-        <Route exact path="/display-products-admin" element={<DisplayProductsForAdmin />} />
+        {/* <Route exact path="/display-products-admin" element={<DisplayProductsForAdmin />} /> */}
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/about" element={<About />} />
         {/* <Route exact path="/category" element={<Category />} /> */}

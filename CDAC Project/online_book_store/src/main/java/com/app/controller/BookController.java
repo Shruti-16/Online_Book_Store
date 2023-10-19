@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/books")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookController {
 
 	@Autowired
@@ -62,7 +63,9 @@ public class BookController {
 	
     }
 	
+		
 	  @GetMapping("/{bookId}")
+//	  @ExceptionHandler
 	    public ResponseEntity<ResponseBookDTO> getBookById(@PathVariable Long bookId) {
 	        ResponseBookDTO book = bookService.findBookById(bookId);
 	        return ResponseEntity.ok(book);

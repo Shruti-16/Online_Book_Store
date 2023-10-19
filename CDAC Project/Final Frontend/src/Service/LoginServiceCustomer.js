@@ -28,10 +28,7 @@ class LoginServiceCustomer{
         return axios.get("http://localhost:8080/books/getAllBooks");
     }
     static buyNow(userId){
-        // var newItem = {
-        //     productId,quantity
-        //     // Other properties you might need
-        //   };
+
         return axios.post("http://localhost:8080/carts/buyNow", userId);
     }
 
@@ -50,6 +47,11 @@ class LoginServiceCustomer{
 
     static placeOrder(userId){
         return axios.post(`http://localhost:8080/carts/buyNow?userId=${userId}`)
+    }
+    static addProduct(title, markedPrice, sellingPrice, stock, edition, genre, publicationDate, description,author,languageNames,config){
+        var productDetails = {title, markedPrice, sellingPrice, stock, edition, genre, publicationDate, description,author,languageNames};
+        return axios.post("http://localhost:8080/admin/books/add-book",productDetails,config);
+
     }
 }
 

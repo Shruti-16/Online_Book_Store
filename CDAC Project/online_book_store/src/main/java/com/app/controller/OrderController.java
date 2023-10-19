@@ -18,7 +18,7 @@ import com.app.dto.OrderRespDto;
 import com.app.service.OrderService;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/orders")
 public class OrderController {

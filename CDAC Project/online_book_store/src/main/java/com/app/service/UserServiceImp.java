@@ -30,7 +30,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.xml.bind.DatatypeConverter;
 
-
 @Transactional
 @Service
 public class UserServiceImp implements UserService {
@@ -46,9 +45,8 @@ public class UserServiceImp implements UserService {
 	private CartRepository cartRepository;
 	@Autowired
 	private CityRepository cityRepository;
-	
-	private Logger log = LoggerFactory.getLogger(getClass());
 
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	/**
 	 * Add a new user to the database.
@@ -66,20 +64,19 @@ public class UserServiceImp implements UserService {
 		user.setCart(cart);
 		City city = cityRepository.findByCityName(userDto.getCity());
 		user.setCity(city);
-    
-    	 String password = user.getPassword();
-	        String hashedPassword = null;
-	        try {
-	            MessageDigest md = MessageDigest.getInstance("MD5");
-	            md.update(password.getBytes());
-	            byte[] digest = md.digest();
-	            hashedPassword = DatatypeConverter.printHexBinary(digest).toUpperCase();
-	        } catch (NoSuchAlgorithmException e) {
-	            e.printStackTrace();
-	        }
-	        user.setPassword(hashedPassword);
 
-    
+		String password = user.getPassword();
+		String hashedPassword = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(password.getBytes());
+			byte[] digest = md.digest();
+			hashedPassword = DatatypeConverter.printHexBinary(digest).toUpperCase();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		user.setPassword(hashedPassword);
+
 		User savedUser = userRepository.save(user);
 		return modelMapper.map(savedUser, UserDTO.class);
 	}
@@ -122,7 +119,7 @@ public class UserServiceImp implements UserService {
 				existingUser.setLastName(userDto.getLastName());
 			}
 
-			if (userDto.getAddress()!= null) {
+			if (userDto.getAddress() != null) {
 				existingUser.setAddress(userDto.getAddress());
 			}
 			if (userDto.getCity() != null) {
@@ -148,13 +145,14 @@ public class UserServiceImp implements UserService {
 
 	@Override
 	public void deleteUser(Long userId) {
-		Optional<User> existingUser=userRepository.findById(userId);
-		if(existingUser!=null) {
-			User user=existingUser.get();
+		Optional<User> existingUser = userRepository.findById(userId);
+		if (existingUser != null) {
+			User user = existingUser.get();
 			cartRepository.deleteById(user.getCart().getCartId());
 			userRepository.deleteById(userId);
 		}
 	}
+
 	@Override
 	public UserDTO authenticateUser(String email, String password) {
 		log.info(password);
@@ -168,11 +166,10 @@ public class UserServiceImp implements UserService {
 	}
 
 	private boolean comparePasswords(String enteredPassword, String storedPasswordHash) {
-	    String enteredPasswordHash = hashPasswordMD5(enteredPassword); 
-	    return enteredPasswordHash.equalsIgnoreCase(storedPasswordHash); 
+		String enteredPasswordHash = hashPasswordMD5(enteredPassword);
+		return enteredPasswordHash.equalsIgnoreCase(storedPasswordHash);
 	}
-	
-	
+
 	private String hashPasswordMD5(String password) {
 		try {
 			log.info(" inside MD5 " + password);
@@ -193,54 +190,51 @@ public class UserServiceImp implements UserService {
 			throw new RuntimeException("MD5 algorithm not available", e);
 		}
 	}
-	
-
 
 	@Override
-    public UserDTO getUserById(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+	public UserDTO getUserById(Long userId) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
 
-        return modelMapper.map(user, UserDTO.class);
-    }
+		return modelMapper.map(user, UserDTO.class);
+	}
 
-	
 	@Override
 	public AdminDTO adminLogin(UserSignInDTO userSignInDTO) {
-	    User user = userRepository.findByEmail(userSignInDTO.getEmail());
-	    
-	    if (user != null && comparePasswordsAdmin(userSignInDTO.getPassword(), user.getPassword()) && user.getRole().equals(Role.ADMIN)) {
-	        return modelMapper.map(user, AdminDTO.class);
-	    }
-	    
-	    throw new UserNotFoundException("Invalid email or password..!");
+		User user = userRepository.findByEmail(userSignInDTO.getEmail());
+
+		if (user != null && comparePasswordsAdmin(userSignInDTO.getPassword(), user.getPassword())
+				&& user.getRole().equals(Role.ADMIN)) {
+			return modelMapper.map(user, AdminDTO.class);
+		}
+
+		throw new UserNotFoundException("Invalid email or password..!");
 	}
 
 	private boolean comparePasswordsAdmin(String enteredPassword, String storedPasswordHash) {
-	    String enteredPasswordHash = hashPasswordMD6(enteredPassword); 
-	    return enteredPasswordHash.equalsIgnoreCase(storedPasswordHash); 
+		String enteredPasswordHash = hashPasswordMD6(enteredPassword);
+		return enteredPasswordHash.equalsIgnoreCase(storedPasswordHash);
 	}
 
 	private String hashPasswordMD6(String password) {
-	    try {
-	        MessageDigest md = MessageDigest.getInstance("MD5");
-	        byte[] hashBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
-	        StringBuilder hexString = new StringBuilder();
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] hashBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+			StringBuilder hexString = new StringBuilder();
 
-	        for (byte hashByte : hashBytes) {
-	            String hex = Integer.toHexString(0xff & hashByte);
-	            if (hex.length() == 1)
-	                hexString.append('0');
-	            hexString.append(hex);
-	        }
+			for (byte hashByte : hashBytes) {
+				String hex = Integer.toHexString(0xff & hashByte);
+				if (hex.length() == 1)
+					hexString.append('0');
+				hexString.append(hex);
+			}
 
-	        return hexString.toString();
-	    } catch (NoSuchAlgorithmException e) {
-	        throw new RuntimeException("MD5 algorithm not available", e);
-	    }
+			return hexString.toString();
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException("MD5 algorithm not available", e);
+		}
 	}
 
-	
 	@Override
 	public AdminDTO addAdmin(AdminDTO adminDto) {
 		User user = modelMapper.map(adminDto, User.class);
@@ -248,23 +242,21 @@ public class UserServiceImp implements UserService {
 		cart.setCartId(user.getUserId());
 		cart.setUser(user);
 		user.setCart(cart);
-		
-		 String password = user.getPassword();
-	        String hashedPassword = null;
-	        try {
-	            MessageDigest md = MessageDigest.getInstance("MD5");
-	            md.update(password.getBytes());
-	            byte[] digest = md.digest();
-	            hashedPassword = DatatypeConverter.printHexBinary(digest).toUpperCase();
-	        } catch (NoSuchAlgorithmException e) {
-	            e.printStackTrace();
-	        }
-	        user.setPassword(hashedPassword);
 
-		
+		String password = user.getPassword();
+		String hashedPassword = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(password.getBytes());
+			byte[] digest = md.digest();
+			hashedPassword = DatatypeConverter.printHexBinary(digest).toUpperCase();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		user.setPassword(hashedPassword);
+
 		City city = cityRepository.findByCityName(adminDto.getCity());
 		user.setCity(city);
-		
 
 		User savedUser = userRepository.save(user);
 		return modelMapper.map(savedUser, AdminDTO.class);

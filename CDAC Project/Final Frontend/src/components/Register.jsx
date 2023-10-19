@@ -41,7 +41,7 @@ function Register() {
             setStatus('Registration successful!');
 
         }).catch((err) => {
-            setStatus('Internal SERVER error...please try again after some time');
+            setStatus('Invalid Data...please try again ');
         });
         console.log("before add cart method");
         

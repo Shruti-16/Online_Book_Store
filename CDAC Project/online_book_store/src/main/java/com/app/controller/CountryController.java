@@ -15,7 +15,7 @@ import com.app.service.CountryService;
 
 @RestController
 @RequestMapping("/countries")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class CountryController {
 
 	@Autowired

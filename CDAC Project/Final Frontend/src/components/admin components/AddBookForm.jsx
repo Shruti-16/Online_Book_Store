@@ -1,41 +1,37 @@
-import { Container, Button, Form, FormGroup } from "reactstrap";
 import { toast } from "react-toastify";
 import React from "react";
 import { useState } from "react";
-import ProductService from "../../ProductService";
-import axios from "axios";
+import LoginServiceCustomer from "../../Service/LoginServiceCustomer";
 
 function AddBookForm() {
-    const [categoryId, setCategoryId] = useState("");
+    // const [categoryId, setCategoryId] = useState("");
     const [title, setTitle] = useState("");
-    const [productImagePath, setProductImagePath] = useState("");
+    // const [productImagePath, setProductImagePath] = useState("");
     const [markedPrice, setMarkedPrice] = useState("");
     const [sellingPrice, setSellingPrice] = useState("");
     const [stock, setStock] = useState('');
-    const [status, setStatus] = useState("AVAILABLE");
+    // const [status, setStatus] = useState("AVAILABLE");
     const [description, setDescription] = useState("");
     const [publicationDate, setPublicationDate] = useState("");
     const [author, setAuthor] = useState("");
-    const [bookImage, setBookImage] = useState("");
+    // const [bookImage, setBookImage] = useState("");
     const [edition, setEdition] = useState("");
     const [genre, setGenre] = useState("");
     const [languageNames, setLanguageNames] = useState([]);
-    let token = sessionStorage.getItem('user');
-    const config = {
-        //  headers: { Authorization: `Bearer ${token}` }
-        headers: {
-            'authorization': `Bearer ${token}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
-
-    // const image = {bookImage};
+    // let token = sessionStorage.getItem('user');
+    // const config = {
+    //     //  headers: { Authorization: `Bearer ${token}` }
+    //     headers: {
+    //         'authorization': `Bearer ${token}`,
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     }
+    // };
 
 
     const handleAddProduct = (event) => {
         event.preventDefault();
-        ProductService.addProduct(title, markedPrice, sellingPrice, stock, edition, genre, publicationDate, description,author,languageNames,config)
+        LoginServiceCustomer.addProduct(title, markedPrice, sellingPrice, stock, edition, genre, publicationDate, description, author, languageNames)
             .then((result) => {
 
                 toast.success('Product added Sucessfully!');
@@ -105,17 +101,12 @@ function AddBookForm() {
                                         <option>DRAMA</option>
                                         <option>MYTHOLOGICAL</option>
                                     </select>
-                                    {/* <input className="form-control" type="text" placeholder="Genre" value={genre} onChange={(event) => setGenre(event.target.value)} required></input> */}
+
                                 </div>
                             </div>
                         </span>
                         <span className="row g-3 mb-3">
-                            {/* <div className="col-md-6">
-                                <label className="form-label">Status</label>
-                                <div>
-                                    <input className="form-control" type="text" placeholder="Selling Price" value={sellingPrice} onChange={(event) => setProductName(event.target.value)} required></input>
-                                </div>
-                            </div> */}
+
                             <div className="col-md-6">
                                 <label className="form-label">Publication Date</label>
                                 <div>
@@ -139,27 +130,9 @@ function AddBookForm() {
                                 </div>
                             </div>
                             <div className="col-md-6">
-
-                                {/* <label className="form-label">Book Image</label>
-                                <input className="form-control" type="file" placeholder="Book Image" value={productImagePath} onChange={(event) => setProductImagePath(event.target.value)}></input> */}
                                 <label className="form-label">Languages</label>
                                 <input className="form-control" type="text" placeholder="Languages" value={languageNames} onChange={(event) => setLanguageNames(event.target.value)} required></input>
                             </div>
-                        {/* </span> */}
-
-
-                            {/* <div className="col-md-6"> */}
-                            {/* <div>
-                                
-                                <div>
-                                <label className="form-label">Book Image</label>
-                                <form action="/books/{bookId}/bookImage" method="post" encType="multipart/form-data">
-                                    <input className="form-control" type="file" name="bookImage" placeholder="Book Image" value={bookImage} onChange={(event) => setBookImage(event.target.value)}></input>
-                                    <button type="submit">Upload Image</button>
-                                </form>
-                                    
-                                </div>
-                            </div> */}
                             <div className="row g-3 mt-2">
                                 <button className="btn btn-primary rounded">Add Book</button>
                             </div>

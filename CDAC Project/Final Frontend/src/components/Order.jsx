@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+
 import { FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
-import axios from 'axios';
+
 
 
 
@@ -9,7 +9,7 @@ import axios from 'axios';
 export default function Order() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{fontWeight:"bold"}}>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{ fontWeight: "bold" }}>
                 <div className="container-fluid" style={{ marginLeft: "3rem" }}>
                     <a className="navbar-brand" href="/books/getAllBooks">Show Books</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,8 +79,8 @@ export default function Order() {
             <div className="container-fluid">
                 <div className="row align-items-center justify-content-center " style={{ height: "92vh" }}>
                     <div  >
-                    <br></br>
-                    <br></br>
+                        <br></br>
+                        <br></br>
                         <br></br>
                         <br></br>
                         <br></br>
@@ -92,18 +92,18 @@ export default function Order() {
                         <br></br>
                         <br></br>
                     </div>
-                    <div class="spinner-grow text-success" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div><div class="spinner-grow text-success" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div><div class="spinner-grow text-success" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div><div class="spinner-grow text-success" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div><div class="spinner-grow text-success" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div><div class="spinner-grow text-success" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                    <div className="spinner-grow text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div><div className="spinner-grow text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div><div className="spinner-grow text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div><div className="spinner-grow text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div><div className="spinner-grow text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div><div className="spinner-grow text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ import com.app.service.LanguageServiceImpl;
 
 @RestController
 @RequestMapping("/languages")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class LanguageController {
 
     @Autowired

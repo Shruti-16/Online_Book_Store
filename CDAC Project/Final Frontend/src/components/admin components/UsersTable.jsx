@@ -88,7 +88,6 @@ function UsersTable() {
                                 <td>Last Name</td>
                                 <td>Email</td>
                                 <td>Mobile Number</td>
-                                {/* <td>Registration Date</td> */}
                                 {/* <td>Update User</td> */}
                                 <td>Delete User</td>
                             </tr>
@@ -113,6 +112,7 @@ function UsersTable() {
                                         <td>{item.lastName}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phoneNumber}</td>
+                                        
                                         <td>
                                             <Button
                                                 type="Submit"

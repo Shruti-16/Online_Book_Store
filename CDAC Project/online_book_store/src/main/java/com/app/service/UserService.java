@@ -7,6 +7,8 @@ import com.app.dto.ResponseBookDTO;
 import com.app.dto.UserDTO;
 import com.app.dto.UserSignInDTO;
 
+import jakarta.validation.Valid;
+
 public interface UserService {
 	public UserDTO addNewUser(UserDTO userDto);
 
@@ -20,7 +22,7 @@ public interface UserService {
 
 	public UserDTO getUserById(Long userId);
 
-	AdminDTO adminLogin(UserSignInDTO userSignInDTO);
+	public AdminDTO adminLogin(UserSignInDTO userSignInDTO);
 
 	public AdminDTO addAdmin(AdminDTO adminDto);
 	

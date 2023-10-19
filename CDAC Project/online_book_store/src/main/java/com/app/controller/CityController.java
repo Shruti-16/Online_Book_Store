@@ -13,7 +13,7 @@ import com.app.service.CityService;
 
 @RestController
 @RequestMapping("/cities")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class CityController {
 
     @Autowired
