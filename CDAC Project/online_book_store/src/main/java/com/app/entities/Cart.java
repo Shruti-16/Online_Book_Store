@@ -13,15 +13,17 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "carts")
 public class Cart {
@@ -38,66 +40,5 @@ public class Cart {
 	@OneToOne(mappedBy = "cart", fetch = FetchType.LAZY)
 	private User user;
 
-	public Cart() {
-		super();
-	}
-
-	public Cart(Long cartId, List<Book> books, int totalBooks, float totalPrice, float discount, User user) {
-		super();
-		this.cartId = cartId;
-		this.books = books;
-		this.totalBooks = totalBooks;
-		this.totalPrice = totalPrice;
-		this.discount = discount;
-		this.user = user;
-	}
-
-	public Long getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(Long cartId) {
-		this.cartId = cartId;
-	}
-
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-
-	public int getTotalBooks() {
-		return totalBooks;
-	}
-
-	public void setTotalBooks(int totalBooks) {
-		this.totalBooks = totalBooks;
-	}
-
-	public float getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(float totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-	public float getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(float discount) {
-		this.discount = discount;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+	
 }

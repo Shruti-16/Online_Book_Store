@@ -14,21 +14,9 @@ function RegisterAdmin() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [city, setCity] = useState('');
-    // const [country, setCountry] = useState('');
     const [role, setRole] = useState('ADMIN');
-    // const [status, setStatus] = useState('');
     const [address, setAddress] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
-    // roles.push('ROLE_ADMIN')
-    // let token = sessionStorage.getItem('user');
-    // const config = {
-    //     //  headers: { Authorization: `Bearer ${token}` }
-    //     headers: {
-    //         // 'authorization': `Bearer ${token}`,
-    //         // 'Accept': 'application/json',
-    //         // 'Content-Type': 'application/json'
-    //     }
-    // };
 
     const toggleConfirmPasswordVisibility = () => {
         setShowConfirmPassword(!showConfirmPassword);
@@ -42,13 +30,13 @@ function RegisterAdmin() {
     const handleRegister = (event) => {
         event.preventDefault();
         LoginService.registerAdmin(firstName, lastName, email, password, confirmPassword, dateOfBirth, phoneNumber, address, city, role).then((result) => {
-            // var msg = JSON.stringify(result.message);
+
             setStatus('Registration successful!');
             toast.success('Registration successful!');
-            // createCart(userId);
+
             navigate("/users/admin-login")
         }).catch((err) => {
-            // Handle the error case
+
             if (err.response && err.response.data) {
                 // If the error response contains a message and timeStamp
                 const { message, timeStamp } = err.response.data;
@@ -64,19 +52,6 @@ function RegisterAdmin() {
         });
 
     }
-
-
-    // const createCart = () => {
-    //     LoginService.addAdminCart(userId, config)
-    //         .then((result) => {
-    //             var msg = JSON.stringify(result.message);
-    //             setStatus('Cart created successful!');
-    //         }).catch((err) => {
-    //             setStatus('Does not create cart');
-    //         });
-
-    // }
-
 
     return (
         <div className=" shadow admin-page pt-5" style={{ color: "white", backgroundColor: "#28282B" }}>
@@ -96,7 +71,7 @@ function RegisterAdmin() {
                             <div className="col-md-6">
                                 <label className="form-label">Last Name</label>
                                 <div className="">
-                                    <input className="form-control" type="text"  minLength={3} maxLength={20} placeholder="Last Name" value={lastName} onChange={(event) => setLastName(event.target.value)} required></input>
+                                    <input className="form-control" type="text" minLength={3} maxLength={20} placeholder="Last Name" value={lastName} onChange={(event) => setLastName(event.target.value)} required></input>
                                 </div>
                             </div>
                         </span>

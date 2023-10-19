@@ -19,7 +19,17 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @ToString
 @Table(name = "orders")
@@ -43,63 +53,6 @@ public class Order {
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus status;
 	// Represents the order this book belongs to
-	public Order() {
-		super();
-	}
-	public Order(Long orderId, Cart cart, int quantity, LocalDate orderDate, User user, List<Book> books,
-			DeliveryStatus status) {
-		super();
-		this.orderId = orderId;
-		this.cart = cart;
-		this.quantity = quantity;
-		this.orderDate = orderDate;
-		this.user = user;
-		this.books = books;
-		this.status = status;
-	}
-	public Long getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
-	}
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public LocalDate getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(LocalDate orderDate) {
-		this.orderDate = orderDate;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public List<Book> getBooks() {
-		return books;
-	}
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-	public DeliveryStatus getStatus() {
-		return status;
-	}
-	public void setStatus(DeliveryStatus status) {
-		this.status = status;
-	}
-
 		
 
 }

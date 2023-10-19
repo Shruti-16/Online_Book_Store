@@ -23,7 +23,6 @@ function AllBooks() {
     }
   };
 
-  // let user = sessionStorage.getItem("user");
 
   return (
     <div>
@@ -63,7 +62,7 @@ function AllBooks() {
           </div>
         </div>
       </nav>
-      <h2 className="ms-2 my-4" style={{ fontSize: '24px', backgroundColor: "lightseagreen", color: 'white', fontWeight: 'bold', textTransform: 'uppercase', textAlign: "center", margin: "0 1rem", padding: 10 }}>
+      <h2 className="ms-2 my-4" style={{ fontSize: '24px', backgroundColor: "#5846ce", color: 'white', fontWeight: 'bold', textTransform: 'uppercase', textAlign: "center", margin: "0 1rem", padding: 10 }}>
         Showing Available Books
       </h2>
       <Row>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import { Table, Button, Row, Col } from "reactstrap"
 import axios from "axios";
@@ -8,8 +8,6 @@ import { FaSignOutAlt, FaBook } from "react-icons/fa";
 
 function UsersTable() {
     const [users, setUsers] = useState([]);
-    //const user=JSON.parse(sessionStorage.getItem('user'));
-    //console.log(user);
     let token = sessionStorage.getItem("user");
     console.log(token);
     const config = {
@@ -75,7 +73,7 @@ function UsersTable() {
             </nav>
             <Row className="text-center justify-content-evenly align-items-center">
                 <Col className="col-8">
-                    <h2 className="pb-2" style={{ color: "white",marginTop:"5rem", marginBottom:"2rem" }}>All User Accounts</h2>
+                    <h2 className="pb-2" style={{ color: "white", marginTop: "5rem", marginBottom: "2rem" }}>All User Accounts</h2>
                     <Table responsive className=" border"
                         size="sm"
                         dark
@@ -88,22 +86,11 @@ function UsersTable() {
                                 <td>Last Name</td>
                                 <td>Email</td>
                                 <td>Mobile Number</td>
-                                {/* <td>Update User</td> */}
                                 <td>Delete User</td>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {(users.length > 0 && users.filter(item => item.role === "CUSTOMER")) ? users.map((item) =>
-                            <tr>
-                                <td>{item.userId}</td>
-                                <td>{item.firstName}</td>
-                                <td>{item.lastName}</td>
-                                <td>{item.email}</td>
-                                <td>{item.phoneNumber}</td>
-                                {/* <td>{item.registeredDate}</td> */}
-                            {/* <td><Button  className="button-cool" color="warning">Update</Button></td> */}
-                            {/* <td><Button type="Submit" className="btn btn-danger"onClick={() => handleDelete(item.id)}>Delete</Button></td>
-                            // </tr>) : "No Users available"} */}
+
                             {
                                 users.length > 0 && users.filter(item => item.role === "CUSTOMER").map(item => (
                                     <tr key={item.userId}>
@@ -112,7 +99,7 @@ function UsersTable() {
                                         <td>{item.lastName}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phoneNumber}</td>
-                                        
+
                                         <td>
                                             <Button
                                                 type="Submit"

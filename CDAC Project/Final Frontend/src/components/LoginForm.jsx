@@ -28,10 +28,6 @@ function LoginForm() {
                 var msg = JSON.stringify(result.data.message);
                 console.log(msg);
                 console.log(result);
-                // var userId=JSON.parse(result.data.userId);
-                // setStatus(msg);
-                // console.log(userId);
-                // console.log(msg); 
                 navigate("/books/getAllBooks");
                 setuserId(userId);
                 sessionStorage.setItem('userId', result.data.userDTO.userId);
@@ -73,18 +69,12 @@ function LoginForm() {
 
 
                             <div className="row m-4 align-items-center justify-content-evenly">
-                            <label className="form-label">User Name</label>
-                            <div className="input-group">
+                                <label className="form-label">User Name</label>
+                                <div className="input-group">
                                     <input className="form-control form-control " type="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} required></input>
                                 </div>
                             </div>
-
-                            {/* <div className="row m-4 align-items-center justify-content-evenly">
-                                <div className="col-10">
-                                    <input className="form-control form-control " type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required></input>
-                                </div>
-                            </div> */}
-                             <div className="row m-4 align-items-center justify-content-evenly">
+                            <div className="row m-4 align-items-center justify-content-evenly">
                                 <label className="form-label">Password</label>
                                 <div className="input-group">
                                     <input
@@ -106,14 +96,14 @@ function LoginForm() {
                                     </div>
                                 </div>
                             </div>
-                        
+
 
                             <div className="row m-4 align-items-center justify-content-evenly">
                                 <div className="row m-4 align-items-center justify-content-evenly">
                                     <button className="btn btn-success rounded" type="submit">Login</button>
                                     {status ? <div className='text-success'>{status}</div> : null}
                                 </div>
-                 
+
                             </div>
 
                             <div className="row m-4 align-items-center justify-content-evenly">

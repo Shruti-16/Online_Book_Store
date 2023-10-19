@@ -4,29 +4,18 @@ import { useState } from "react";
 import LoginServiceCustomer from "../../Service/LoginServiceCustomer";
 
 function AddBookForm() {
-    // const [categoryId, setCategoryId] = useState("");
+
     const [title, setTitle] = useState("");
-    // const [productImagePath, setProductImagePath] = useState("");
     const [markedPrice, setMarkedPrice] = useState("");
     const [sellingPrice, setSellingPrice] = useState("");
     const [stock, setStock] = useState('');
-    // const [status, setStatus] = useState("AVAILABLE");
     const [description, setDescription] = useState("");
     const [publicationDate, setPublicationDate] = useState("");
     const [author, setAuthor] = useState("");
-    // const [bookImage, setBookImage] = useState("");
     const [edition, setEdition] = useState("");
     const [genre, setGenre] = useState("");
     const [languageNames, setLanguageNames] = useState([]);
-    // let token = sessionStorage.getItem('user');
-    // const config = {
-    //     //  headers: { Authorization: `Bearer ${token}` }
-    //     headers: {
-    //         'authorization': `Bearer ${token}`,
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     }
-    // };
+
 
 
     const handleAddProduct = (event) => {

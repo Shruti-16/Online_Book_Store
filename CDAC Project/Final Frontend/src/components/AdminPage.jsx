@@ -1,14 +1,10 @@
 import React from "react";
-import { Container, Row, Col, Button } from "reactstrap"
-import Navbar from "./Navbar";
 import LeftSidebar from "./LeftSidebar";
-import AdminHome from "./AdminHome";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FaSignOutAlt, FaBook } from "react-icons/fa";
 
 function AdminPage() {
 
-    
+
 
     return (
         <div className="admin-page">

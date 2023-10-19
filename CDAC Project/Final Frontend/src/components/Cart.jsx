@@ -9,11 +9,10 @@ import SearchBar from "./SearchBar";
 
 const Cart = () => {
   const [totalPrice, setTotalPrice] = useState();
-  // const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  // const [customer, setCustomer] = useState([]);
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     LoginServiceCustomer.getAllBooksInCart(sessionStorage.getItem("userId"))
       .then((result) => {
@@ -24,12 +23,14 @@ const Cart = () => {
         console.log("NO BOOKS");
       });
   }, []);
+
   useEffect(() => {
     const totalPriceSum = cart.reduce(
       (sum, item) => sum + item.sellingPrice,
       0
     );
-    setTotalPrice(totalPriceSum);
+    const formattedTotalPrice = parseFloat(totalPriceSum.toFixed(2));
+    setTotalPrice(formattedTotalPrice);
   }, [cart]);
 
   const placeOrder = () => {
@@ -38,22 +39,22 @@ const Cart = () => {
       navigate("/myorder");
       toast.message("Order Placed Successfully");
     })
-    .catch((err) => {
-      if (err.response) {
+      .catch((err) => {
+        if (err.response) {
           // If the error has a response, it means it's coming from the backend
           const errorData = err.response.data;
           if (errorData.message) {
             const errorMessage = err.response.data.message;
-              console.log(`Error: ${errorData.message}`);
-              setStatus(errorMessage)
+            console.log(`Error: ${errorData.message}`);
+            setStatus(errorMessage)
           }
           if (errorData.timeStamp) {
-              // Assuming 'timeStamp' is a date, you can format it as needed
-              const formattedTimestamp = new Date(errorData.timeStamp).toLocaleString();
-              console.log(`Error timestamp: ${formattedTimestamp}`);
+            // Assuming 'timeStamp' is a date, you can format it as needed
+            const formattedTimestamp = new Date(errorData.timeStamp).toLocaleString();
+            console.log(`Error timestamp: ${formattedTimestamp}`);
           }
-      } 
-  });
+        }
+      });
   }
 
   return (
@@ -86,7 +87,7 @@ const Cart = () => {
 
                   Logout <FaSignOutAlt />
                 </a>
-                
+
               </div>
 
 

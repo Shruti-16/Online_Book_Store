@@ -4,63 +4,34 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 
-// const addToCart = (productId) => {
-//   let user = sessionStorage.getItem("user");
-//   let id = user.userId;
+function Product({ product }) {
+  const [addingToCart, setAddingToCart] = useState(false);
 
-  // const newItem = {
-  //   productId: productId,
-  //   quantity:
-  //   // Other properties you might need
-  // };
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const addToCart = async () => {
+    setAddingToCart(true);
+    try {
+      const response = LoginServiceCustomer.addToCart(
+        sessionStorage.getItem("userId"),
+        product.bookId
+      );
 
-//   LoginServiceCustomer.buyNow(id)
-//     .then((response) => {
-//       toast.success("Product added to cart!");
-//       // // Refresh the cart items
-//       // getCartItems();
-//     })
-//     .catch((error) => {
-//       toast.error("Error adding product to cart.");
-//       console.error(error);
-//     });
-//  };
-
-// function Product({ product, addToCart }) {
-  function Product({product}) {
-    const [addingToCart, setAddingToCart] = useState(false);
-  
-    const addToCart = async () => {
-      setAddingToCart(true);
-      try {
-        // const token = sessionStorage.getItem('user');
-        // const config = {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        //   }
-        // };
-  
-        const response = LoginServiceCustomer.addToCart(sessionStorage.getItem("userId"),product.bookId);
-  
-        if (response.status === 200) {
-          toast.success("Product added to cart!");
-        }
-      } catch (error) {
-        toast.error("Error adding product to cart.");
+      if (response.status === 200) {
+        toast.success("Product added to cart!");
       }
-      setAddingToCart(false);
-    };
-  
+    } catch (error) {
+      toast.error("Error adding product to cart.");
+    }
+    setAddingToCart(false);
+  };
 
   const randomSeed = Math.floor(Math.random() * 1000);
 
   const width = 300;
   const height = 200;
-  
-  const imageUrl = `https://picsum.photos/seed/${randomSeed}/${width}/${height}`;
 
+  const imageUrl = `https://picsum.photos/seed/${randomSeed}/${width}/${height}`;
 
   return (
     <div>
@@ -73,10 +44,7 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
           marginBottom: "4rem",
         }}
       >
-        <img
-          alt="Sample"
-          src={imageUrl} // Use the dynamically generated image URL
-        />
+        <img alt="Sample" src={imageUrl} />
         <CardBody>
           <CardTitle>
             <h4 className="text-info">{product.title}</h4>
@@ -98,7 +66,25 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
             Stock: {product.stock}
             <br />
           </CardSubtitle>
-          <Button onClick={addToCart} color="warning" outline>
+          <Button
+            onClick={addToCart}
+            color="warning"
+            outline
+            style={{
+              backgroundColor: isClicked
+                ? "red"
+                : isHovered
+                ? "orange"
+                : "lightseagreen",
+              color: isClicked ? "white" : isHovered ? "white" : "black",
+              border: "1px solid black",
+              transition: "background-color 0.3s, color 0.3s",
+            }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onMouseDown={() => setIsClicked(true)}
+            onMouseUp={() => setIsClicked(false)}
+          >
             Add to Cart
           </Button>
         </CardBody>
@@ -106,6 +92,5 @@ import LoginServiceCustomer from "../Service/LoginServiceCustomer";
     </div>
   );
 }
-
 
 export default Product;

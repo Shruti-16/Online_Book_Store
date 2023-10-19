@@ -12,51 +12,29 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 
 @Entity
 @Getter
 @Setter
 @Table(name = "languages")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Language {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long languageId;
+	
 	@Column(name = "language_name")
 	private String name;
+	
 	@ManyToMany(mappedBy = "languages")
 	private List<Book> books = new ArrayList<>();
-	
 
 	public Language(String name) {
 		super();
 		this.name = name;
 	}
-	public Language() {
-		super();
-	}
-	public Long getLanguageId() {
-		return languageId;
-	}
-	public void setLanguageId(Long languageId) {
-		this.languageId = languageId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public List<Book> getBooks() {
-		return books;
-	}
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-	
-	
 
 }

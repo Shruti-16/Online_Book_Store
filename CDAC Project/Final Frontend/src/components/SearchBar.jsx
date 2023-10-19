@@ -1,7 +1,7 @@
 import { FaSearch } from "react-icons/fa";
 import { Container } from "reactstrap";
 import { useState } from "react";
-import "./SearchBar.css"
+import "./SearchBar.css";
 import LoginServiceCustomer from "../Service/LoginServiceCustomer";
 
 function SearchBar() {
@@ -12,12 +12,13 @@ function SearchBar() {
   };
 
   const handleSearch = (searchTerm) => {
-    LoginServiceCustomer.searchBook(searchTerm).then(response => response.json())
-      .then(data => {
+    LoginServiceCustomer.searchBook(searchTerm)
+      .then((response) => response.json())
+      .then((data) => {
         // Handle the search results
         console.log("Search results:", data);
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle any errors
         console.error("Error:", error);
       });
@@ -41,7 +42,6 @@ function SearchBar() {
           </button>
         </div>
       </div>
-      
     </Container>
   );
 }
