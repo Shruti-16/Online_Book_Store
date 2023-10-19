@@ -50,4 +50,4 @@ Contributions are welcome! If you find a bug or want to add a new feature, pleas
 
 ## Contact
 
-If you have any questions or suggestions, please feel free to contact us at contact@example.com.
+If you have any questions or suggestions, please feel free to contact us at kanereanup@gmail.com
